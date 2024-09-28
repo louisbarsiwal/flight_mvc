@@ -24,5 +24,32 @@ public class UserController
 	{
 		return "Flight";
 	}
+	@GetMapping("/openFM_loginPage")
+	public String openFMLoginPage()
+	{
+		return "FM_login";
+	}
+	@GetMapping("/openFM_registrationPage")
+	public String openFMRegistrationPage()
+	{
+		return "FM_registration";
+	}
+	@GetMapping("/openuserprofile")
+	public String openUserProfilePage()
+	{
+		return "userprofile";
+	}
+	@GetMapping("/openusereditprofile")
+	public String openusereditprofile() {
+		return "user_editprofile";
+	}
+	@GetMapping("/openupdateflight")
+	public String openupdateflight() {
+		return "update_flight";
+	}
+	@GetMapping("/opencancelflight")
+	public String opencancelflight() {
+		return "cancel_flight";
+	}
 
 }

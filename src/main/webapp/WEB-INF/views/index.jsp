@@ -23,7 +23,7 @@
      <img src="images/profile-icon.png" alt="Profile Icon">
      <div id="dropdown" class="dropdown-content">
        <a href="/user/openLoginPage">Business Owner</a>
-       <a href="/user/openFlightPage">Flight Manager</a>
+       <a href="/user/openFM_loginPage">Flight Manager</a>
        <a href="#customer">Customer</a>
     </div>
   </div>
@@ -31,11 +31,15 @@
 
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <a href="/user/openuserprofile">USER PROFILE</a>
   <a href="#addFlight">ADD FLIGHT</a>
   <a href="#deleteFlight">DELETE FLIGHT</a>
   <a href="#addAirline">ADD AIRLINE</a>
   <a href="#displayFlight">DISPLAY FLIGHT</a>
   <a href="#bookFlight">BOOK A FLIGHT</a>
+  <a href="/user/openupdateflight">UPDATE FLIGHT</a>
+  <a href="/user/opencancelflight">CANCEL FLIGHT</a>
+
 </div>
 
 <div id="main">
