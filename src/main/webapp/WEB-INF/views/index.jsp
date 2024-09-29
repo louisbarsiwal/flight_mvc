@@ -32,10 +32,10 @@
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <a href="/user/openuserprofile">USER PROFILE</a>
-  <a href="#addFlight">ADD FLIGHT</a>
+  <a href="/openAddFlightPage">ADD FLIGHT</a>
   <a href="#deleteFlight">DELETE FLIGHT</a>
   <a href="#addAirline">ADD AIRLINE</a>
-  <a href="#displayFlight">DISPLAY FLIGHT</a>
+  <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
   <a href="#bookFlight">BOOK A FLIGHT</a>
   <a href="/user/openupdateflight">UPDATE FLIGHT</a>
   <a href="/user/opencancelflight">CANCEL FLIGHT</a>

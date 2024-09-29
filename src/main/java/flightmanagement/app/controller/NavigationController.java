@@ -13,4 +13,16 @@ public class NavigationController {
 		return "index";
 	}
 	
+	@GetMapping("/openAddFlightPage")
+    public String openAddFlightPage() {
+        return "add_flight"; 
+    }
+	
+	@GetMapping("/openDisplayFlightPage")
+    public String openDisplayFlightPage() {
+        return "display_flight"; 
+    }
+	
+	
+	
 }
