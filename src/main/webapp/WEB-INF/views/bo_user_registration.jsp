@@ -10,24 +10,27 @@
 <body>
 
 <div class="registration-container">
-    <form action="register" method="post" enctype="multipart/form-data">
-        <label for="profileImage">Profile Image:</label>
-        <input type="file" id="profileImage" name="profileImage" accept="image/*">
+    <form action="/user/Boregister" method="post" enctype="multipart/form-data">
+        
+		
+		<label for="Profileimage">Upload Image:</label>
+		<input type="file" name="profileImage" accept=".jpg, .jpeg, .png, .pdf" required>
+
 
         <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" required>
+        <input type="text" id="firstname" name="firstName" required>
 
         <label for="lastname">Last Name:</label>
-        <input type="text" id="lastname" name="lastname" required>
+        <input type="text" id="lastname" name="lastName" required>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <input type="email" id="email" name="emailId" required>
 
         <label for="mobile">Mobile Number:</label>
-        <input type="tel" id="mobile" name="mobile" required>
+        <input type="tel" id="mobile" name="mobileNo" required>
 
         <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" name="dob" required>
+        <input type="date" id="dob" name="dateOfBirth" required>
 
         <div class="gender-container">
             <label>Gender:</label>
@@ -40,12 +43,12 @@
         <input type="text" id="username" name="username" required>
 
         <label for="newpassword">New Password:</label>
-        <input type="password" id="newpassword" name="newpassword" required>
+        <input type="password" id="newpassword" name="password" required>
 
         <label for="confirmpassword">Confirm Password:</label>
         <input type="password" id="confirmpassword" name="confirmpassword" required>
 
-        <button type="submit">Register</button>
+        <button type="submit" value="submit">Register</button>
     </form>
 </div>
 

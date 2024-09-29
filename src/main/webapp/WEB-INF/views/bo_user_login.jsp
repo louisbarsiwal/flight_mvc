@@ -9,12 +9,12 @@
 </head>
 <body>
 
-    <form action="/user/login" method="post">
+    <form action="/user/Bologin" method="post">
         <img src="/images/profile-icon.png" alt="Profile Icon" class="profile-icon" />
         <input type="text" name="username" placeholder="Username" required /><br/>
         <input type="password" name="password" placeholder="Password" required /><br/>
         <button type="submit">Submit</button><br/>
-        <p><a href="/user/openRegistrationPage">Don't have an account? Register here</a></p>
+        <p><a href="/user/openBoRegistrationPage">Don't have an account? Register here</a></p>
     </form>
 
 </body>
