@@ -33,6 +33,11 @@ public class UserController {
 	BusinessOwnerDaoImpl businessOwnerDaoImpl;
 
 	@GetMapping("/openBoLoginPage")
+	public String openBoLoginPage() {
+		return "bo_user_login";
+	}
+
+	@GetMapping("/openLoginPage")
 	public String openLoginPage() {
 		return "bo_user_login";
 	}
@@ -116,6 +121,12 @@ public class UserController {
 
 	
 	
+
+	@GetMapping("/openRegistrationPage")
+	public String openRegistrationPage() {
+		return "user_registration";
+	}
+
 	@GetMapping("/openFlightPage")
 	public String openFlightPage() {
 		return "Flight";
