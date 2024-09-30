@@ -8,6 +8,12 @@
 <body>
     <div class="profile-form">
         <h2>User Profile</h2>
+		<div class="col-md-3 text-center">
+				 <center>
+				<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDMV7G1cA-1rWzQ6CHNX3_VMcvpECTE7I8Jg&s" class="rounded-circle img-fluid" alt="Profile Picture">
+				</center>
+				</div>
+		
         <form action="editProfile" method="post">
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" required><br>

@@ -120,15 +120,15 @@ public class UserController {
 	public String openFlightPage() {
 		return "Flight";
 	}
-	@GetMapping("/openFM_loginPage")
+	@GetMapping("/openfmuserloginPage")
 	public String openFMLoginPage()
 	{
-		return "FM_login";
+		return "fm_user_login";
 	}
-	@GetMapping("/openFM_registrationPage")
+	@GetMapping("/openfmuserregistrationPage")
 	public String openFMRegistrationPage()
 	{
-		return "FM_registration";
+		return "fm_user_registration";
 	}
 	@GetMapping("/openuserprofile")
 	public String openUserProfilePage()
