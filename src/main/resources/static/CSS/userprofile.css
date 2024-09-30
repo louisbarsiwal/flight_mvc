@@ -18,6 +18,13 @@ body {
     color: #457B9D; /* Light green color */
 }
 
+img {
+    width: 150px; /* Adjust width as per your preference */
+    height: 150px; /* Adjust height as per your preference */
+    object-fit: cover; /* This ensures the image keeps aspect ratio while being resized */
+    border-radius: 50%; /* For the rounded-circle effect */
+}
+
 .profile-form label {
     display: block;
     margin-bottom: 8px;

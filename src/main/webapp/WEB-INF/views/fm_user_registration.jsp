@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
-	<link rel="stylesheet" type="text/css" href="/CSS/FM_registration.css">
+	<link rel="stylesheet" type="text/css" href="/CSS/fm_registration.css">
 </head>
 <body>
 
