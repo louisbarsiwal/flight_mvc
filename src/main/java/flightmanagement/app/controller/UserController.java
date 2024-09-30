@@ -147,5 +147,13 @@ public class UserController {
 	public String opencancelflight() {
 		return "cancel_flight";
 	}
+	@GetMapping("/openPassengerRegistration")
+	public String openPassengerRegistration() {
+		return "passenger_registration";
+	}
+	@GetMapping("/openPassengerLogin")
+	public String openPassengerLogin() {
+		return "passenger_login";
+	}
 
 }
