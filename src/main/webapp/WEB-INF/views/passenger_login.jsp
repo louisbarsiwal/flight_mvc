@@ -4,26 +4,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Flight Login Page</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/user_login.css">
-
-	<script>
-	        window.onload = function() {
-	            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
-	            if (message) {
-	                alert(message);
-	            }
-	        };
-	    </script>
-
-
+    <title>Passenger Login Page</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/passenger_login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 </head>
 <body>
-    <form action="/flightManager/login" method="post">
-		<img src="/images/profile-icon.png" alt="Profile Icon" class="profile-icon" />
-        <h2 class="login-title">Business Owner Login</h2>
+    <form action="/passenger/login" method="post">
+        <h2 class="login-title">Passenger Login</h2>
         <input type="text" name="username" class="input-field" placeholder="Enter your Username" required /><br/>
         <div class="password-container">
             <input type="password" id="password" name="password" class="input-field" placeholder="Enter your password" required />
@@ -32,7 +19,7 @@
             </span>
         </div><br/>
         <button type="submit">Login</button><br/>
-        <p>Don't have an account? <a href="/user/openBoRegistrationPage">Register here</a></p>
+        <p>Don't have an account? <a href="/user/openPassengerRegistration">Register here</a></p>
     </form>
 
     <script>

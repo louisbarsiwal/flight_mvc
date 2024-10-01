@@ -7,28 +7,37 @@
 <body>
     <div class="profile-form">
         <h2>Edit User Profile</h2>
+		<div class="col-md-3 text-center">
+		 <center>
+		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDMV7G1cA-1rWzQ6CHNX3_VMcvpECTE7I8Jg&s" class="rounded-circle img-fluid" alt="Profile Picture">
+		</center>
+		</div>
         <form action="saveProfile" method="post">
-            <label for="fullName">Full Name:</label>
-            <input type="text" id="fullName" name="fullName" value="${user.fullName}" required><br>
+			<label for="firstName">First Name:</label>
+			            <input type="text" id="firstName" name="firstName" required><br>
+						
+						<label for="lastName">Last Name:</label>
+						<input type="text" id="lastName" name="lastName" required><br>
 
-            <label for="mobileNumber">Mobile Number:</label>
-            <input type="text" id="mobileNumber" name="mobileNumber" value="${user.mobileNumber}" required><br>
+			            <label for="mobileNumber">Mobile Number:</label>
+			            <input type="text" id="mobileNumber" name="mobileNumber" required><br>
 
-            <label for="emailId">Email ID:</label>
-            <input type="email" id="emailId" name="emailId" value="${user.emailId}" required><br>
+			            <label for="emailId">Email ID:</label>
+			            <input type="email" id="emailId" name="emailId" required><br>
 
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender" required>
-                <option value="male" ${user.gender == 'male' ? 'selected' : ''}>Male</option>
-                <option value="female" ${user.gender == 'female' ? 'selected' : ''}>Female</option>
-                <option value="other" ${user.gender == 'other' ? 'selected' : ''}>Other</option>
-            </select><br>
+						<div class="gender-container">
+						            <label>Gender:</label>
+						            <label><input type="radio" name="gender" value="male" required> Male</label>
+						            <label><input type="radio" name="gender" value="female"> Female</label>
+						            <label><input type="radio" name="gender" value="other"> Other</label>
+					   </div>
 
-            <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" value="${user.dob}" required><br>
+			            <label for="dob">Date of Birth:</label>
+			            <input type="date" id="dob" name="dob" required><br>
 
-            <label for="role">Role:</label>
-            <input type="text" id="role" name="role" value="${user.role}" required><br>
+			            <label for="username">Username:</label>
+			            <input type="text" id="username" name="username" required><br>
+						<center>
 
             <input type="submit" value="Save Details">
         </form>

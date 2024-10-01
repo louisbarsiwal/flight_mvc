@@ -33,6 +33,11 @@ public class UserController {
 	BusinessOwnerDaoImpl businessOwnerDaoImpl;
 
 	@GetMapping("/openBoLoginPage")
+	public String openBoLoginPage() {
+		return "bo_user_login";
+	}
+
+	@GetMapping("/openLoginPage")
 	public String openLoginPage() {
 		return "bo_user_login";
 	}
@@ -129,19 +134,25 @@ public class UserController {
 
 	
 	
+
+	@GetMapping("/openRegistrationPage")
+	public String openRegistrationPage() {
+		return "user_registration";
+	}
+
 	@GetMapping("/openFlightPage")
 	public String openFlightPage() {
 		return "Flight";
 	}
-	@GetMapping("/openFM_loginPage")
+	@GetMapping("/openfmuserloginPage")
 	public String openFMLoginPage()
 	{
-		return "FM_login";
+		return "fm_user_login";
 	}
-	@GetMapping("/openFM_registrationPage")
+	@GetMapping("/openfmuserregistrationPage")
 	public String openFMRegistrationPage()
 	{
-		return "FM_registration";
+		return "fm_user_registration";
 	}
 	@GetMapping("/openuserprofile")
 	public String openUserProfilePage()
@@ -159,6 +170,14 @@ public class UserController {
 	@GetMapping("/opencancelflight")
 	public String opencancelflight() {
 		return "cancel_flight";
+	}
+	@GetMapping("/openPassengerRegistration")
+	public String openPassengerRegistration() {
+		return "passenger_registration";
+	}
+	@GetMapping("/openPassengerLogin")
+	public String openPassengerLogin() {
+		return "passenger_login";
 	}
 
 }

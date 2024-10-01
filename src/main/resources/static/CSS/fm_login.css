@@ -48,3 +48,35 @@ button:hover {
 p {
     margin-top: 15px;
 }
+.login-title {
+    color: #457B9D;
+}
+
+.login-title {
+    color: #457B9D;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.password-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.eye-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+

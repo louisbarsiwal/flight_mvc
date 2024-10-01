@@ -1,69 +1,67 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    background-color: #F1FAEE;
+    color: #1D3557;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
+    margin: 0;
 }
 
-.update-flight-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 100%;
+.form-container {
+	background-color: #A8DADC;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	width: 440px;
+	max-width: 90%;
+	margin-top: 30%;
 }
 
-h2 {
+.form-container h2 {
     text-align: center;
-    color: #457B9D; /* Violet color */
+    color: #E63946;
     margin-bottom: 20px;
 }
 
-form {
+.form-group {
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
 }
 
-label {
+.form-group label {
     margin-bottom: 5px;
-    color: #457B9D; /* Violet color */
     font-weight: bold;
 }
 
-input[type="text"],
-input[type="date"],
-input[type="time"] {
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
+.form-group select, .form-group input {
+    width: 100%; /* Ensures all fields have the same width */
+    padding: 10px; /* Added padding for better spacing */
+    border: 1px solid #457B9D;
     border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
-button {
-    padding: 10px;
-    background-color: #457B9D; /* Violet color */
+.form-group input[type="number"] {
+    -moz-appearance: textfield; /* Hide the stepper arrows for number inputs */
+}
+
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Hide the stepper arrows for number inputs */
+    margin: 0;
+}
+
+.form-group input[type="submit"] {
+    background-color: #457B9D;
+    color: #F1FAEE;
     border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
     cursor: pointer;
-    width: 100%;
+    transition: background-color 0.3s;
 }
 
-button:hover {
-    background-color: #1D3557; /* Darker violet color */
-}
-
-input[type="text"]:focus,
-input[type="date"]:focus,
-input[type="time"]:focus {
-    border-color: #457B9D; /* Violet color when focused */
-    outline: none;
+.form-group input[type="submit"]:hover {
+    background-color: #1D3557;
 }
