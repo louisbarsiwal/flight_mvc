@@ -11,6 +11,7 @@
 <body>
     <form action="/flightManager/login" method="post">
         <h2 class="login-title">Flight Manager Login</h2>
+		<img src="/images/profile-icon.png" alt="Profile Icon" class="profile-icon" />
         <input type="text" name="username" class="input-field" placeholder="Enter your Username" required /><br/>
         <div class="password-container">
             <input type="password" id="password" name="password" class="input-field" placeholder="Enter your password" required />
