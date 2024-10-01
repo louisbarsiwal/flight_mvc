@@ -23,13 +23,8 @@
      <img src="images/profile-icon.png" alt="Profile Icon">
      <div id="dropdown" class="dropdown-content">
        <a href="/user/openBoLoginPage">Business Owner</a>
-<<<<<<< HEAD
        <a href="/user/openfmuserloginPage">Flight Manager</a>
        <a href="#customer">Customer</a>
-=======
-       <a href="/user/openFM_loginPage">Flight Manager</a>
-       <a href="/user/openPassengerLogin">Passenger</a>
->>>>>>> 9f8faf2163872b285dafb148d62d5abe69246bde
     </div>
   </div>
 </div>
