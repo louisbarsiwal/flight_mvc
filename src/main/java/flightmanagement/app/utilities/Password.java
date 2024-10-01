@@ -41,7 +41,7 @@ public class Password
             // Convert the hash bytes to a hexadecimal representation
             strHash = bytesToHex(hashBytes);
 
-           System.out.println("Full Hash (64 characters): " + strHash);
+           //System.out.println("Full Hash (64 characters): " + strHash);
             
 		} catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

@@ -41,6 +41,11 @@ public class UserController {
 	public String openLoginPage() {
 		return "bo_user_login";
 	}
+	
+	@GetMapping("/openBoDashboard")
+	public String openBoDashboard () {
+		return "bo_dashboard";
+	}
 
 	@GetMapping("/openBoRegistrationPage")
 	public ModelAndView openRegistrationPage(ModelAndView modelAndView) {
@@ -65,16 +70,24 @@ public class UserController {
 
 			String pwdSalt = businessOwnerRegistration .getPasswordSalt();
 			String oldPwdHash = businessOwnerRegistration .getPasswordHash();
+			System.out.println("old Password hash: "+oldPwdHash);
 
 			String newPassword = password + pwdSalt;
 			
 			System.out.println("Password: "+newPassword);
-			String newPasswordHash = Password.generatePwdHash(newPassword);
-			System.out.println("Password hash: "+newPasswordHash);
+			String newPwdHash = Password.generatePwdHash(newPassword);
+			System.out.println("New Password hash: "+newPwdHash);
 
-			if (newPasswordHash.equals(oldPwdHash)) {
-				
+			if (newPwdHash.equals(oldPwdHash)) {
+					
 				model.addAttribute("businessOwnerRegistration ", businessOwnerRegistration );
+				 return "redirect:/user/openBoDashboard";
+				
+			}
+			else
+			{
+				attributes.addFlashAttribute("message", "Invalid password");
+				System.out.println("Invalid username or password");
 			}
 			
 		}
@@ -82,8 +95,8 @@ public class UserController {
 			 catch (EmptyResultDataAccessException e) {
 			attributes.addFlashAttribute("message", "Incorrect Username");
 		}
-
 		return "redirect:/user/openBoLoginPage";
+		
 	}
 	
 	@PostMapping("/Boregister")
