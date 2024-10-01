@@ -10,7 +10,7 @@
 <body>
 
 <div class="registration-container">
-    <form action="passengerRegister" method="post" enctype="multipart/form-data">
+    <form action="/user/openPassengerRegistration" method="post" enctype="multipart/form-data">
 		<h1 style="color: #457B9D;">Passenger Registration</h1>
         <label for="profileImage">Profile Image</label>
         <input type="file" id="profileImage" name="profileImage" accept="image/*">
