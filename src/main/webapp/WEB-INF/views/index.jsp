@@ -24,7 +24,7 @@
      <div id="dropdown" class="dropdown-content">
        <a href="/user/openBoLoginPage">Business Owner</a>
        <a href="/user/openfmuserloginPage">Flight Manager</a>
-       <a href="#customer">Customer</a>
+       <a href="/user/openPassengerLogin">Customer</a>
     </div>
   </div>
 </div>
