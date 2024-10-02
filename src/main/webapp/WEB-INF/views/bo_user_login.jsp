@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <form action="/flightManager/login" method="post">
+    <form action="/user/Bologin" method="post">
 		<img src="/images/profile-icon.png" alt="Profile Icon" class="profile-icon" />
         <h2 class="login-title">Business Owner Login</h2>
         <input type="text" name="username" class="input-field" placeholder="Enter your Username" required /><br/>

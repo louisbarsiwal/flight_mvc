@@ -10,7 +10,7 @@
 <body>
 
 <div class="registration-container">
-    <form action="register" method="post" enctype="multipart/form-data">
+    <form action="/user/openfmuserregistrationPage" method="post" enctype="multipart/form-data">
 		
 		
         <label for="profileImage">Profile Image</label>
