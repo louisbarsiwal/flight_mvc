@@ -26,7 +26,8 @@ public class BoRowMapper implements RowMapper<BusinessOwnerRegistration> {
 		businessOwnerRegistration.setEmailId(rs.getString("email_id"));
 		businessOwnerRegistration.setMobileNo(rs.getString("mobile_no"));
 		businessOwnerRegistration.setDateOfBirth(rs.getDate("date_of_birth"));
-		businessOwnerRegistration.setUsername(rs.getString("username"));
+		businessOwnerRegistration.setGender(rs.getString("gender"));
+		businessOwnerRegistration.setUsername(rs.getString("user_name"));
 		businessOwnerRegistration.setPasswordSalt(rs.getString("password_salt"));
 		businessOwnerRegistration.setPasswordHash(rs.getString("password_hash"));
 		
