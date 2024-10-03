@@ -37,10 +37,6 @@ public class UserController {
 		return "bo_user_login";
 	}
 
-	@GetMapping("/openLoginPage")
-	public String openLoginPage() {
-		return "bo_user_login";
-	}
 	
 	@GetMapping("/openBoDashboard")
 	public String openBoDashboard () {
