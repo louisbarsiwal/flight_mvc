@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import flightmanagement.app.entities.BusinessOwnerRegistration;
 import flightmanagement.app.entities.PassengerRegistration;
 
+
 @Repository
 public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 	
@@ -64,12 +65,31 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 
 		return jdbcTemplate.queryForObject(sql, new BoRowMapper(), username);
 	}
+
+
+	@Override
+	public BusinessOwnerRegistration modifyUser(BusinessOwnerRegistration businessOwnerRegistration)
+			throws SerialException, IOException, SQLException {
+		Blob profileImage = getBlob(businessOwnerRegistration.getProfileImage());
+
+		String query = "UPDATE admin_businessowner SET first_name = ?, last_name = ?, email_id = ?, "
+				+ "mobile_no = ?, date_of_birth = ?, gender = ?, profile_image = ? WHERE businessOwner_id = ?";
+
+		jdbcTemplate.update(query, businessOwnerRegistration.getFirstName(), businessOwnerRegistration.getLastName(), businessOwnerRegistration.getEmailId(), businessOwnerRegistration.getMobileNo(),
+				businessOwnerRegistration.getDateOfBirth(),businessOwnerRegistration.getGender(), profileImage, businessOwnerRegistration.getBoId());
+		
+		return getUserById(businessOwnerRegistration.getBoId());
+	}
+
+	@Override
+	public BusinessOwnerRegistration getUserById(int boId) {
+		String sql = "SELECT * FROM admin_businessowner WHERE businessOwner_id = ?";
+		return jdbcTemplate.queryForObject(sql, new BoRowMapper(), boId);
+		
+	}
 }
 	
 	
 
-	
-
-	
 
 

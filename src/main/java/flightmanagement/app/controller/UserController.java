@@ -2,6 +2,7 @@ package flightmanagement.app.controller;
 
 import java.io.IOException;
 
+import java.security.Principal;
 
 import java.sql.SQLException;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +35,7 @@ import flightmanagement.app.entities.FlightManagerRegistration;
 
 import flightmanagement.app.utilities.Password;
 
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -42,6 +45,8 @@ public class UserController {
 	private PassengerRegistration  passengerRegistration;
 	
 	@Autowired
+	BusinessOwnerDaoImpl businessOwnerDaoImpl;
+	
 	PassengerDaoImpl passengerdaoImpl;
 
 	private FlightManagerRegistration flightManagerRegistration;
@@ -83,6 +88,33 @@ public class UserController {
 		modelAndView.setViewName("bo_user_registration");
 		return modelAndView;
 	}
+	
+	
+	@GetMapping("/openViewProfilePage")
+	public ModelAndView viewProfile(ModelAndView modelAndView) {
+		modelAndView.setViewName("bo_view_profile");
+		modelAndView.addObject("businessOwnerRegistration", businessOwnerRegistration);
+		return modelAndView;
+	}
+	
+	@PostMapping("/boUpdateProfile")
+	public String updateProfile(
+			@ModelAttribute BusinessOwnerRegistration updatedBo,
+			RedirectAttributes attributes
+			) throws SerialException, IOException, SQLException {
+		// Update user information in the database
+		
+		try {
+			businessOwnerRegistration = businessOwnerDaoImpl.modifyUser(updatedBo); // Simulate updating the user object
+			attributes.addAttribute("message", "Profile updated successfully");
+		} catch(EmptyResultDataAccessException e) {
+			attributes.addAttribute("message", "Updation failed. Please try again later");
+		}
+		return "redirect:/user/openViewProfilePage"; // Redirect back to view profile
+	}
+
+
+
 	@GetMapping("/openPassengerRegistrationPage")
 	public ModelAndView openPassengerRegistrationPage(ModelAndView modelAndView) {
 
@@ -90,6 +122,7 @@ public class UserController {
 		modelAndView.setViewName("passenger_registration");
 		return modelAndView;
 	}
+
 	@PostMapping("/Bologin")
 	public String login(@RequestParam String username, 
 			@RequestParam String password, 
