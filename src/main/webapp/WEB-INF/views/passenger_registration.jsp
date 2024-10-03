@@ -10,25 +10,25 @@
 <body>
 
 <div class="registration-container">
-    <form action="/user/openPassengerRegistration" method="post" enctype="multipart/form-data">
+    <form action="/user/passengerregister" method="post" enctype="multipart/form-data">
 		<h1 style="color: #457B9D;">Passenger Registration</h1>
         <label for="profileImage">Profile Image</label>
         <input type="file" id="profileImage" name="profileImage" accept="image/*">
 
         <label for="firstname">First Name</label>
-        <input type="text" id="firstname" name="firstname" placeholder="Enter your Firstname"required>
+        <input type="text" id="firstname" name="firstName" placeholder="Enter your Firstname"required>
 
         <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" name="lastname" placeholder="Enter your Lastname" required>
+        <input type="text" id="lastname" name="lastName" placeholder="Enter your Lastname" required>
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email"placeholder="Enter your email" required>
+        <input type="email" id="email" name="emailId"placeholder="Enter your email" required>
 
         <label for="mobile">Mobile Number</label>
-        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required pattern="[0-9]{10}" required>
+        <input type="tel" id="mobile" name="mobileNo" placeholder="Enter your mobile number" required pattern="[0-9]{10}" required>
 		<small>format:9XX5XX8XXX please enter 10 digits</small>
 
-        <label for="dob">Age</label>
+        <label for="age">Age</label>
         <input type="number" id="age" name="age" placeholder="Enter your Age" required>
 
         <div class="gender-container">
@@ -42,7 +42,7 @@
         <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
         <label for="newpassword">New Password</label>
-        <input type="password" id="newpassword" name="newpassword" placeholder="Enter your password" required>
+        <input type="password" id="newpassword" name="password" placeholder="Enter your password" required>
 
         <label for="confirmpassword">Confirm Password</label>
         <input type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm your password" required>
