@@ -6,10 +6,21 @@
     <meta charset="UTF-8">
     <title>Flight Login Page</title>
     <link rel="stylesheet" type="text/css" href="/CSS/FM_login.css">
+	<script>
+		        window.onload = function() {
+		            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+		            if (message) {
+		                alert(message);
+		            }
+		        };
+		    </script>
+	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <form action="/user/openfmuserloginPage" method="post">
+
+    <form action="/user/Fmlogin" method="post">
+
 
         <h2 class="login-title">Flight Manager Login</h2>
 		<img src="/images/profile-icon.png" alt="Profile Icon" class="profile-icon" />
@@ -21,7 +32,7 @@
             </span>
         </div><br/>
         <button type="submit">Login</button><br/>
-        <p>Don't have an account? <a href="/user/openfmuserregistrationPage">Register here</a></p>
+        <p>Don't have an account? <a href="/user/openFmRegistrationPage">Register here</a></p>
     </form>
 
     <script>
