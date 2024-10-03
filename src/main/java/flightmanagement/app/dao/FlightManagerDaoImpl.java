@@ -12,7 +12,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import flightmanagement.app.entities.PassengerRegistration;
+
 import flightmanagement.app.entities.FlightManagerRegistration;
 
 @Repository
