@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <form action="/passenger/login" method="post">
+    <form action="/user/openPassengerLogin" method="post">
         <h2 class="login-title">Passenger Login</h2>
         <input type="text" name="username" class="input-field" placeholder="Enter your Username" required /><br/>
         <div class="password-container">

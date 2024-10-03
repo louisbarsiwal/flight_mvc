@@ -33,18 +33,16 @@ public class UserController {
 	
 	@Autowired
 	BusinessOwnerDaoImpl businessOwnerDaoImpl;
+
 	@Autowired
 	FlightManagerDaoImpl flightManagerDaoImpl;
+
 
 	@GetMapping("/openBoLoginPage")
 	public String openBoLoginPage() {
 		return "bo_user_login";
 	}
 
-	@GetMapping("/openLoginPage")
-	public String openLoginPage() {
-		return "bo_user_login";
-	}
 	
 	@GetMapping("/openBoDashboard")
 	public String openBoDashboard () {
@@ -58,9 +56,6 @@ public class UserController {
 		modelAndView.setViewName("bo_user_registration");
 		return modelAndView;
 	}
-	
-	
-	
 	@PostMapping("/Bologin")
 	public String login(@RequestParam String username, 
 			@RequestParam String password, 
@@ -134,6 +129,7 @@ public class UserController {
 		}
 
 	}
+
 	
 	
 	
@@ -141,7 +137,9 @@ public class UserController {
 	
 	
 	@GetMapping("/openFmLoginPage")
-	public String openFmLoginPage() {
+	public String openFMLoginPage()
+	{
+
 		return "fm_user_login";
 	}
  
@@ -180,8 +178,8 @@ public class UserController {
 			System.out.println("New Password hash: "+newPwdHash);
 
 			if (newPwdHash.equals(oldPwdHash)) {
-					
-				model.addAttribute("flightManagerRegistration", flightManagerRegistration);
+				
+				model.addAttribute("flightManagerRegistration ", flightManagerRegistration );
 				 return "redirect:/user/openFmDashboard";
 				
 			}
