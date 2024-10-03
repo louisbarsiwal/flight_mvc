@@ -34,6 +34,7 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 			throws IOException, SerialException, SQLException {
 		Blob profileImage = getBlob(businessOwnerRegistration.getProfileImage());
 
+
 		String query = "INSERT INTO admin_businessowner "
 				+ "(first_name, last_name, email_id, mobile_no, date_of_birth, gender,"
 				+ " user_name, password_salt, password_hash, profile_image) " + 
@@ -58,7 +59,9 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 
 	@Override
 	public BusinessOwnerRegistration fetchUser(String username) {
+
 		String sql = "SELECT * FROM admin_businessowner WHERE user_name = ?";
+
 		return jdbcTemplate.queryForObject(sql, new BoRowMapper(), username);
 	}
 
