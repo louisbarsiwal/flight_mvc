@@ -1,17 +1,18 @@
 package flightmanagement.app.entities;
 
-import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class BusinessOwnerRegistration 
+public class PassengerRegistration 
 {
-	private int boId;
+	
+	private int passenger_Id;
 	private String firstName;
 	private String lastName;
 	private String emailId;
 	private String mobileNo;
-	private Date dateOfBirth;
+	private int age;
+	private String gender;
 	private String username;
 	private String password;
 	private String passwordSalt;
@@ -19,22 +20,23 @@ public class BusinessOwnerRegistration
 	private MultipartFile profileImage;
 	
 	
-	public BusinessOwnerRegistration() {
+	public PassengerRegistration() {
 		super();
 		
 	}
 
 
-	public BusinessOwnerRegistration(int boId, String firstName, String lastName, String emailId, String mobileNo,
-			Date dateOfBirth, String username, String password, String passwordSalt, String passwordHash,
+	public PassengerRegistration(int passenger_Id, String firstName, String lastName, String emailId, String mobileNo,
+			int age, String gender, String username, String password, String passwordSalt, String passwordHash,
 			MultipartFile profileImage) {
 		super();
-		this.boId = boId;
+		this.passenger_Id = passenger_Id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
 		this.mobileNo = mobileNo;
-		this.dateOfBirth = dateOfBirth;
+		this.age = age;
+		this.gender = gender;
 		this.username = username;
 		this.password = password;
 		this.passwordSalt = passwordSalt;
@@ -43,30 +45,13 @@ public class BusinessOwnerRegistration
 	}
 
 
-	public BusinessOwnerRegistration(String firstName, String lastName, String emailId, String mobileNo,
-			Date dateOfBirth, String username, String password, String passwordSalt, String passwordHash,
-			MultipartFile profileImage) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailId = emailId;
-		this.mobileNo = mobileNo;
-		this.dateOfBirth = dateOfBirth;
-		this.username = username;
-		this.password = password;
-		this.passwordSalt = passwordSalt;
-		this.passwordHash = passwordHash;
-		this.profileImage = profileImage;
+	public int getPassenger_Id() {
+		return passenger_Id;
 	}
 
 
-	public int getBoId() {
-		return boId;
-	}
-
-
-	public void setBoId(int boId) {
-		this.boId = boId;
+	public void setPassenger_Id(int passenger_Id) {
+		this.passenger_Id = passenger_Id;
 	}
 
 
@@ -110,13 +95,23 @@ public class BusinessOwnerRegistration
 	}
 
 
-	public Date getDateOfBirth() {
-		return dateOfBirth;
+	public int getAge() {
+		return age;
 	}
 
 
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+	public String getGender() {
+		return gender;
+	}
+
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 
@@ -172,15 +167,14 @@ public class BusinessOwnerRegistration
 
 	@Override
 	public String toString() {
-		return "\n FlightManagerRegistration [boId=" + boId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", dateOfBirth=" + dateOfBirth + ", username="
-				+ username + ", password=" + password + ", passwordSalt=" + passwordSalt + ", passwordHash="
-				+ passwordHash + ", profileImage=" + profileImage + "]";
+		return "PassengerRegistration [passenger_Id=" + passenger_Id + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", age=" + age + ", gender=" + gender
+				+ ", username=" + username + ", password=" + password + ", passwordSalt=" + passwordSalt
+				+ ", passwordHash=" + passwordHash + ", profileImage=" + profileImage + "]";
 	}
+
+
 	
-	
-	
-	
-	
+
 
 }
