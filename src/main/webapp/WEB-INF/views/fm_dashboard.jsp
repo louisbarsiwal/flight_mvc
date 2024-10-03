@@ -33,12 +33,11 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <a href="/user/openuserprofile">VIEW PROFILE</a>
   <a href="/openAddFlightPage">ADD FLIGHT</a>
-  <a href="#deleteFlight">DELETE FLIGHT</a>
+  <a href="#deleteFlight">DELETE AIRLINE</a>
   <a href="#addAirline">ADD AIRLINE</a>
   <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
   <a href="#bookFlight">DISPLAY AIRLINE</a>
   <a href="/user/openupdateflight">UPDATE FLIGHT</a>
-  <a href="/user/opencancelflight">CANCEL FLIGHT</a>
  
 </div>
  

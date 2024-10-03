@@ -157,17 +157,11 @@ public class BusinessOwnerRegistration
 
 	@Override
 	public String toString() {
-<<<<<<< HEAD
-		return "\n FlightManagerRegistration [boId=" + boId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", dateOfBirth=" + dateOfBirth + ", username="
-				+ username + ", password=" + password + ", passwordSalt=" + passwordSalt + ", passwordHash="
-				+ passwordHash + ", profileImage=" + profileImage + "]";
-=======
 		return "\n BusinessOwnerRegistration [boId=" + boId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", dateOfBirth=" + dateOfBirth + ", gender="
 				+ gender + ", username=" + username + ", password=" + password + ", passwordSalt=" + passwordSalt
 				+ ", passwordHash=" + passwordHash + ", profileImage=" + profileImage + "]";
->>>>>>> 38af0c74c1f51ba35ea2c680ad85acdea6057d39
+
 	}
 	
 	
