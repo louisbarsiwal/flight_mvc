@@ -10,26 +10,26 @@
 <body>
 
 <div class="registration-container">
-    <form action="register" method="post" enctype="multipart/form-data">
+    <form action="/user/Fmregister" method="post" enctype="multipart/form-data">
 		
 		
         <label for="profileImage">Profile Image</label>
         <input type="file" id="profileImage" name="profileImage" accept="image/*">
 
         <label for="firstname">First Name</label>
-        <input type="text" id="firstname" name="firstname" placeholder="Enter your Firstname"required>
+        <input type="text" id="firstname" name="firstName" placeholder="Enter your Firstname"required>
 
         <label for="lastname">Last Name</label>
-        <input type="text" id="lastname" name="lastname" placeholder="Enter your Lastname" required>
+        <input type="text" id="lastname" name="lastName" placeholder="Enter your Lastname" required>
 
         <label for="email">Email</label>
-        <input type="email" id="email" name="email"placeholder="Enter your email" required>
+        <input type="email" id="email" name="emailId"placeholder="Enter your email" required>
 
         <label for="mobile">Mobile Number</label>
-        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required>
+        <input type="tel" id="mobile" name="mobileNo" placeholder="Enter your mobile number" required>
 
         <label for="dob">Date Of Birth</label>
-        <input type="date" id="dob" name="dob"  required>
+        <input type="date" id="dob" name="dateOfBirth"  required>
 
         <div class="gender-container">
             <label>Gender:</label>

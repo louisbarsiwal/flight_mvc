@@ -5,7 +5,6 @@ import java.sql.SQLException;
 
 import javax.sql.rowset.serial.SerialException;
 
-import flightmanagement.app.entities.BusinessOwnerRegistration;
 import flightmanagement.app.entities.FlightManagerRegistration;
 
 

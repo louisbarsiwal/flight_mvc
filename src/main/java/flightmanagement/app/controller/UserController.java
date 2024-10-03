@@ -18,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import flightmanagement.app.dao.BusinessOwnerDaoImpl;
-
+import flightmanagement.app.dao.FlightManagerDaoImpl;
 import flightmanagement.app.entities.BusinessOwnerRegistration;
-
+import flightmanagement.app.entities.FlightManagerRegistration;
 import flightmanagement.app.utilities.Password;
 
 @Controller
@@ -28,9 +28,13 @@ import flightmanagement.app.utilities.Password;
 public class UserController {
 	
 	private BusinessOwnerRegistration businessOwnerRegistration;
+	private FlightManagerRegistration flightManagerRegistration;
+
 	
 	@Autowired
 	BusinessOwnerDaoImpl businessOwnerDaoImpl;
+	@Autowired
+	FlightManagerDaoImpl flightManagerDaoImpl;
 
 	@GetMapping("/openBoLoginPage")
 	public String openBoLoginPage() {
@@ -130,30 +134,118 @@ public class UserController {
 		}
 
 	}
-
-
 	
 	
-
-	@GetMapping("/openRegistrationPage")
-	public String openRegistrationPage() {
-		return "user_registration";
-	}
-
-	@GetMapping("/openFlightPage")
-	public String openFlightPage() {
-		return "Flight";
-	}
-	@GetMapping("/openfmuserloginPage")
-	public String openFMLoginPage()
-	{
+	
+	
+	
+	
+	@GetMapping("/openFmLoginPage")
+	public String openFmLoginPage() {
 		return "fm_user_login";
 	}
-	@GetMapping("/openfmuserregistrationPage")
-	public String openFMRegistrationPage()
-	{
-		return "fm_user_registration";
+ 
+	@GetMapping("/openFmDashboard")
+	public String openFmDashboard () {
+		return "fm_dashboard";
 	}
+ 
+	@GetMapping("/openFmRegistrationPage")
+	public ModelAndView openFmManagerRegistrationPage(ModelAndView modelAndView) {
+ 
+		System.out.println("\n openFmRegistrationPage is called");
+		modelAndView.setViewName("fm_user_registration");
+		return modelAndView;
+	}
+	
+	@PostMapping("/Fmlogin")
+	public String loginFlightManager(@RequestParam String username, 
+			@RequestParam String password, 
+			Model model, RedirectAttributes attributes) {
+
+		System.out.println("\n Flight Manager login request data: " + username + ", " + password);
+
+		try {
+			flightManagerRegistration = flightManagerDaoImpl.fetchUser(username);
+			
+
+			String pwdSalt = flightManagerRegistration .getPasswordSalt();
+			String oldPwdHash = flightManagerRegistration .getPasswordHash();
+			System.out.println("old Password hash: "+oldPwdHash);
+
+			String newPassword = password + pwdSalt;
+			
+			System.out.println("Password: "+newPassword);
+			String newPwdHash = Password.generatePwdHash(newPassword);
+			System.out.println("New Password hash: "+newPwdHash);
+
+			if (newPwdHash.equals(oldPwdHash)) {
+					
+				model.addAttribute("flightManagerRegistration", flightManagerRegistration);
+				 return "redirect:/user/openFmDashboard";
+				
+			}
+			else
+			{
+				attributes.addFlashAttribute("message", "Invalid password");
+				System.out.println("Invalid username or password");
+			}
+			
+		}
+
+			 catch (EmptyResultDataAccessException e) {
+			attributes.addFlashAttribute("message", "Incorrect Username");
+		}
+		return "redirect:/user/openFmLoginPage";
+		
+	}
+	
+	@PostMapping("/Fmregister")
+	public String registerFlightManager(@ModelAttribute FlightManagerRegistration flightManagerRegistration, RedirectAttributes attributes)
+			throws IOException, SerialException, SQLException {
+
+
+		// Password Encryption starts
+		String passwordSalt = Password.generatePwdSalt(10);
+		flightManagerRegistration.setPasswordSalt(passwordSalt);
+
+		// temporary data => password+salt
+		String newPassword = flightManagerRegistration.getPassword() + passwordSalt; // 1234rdvyjtftyf
+		
+		System.out.println("Password: "+newPassword);
+
+		String passwordHash = Password.generatePwdHash(newPassword);
+		
+		flightManagerRegistration.setPasswordHash(passwordHash);
+		// Password Encryption completes
+		System.out.println("Password hash: "+passwordHash);
+
+		int result = flightManagerDaoImpl.insertFlightManager(flightManagerRegistration);
+
+		if (result > 0) {
+			attributes.addFlashAttribute("message", "Registration Successful");
+			return "redirect:/user/openFmLoginPage";
+		} else {
+			attributes.addFlashAttribute("message", "Registration Failed");
+			return "redirect:/user/openFmRegistrationPage";
+		}
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/openuserprofile")
 	public String openUserProfilePage()
 	{
@@ -178,6 +270,15 @@ public class UserController {
 	@GetMapping("/openPassengerLogin")
 	public String openPassengerLogin() {
 		return "passenger_login";
+	}
+	@GetMapping("/openRegistrationPage")
+	public String openRegistrationPage() {
+		return "user_registration";
+	}
+
+	@GetMapping("/openFlightPage")
+	public String openFlightPage() {
+		return "Flight";
 	}
 
 }
