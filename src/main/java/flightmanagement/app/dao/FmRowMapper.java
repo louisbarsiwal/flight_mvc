@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.multipart.MultipartFile;
 
+
+import flightmanagement.app.entities.PassengerRegistration;
+
 import flightmanagement.app.entities.FlightManagerRegistration;
 import flightmanagement.app.utilities.ByteArrayMultiPartFile;
 
