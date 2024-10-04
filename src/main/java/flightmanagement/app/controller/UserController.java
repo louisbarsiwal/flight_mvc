@@ -270,18 +270,6 @@ public class UserController {
 		
 	}
 	
-	@GetMapping("/openRegistrationPage")
-	public String openRegistrationPage() {
-		return "user_registration";
-	}
-
-
-	
-	
-	
-	
-	
-	
 	@GetMapping("/openFmLoginPage")
 	public String openFMLoginPage()
 	{
@@ -375,19 +363,6 @@ public class UserController {
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	@GetMapping("/openuserprofile")
