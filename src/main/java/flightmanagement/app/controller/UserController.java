@@ -65,6 +65,10 @@ public class UserController {
 		return "bo_user_login";
 	}
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 4b077687b492daf77acb60807f1f5568aff6440c
 
 	@GetMapping("/openLoginPage")
 	public String openLoginPage() {
