@@ -10,10 +10,15 @@ import flightmanagement.app.entities.PassengerRegistration;
 
 
 
+
+
 public interface BusinessOwnerDao {
 	
 	
 	int insertBusinessOwner(BusinessOwnerRegistration businessOwnerRegistration) throws IOException,SerialException,SQLException;
 	BusinessOwnerRegistration fetchUser(String username) ;
+	BusinessOwnerRegistration modifyUser(BusinessOwnerRegistration businessOwnerRegistration) 
+			throws SerialException, IOException, SQLException;
+	BusinessOwnerRegistration getUserById(int boId);
 
 }
