@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FlightManagerRegistration 
 {
-	private int boId;
+	private int flightManagerId;
 	private String firstName;
 	private String lastName;
 	private String emailId;
@@ -29,7 +29,7 @@ public class FlightManagerRegistration
 			Date dateOfBirth, String username, String password, String passwordSalt, String passwordHash,
 			MultipartFile profileImage) {
 		super();
-		this.boId = boId;
+		this.flightManagerId = flightManagerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
@@ -61,12 +61,12 @@ public class FlightManagerRegistration
 
 
 	public int getBoId() {
-		return boId;
+		return flightManagerId;
 	}
 
 
 	public void setBoId(int boId) {
-		this.boId = boId;
+		this.flightManagerId = boId;
 	}
 
 
@@ -172,7 +172,7 @@ public class FlightManagerRegistration
 
 	@Override
 	public String toString() {
-		return "\n FlightManagerRegistration [boId=" + boId + ", firstName=" + firstName + ", lastName=" + lastName
+		return "\n FlightManagerRegistration [boId=" + flightManagerId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", dateOfBirth=" + dateOfBirth + ", username="
 				+ username + ", password=" + password + ", passwordSalt=" + passwordSalt + ", passwordHash="
 				+ passwordHash + ", profileImage=" + profileImage + "]";

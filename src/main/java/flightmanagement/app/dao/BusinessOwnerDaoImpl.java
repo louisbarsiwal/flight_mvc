@@ -1,6 +1,7 @@
 package flightmanagement.app.dao;
 
 import java.io.IOException;
+
 import java.sql.Blob;
 import java.sql.SQLException;
 
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import flightmanagement.app.entities.BusinessOwnerRegistration;
+
 
 
 @Repository
@@ -55,8 +57,6 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 		Blob imageBlob = new SerialBlob(byteArr);
 		return imageBlob;
 	}
-	
-	
 
 	@Override
 	public BusinessOwnerRegistration fetchUser(String username) {
@@ -65,6 +65,7 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 
 		return jdbcTemplate.queryForObject(sql, new BoRowMapper(), username);
 	}
+
 
 	@Override
 	public BusinessOwnerRegistration modifyUser(BusinessOwnerRegistration businessOwnerRegistration)
@@ -88,3 +89,11 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 	}
 
 }
+	
+	
+
+	
+
+	
+
+
