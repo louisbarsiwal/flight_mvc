@@ -157,6 +157,7 @@ public class BusinessOwnerRegistration
 
 	@Override
 	public String toString() {
+
 		return "\n BusinessOwnerRegistration [boId=" + boId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", dateOfBirth=" + dateOfBirth + ", gender="
 				+ gender + ", username=" + username + ", password=" + password + ", passwordSalt=" + passwordSalt

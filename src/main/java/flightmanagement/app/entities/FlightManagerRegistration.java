@@ -6,7 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FlightManagerRegistration 
 {
-	private int fmId;
+
+	private int flightManagerId;
 	private String firstName;
 	private String lastName;
 	private String emailId;
@@ -22,11 +23,14 @@ public class FlightManagerRegistration
 		super();
 		
 	}
-	public FlightManagerRegistration(int fmId, String firstName, String lastName, String emailId, String mobileNo,
-			Date dateOfBirth, String gender, String username, String password, String passwordSalt, String passwordHash,
+
+
+
+	public FlightManagerRegistration(int flightManagerId, String firstName, String lastName, String emailId, String mobileNo,
+			Date dateOfBirth, String username, String password, String passwordSalt, String passwordHash,
 			MultipartFile profileImage) {
 		super();
-		this.fmId = fmId;
+		this.flightManagerId = flightManagerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
@@ -55,12 +59,16 @@ public class FlightManagerRegistration
 		this.passwordHash = passwordHash;
 		this.profileImage = profileImage;
 	}
-	public int getFmId() {
-		return fmId;
+
+
+
+	public int getflightManagerId() {
+		return flightManagerId;
 	}
-	public void setFmId(int fmId) {
-		this.fmId = fmId;
-	}
+
+	public void setflightManagerId(int flightManagerId) {
+		this.flightManagerId = flightManagerId;
+    }
 	public String getFirstName() {
 		return firstName;
 	}
@@ -129,15 +137,14 @@ public class FlightManagerRegistration
 	}
 	@Override
 	public String toString() {
-		return "FlightManagerRegistration [fmId=" + fmId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", dateOfBirth=" + dateOfBirth + ", gender="
-				+ gender + ", username=" + username + ", password=" + password + ", passwordSalt=" + passwordSalt
-				+ ", passwordHash=" + passwordHash + ", profileImage=" + profileImage + "]";
+
+		return "\n FlightManagerRegistration [flightManagerId=" + flightManagerId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", dateOfBirth=" + dateOfBirth + ", username="
+				+ username + ", password=" + password + ", passwordSalt=" + passwordSalt + ", passwordHash="
+				+ passwordHash + ", profileImage=" + profileImage + "]";
+
 	}
-	
-	
-	}
-	
+}
 	
 	
 	

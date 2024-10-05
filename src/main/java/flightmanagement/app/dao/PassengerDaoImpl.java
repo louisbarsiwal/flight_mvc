@@ -34,7 +34,7 @@ public class PassengerDaoImpl implements PassengerDao {
 			throws IOException, SerialException, SQLException {
 		Blob profileImage = getBlob(passengerRegistration.getProfileImage());
 
-		String query = "INSERT INTO passenger" + "(`first_name`, `last_name`, `email`, `mobile_no`, "
+		String query = "INSERT INTO admin_passenger" + "(`first_name`, `last_name`, `email`, `mobile_no`, "
 				+ "`age`, `gender`,`username`, `password_salt`, `password_hash`, "
 				+ "`profile_image`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
@@ -55,7 +55,7 @@ public class PassengerDaoImpl implements PassengerDao {
 
 	@Override
 	public PassengerRegistration fetchUser(String username) {
-		String sql = "SELECT * FROM passenger WHERE username = ?";
+		String sql = "SELECT * FROM admin_passenger WHERE username = ?";
 		return jdbcTemplate.queryForObject(sql, new PassengerRowMapper(), username);
 	}
 
