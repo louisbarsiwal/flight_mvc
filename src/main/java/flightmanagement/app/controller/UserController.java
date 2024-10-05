@@ -23,6 +23,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import flightmanagement.app.dao.BusinessOwnerDao;
 import flightmanagement.app.dao.BusinessOwnerDaoImpl;
+import flightmanagement.app.dao.FlightManagerDaoImpl;
+import flightmanagement.app.entities.BusinessOwnerRegistration;
+import flightmanagement.app.entities.FlightManagerRegistration;
 
 import flightmanagement.app.dao.PassengerDaoImpl;
 import flightmanagement.app.entities.BusinessOwnerRegistration;
@@ -33,6 +36,7 @@ import flightmanagement.app.dao.FlightManagerDaoImpl;
 import flightmanagement.app.entities.BusinessOwnerRegistration;
 import flightmanagement.app.entities.FlightManagerRegistration;
 
+
 import flightmanagement.app.utilities.Password;
 
 
@@ -41,20 +45,17 @@ import flightmanagement.app.utilities.Password;
 public class UserController {
 	
 	private BusinessOwnerRegistration businessOwnerRegistration;
-
+	private FlightManagerRegistration flightManagerRegistration;
 	private PassengerRegistration  passengerRegistration;
+
 	
 	@Autowired
 	BusinessOwnerDaoImpl businessOwnerDaoImpl;
+
 	
+	@Autowired	
 	PassengerDaoImpl passengerdaoImpl;
 
-	private FlightManagerRegistration flightManagerRegistration;
-
-
-	
-	@Autowired
-	BusinessOwnerDaoImpl businessOwnerDaoImpl;
 
 	@Autowired
 	FlightManagerDaoImpl flightManagerDaoImpl;
@@ -65,10 +66,7 @@ public class UserController {
 		return "bo_user_login";
 	}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 4b077687b492daf77acb60807f1f5568aff6440c
 
 	@GetMapping("/openLoginPage")
 	public String openLoginPage() {
@@ -200,6 +198,7 @@ public class UserController {
 		}
 
 	}
+
 
 	@PostMapping("/passengerregister")
 	public String  passengerRegister(@ModelAttribute PassengerRegistration passengerRegistration, RedirectAttributes attributes)
