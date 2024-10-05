@@ -28,7 +28,6 @@ import flightmanagement.app.entities.BusinessOwnerRegistration;
 import flightmanagement.app.entities.FlightManagerRegistration;
 
 import flightmanagement.app.dao.PassengerDaoImpl;
-import flightmanagement.app.entities.BusinessOwnerRegistration;
 import flightmanagement.app.entities.PassengerRegistration;
 
 
