@@ -34,6 +34,7 @@
   <a href="/user/openuserprofile">VIEW PROFILE</a>
   <a href="/openAddFlightPage">ADD FLIGHT</a>
   <a href="#deleteFlight">DELETE FLIGHT</a>
+  <a href="#deleteFlight">DELETE AIRLINE</a>
   <a href="#addAirline">ADD AIRLINE</a>
   <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
   <a href="#bookFlight">DISPLAY AIRLINE</a>

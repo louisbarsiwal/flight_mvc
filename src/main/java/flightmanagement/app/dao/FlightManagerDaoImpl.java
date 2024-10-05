@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
-
 import flightmanagement.app.entities.FlightManagerRegistration;
 
 @Repository
@@ -39,7 +38,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 				+ "`profile_image`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		return jdbcTemplate.update(query, flightManagerRegistration.getFirstName(), flightManagerRegistration.getLastName(), flightManagerRegistration.getEmailId(),
-				flightManagerRegistration.getMobileNo(), flightManagerRegistration.getDateOfBirth(), flightManagerRegistration.getUsername(), flightManagerRegistration.getPasswordSalt(),
+				flightManagerRegistration.getMobileNo(), flightManagerRegistration.getDateOfBirth(),flightManagerRegistration.getGender(), flightManagerRegistration.getUsername(), flightManagerRegistration.getPasswordSalt(),
 				flightManagerRegistration.getPasswordHash(), profileImage);
 		
 	}
