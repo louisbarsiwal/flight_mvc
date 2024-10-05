@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Available Flights</title>
-	<link rel="stylesheet" type="text/css" href="/CSS/display_flight.css">
-	</head>
+    <link rel="stylesheet" type="text/css" href="/CSS/display_flight.css">
+</head>
 <body>
     <h1>Available Flights</h1>
     <table>
         <thead>
             <tr>
+                <th>Airline Name</th>
                 <th>Flight No</th>
                 <th>Flight Model</th>
                 <th>From</th>
@@ -20,31 +22,27 @@
                 <th>Total Seats Available</th>
                 <th>Seats Available in Economy Class</th>
                 <th>Seats Available in Business Class</th>
+                <th>Price for Economy</th>
+                <th>Price for Business</th>
             </tr>
         </thead>
         <tbody>
-            <%
-                // Sample data, replace with actual data from your database
-                String[][] flights = {
-                    {"AI101", "Boeing 777", "New Delhi", "New York", "2024-10-01 10:00", "2024-10-01 18:00", "300", "200", "100"},
-                    {"BA202", "Airbus A380", "London", "Sydney", "2024-10-02 12:00", "2024-10-03 08:00", "500", "350", "150"}
-                };
-                for (String[] flight : flights) {
-            %>
+            <c:forEach var="flight" items="${flights}">
             <tr>
-                <td><%= flight[0] %></td>
-                <td><%= flight[1] %></td>
-                <td><%= flight[2] %></td>
-                <td><%= flight[3] %></td>
-                <td><%= flight[4] %></td>
-                <td><%= flight[5] %></td>
-                <td><%= flight[6] %></td>
-                <td><%= flight[7] %></td>
-                <td><%= flight[8] %></td>
+                <td>${flight.airline_name}</td>
+                <td>${flight.flight_no}</td>
+                <td>${flight.flight_model}</td>
+                <td>${flight.from_location}</td>
+                <td>${flight.to_location}</td>
+                <td>${flight.departure_datetime}</td>
+                <td>${flight.arrival_datetime}</td>
+                <td>${flight.total_seats}</td>
+                <td>${flight.economy_seats}</td>
+                <td>${flight.business_seats}</td>
+                <td>${flight.economy_price}</td>
+                <td>${flight.business_price}</td>
             </tr>
-            <%
-                }
-            %>
+            </c:forEach>
         </tbody>
     </table>
 </body>
