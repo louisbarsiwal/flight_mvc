@@ -1,0 +1,63 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F1FAEE; /* Light background */
+    color: #1D3557; /* Dark text color */
+    margin: 0;
+    padding: 20px;
+}
+
+.table-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #A8DADC; /* Light teal */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #E63946; /* Red for headings */
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #457B9D; /* Dark teal */
+    color: #F1FAEE; /* Light text color */
+}
+
+tr:nth-child(even) {
+    background-color: #F1FAEE; /* Light rows */
+}
+
+tr:nth-child(odd) {
+    background-color: #A8DADC; /* Slightly darker rows */
+}
+
+input[type="submit"] {
+    background-color: #E63946; /* Button color */
+    color: #F1FAEE; /* Light text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #1D3557; /* Darker shade on hover */
+}
+
+input[type="hidden"] {
+    display: none; /* Hide the hidden input */
+}

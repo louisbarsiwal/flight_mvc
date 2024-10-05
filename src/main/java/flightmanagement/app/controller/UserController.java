@@ -51,11 +51,6 @@ public class UserController {
 
 	private FlightManagerRegistration flightManagerRegistration;
 
-
-	
-	@Autowired
-	BusinessOwnerDaoImpl businessOwnerDaoImpl;
-
 	@Autowired
 	FlightManagerDaoImpl flightManagerDaoImpl;
 
