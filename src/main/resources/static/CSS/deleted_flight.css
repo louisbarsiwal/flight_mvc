@@ -8,7 +8,8 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+    height: auto;
+    padding: 20px;
 }
 
 h1 {
@@ -48,7 +49,7 @@ table tbody tr:hover {
     color: #F1FAEE;
 }
 
-.delete-button {
+input[type="submit"], a {
     background-color: #E63946;
     color: #F1FAEE;
     border: none;
@@ -58,26 +59,19 @@ table tbody tr:hover {
     transition: background-color 0.3s ease;
 }
 
-.delete-button:hover {
+input[type="submit"]:hover {
     background-color: #D62839;
 }
 
-.delete-button:focus {
+input[type="submit"]:focus {
     outline: none;
 }
 
-.edit-button {
-    background-color: #3498db; 
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: background-color 0.3s;
+a {
+    text-decoration: none;
+    color: #E63946;
 }
 
-.edit-button:hover {
-    background-color: #2980b9; 
+a:hover {
+    color: #D62839;
 }
-
-
