@@ -15,6 +15,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import flightmanagement.app.entities.BusinessOwnerRegistration;
+<<<<<<< HEAD
+=======
+
+>>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 
 
 @Repository
@@ -93,6 +97,24 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 		
 	}
 	
+<<<<<<< HEAD
+=======
+
+	@Override
+	public int updateBusinessOwnerPassword(BusinessOwnerRegistration businessOwnerRegistration)
+			throws IOException, SerialException, SQLException {
+		String query = "UPDATE admin_businessowner SET password_salt = ?, password_hash = ? WHERE businessOwner_id= ?";
+
+		return jdbcTemplate.update(query,businessOwnerRegistration.getPasswordSalt(),businessOwnerRegistration.getPasswordHash(),
+				businessOwnerRegistration.getBoId() );	
+	}
+	
+	
+
+
+	
+
+>>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 }
 	
 	

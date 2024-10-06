@@ -39,7 +39,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
+ 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -60,6 +60,13 @@
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 		</dependency>
+<<<<<<< HEAD
+=======
+ 
+ 
+	</dependencies>
+ 
+>>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 	<build>
 		<plugins>
 			<plugin>
@@ -68,6 +75,11 @@
 			</plugin>
 		</plugins>
 	</build>
+<<<<<<< HEAD
 	</dependencies>
 
 </project>
+=======
+ 
+</project>
+>>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680

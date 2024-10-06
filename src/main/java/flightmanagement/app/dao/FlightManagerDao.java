@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.sql.rowset.serial.SerialException;
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 import flightmanagement.app.entities.FlightManagerRegistration;
 
 

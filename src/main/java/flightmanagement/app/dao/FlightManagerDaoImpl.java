@@ -16,8 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 import flightmanagement.app.entities.FlightManagerRegistration;
 
 
@@ -42,6 +45,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 			throws IOException, SerialException, SQLException {
 		Blob profileImage = getBlob(flightManagerRegistration.getProfileImage());
 
+<<<<<<< HEAD
 		String query = "INSERT INTO admin_flightmanager " + "(first_name, last_name, email_id, mobile_no, "
 				+ "date_of_birth, gender, user_name, password_salt, password_hash, " + "profile_image) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
@@ -51,6 +55,11 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 				flightManagerRegistration.getMobileNo(), flightManagerRegistration.getDateOfBirth(),
 				flightManagerRegistration.getGender(), flightManagerRegistration.getUsername(),
 				flightManagerRegistration.getPasswordSalt(), flightManagerRegistration.getPasswordHash(), profileImage);
+=======
+		String query = "INSERT INTO admin_flightmanager " + "(`first_name`, `last_name`, `email_id`, `mobile_no`, "
+				+ "`date_of_birth`, `user_name`, `password_salt`, `password_hash`, "
+				+ "`profile_image`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+>>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 
 	}
 	

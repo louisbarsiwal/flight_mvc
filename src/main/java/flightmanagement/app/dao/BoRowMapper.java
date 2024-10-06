@@ -5,8 +5,6 @@ import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.tree.TreePath;
-
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,6 +17,8 @@ public class BoRowMapper implements RowMapper<BusinessOwnerRegistration> {
 	public BusinessOwnerRegistration mapRow(ResultSet rs, int rowNum) throws SQLException {
 		
 		BusinessOwnerRegistration businessOwnerRegistration = new BusinessOwnerRegistration();
+
+
 
 		businessOwnerRegistration.setBoId(rs.getInt("businessOwner_id"));
 		businessOwnerRegistration.setFirstName(rs.getString("first_name"));
