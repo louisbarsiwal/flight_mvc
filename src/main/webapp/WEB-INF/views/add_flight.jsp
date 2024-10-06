@@ -110,6 +110,9 @@
 			    <div class="form-group">
 			        <input type="submit" value="Add Flight">
 			    </div>
+				<% if (request.getAttribute("message") != null) { %>
+						    <div><%= request.getAttribute("message") %></div>
+						<% } %>
         </form>
     </div>
 </body>
