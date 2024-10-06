@@ -6,24 +6,24 @@
     <meta charset="UTF-8">
     <title>Flight Login Page</title>
     <link rel="stylesheet" type="text/css" href="/CSS/FM_login.css">
-	<script>
-		        window.onload = function() {
-		            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
-		            if (message) {
-		                alert(message);
-		            }
-		        };
-		    </script>
-	
+    <script>
+        window.onload = function() {
+            const errorMessage = "<%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "" %>";
+            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+            if (errorMessage) {
+                alert(errorMessage); // Alert for revoked access
+            } else if (message) {
+                alert(message); // Alert for other messages
+            }
+        };
+    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
     <form action="/user/Fmlogin" method="post">
-
-
         <h2 class="login-title">Flight Manager Login</h2>
-		<img src="/images/profile-icon.png" alt="Profile Icon" class="profile-icon" />
+        <img src="/images/profile-icon.png" alt="Profile Icon" class="profile-icon" />
         <input type="text" name="username" class="input-field" placeholder="Enter your Username" required /><br/>
         <div class="password-container">
             <input type="password" id="password" name="password" class="input-field" placeholder="Enter your password" required />
@@ -58,3 +58,4 @@
     </script>
 </body>
 </html>
+

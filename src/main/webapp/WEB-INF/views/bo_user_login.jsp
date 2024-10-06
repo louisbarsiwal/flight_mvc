@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Flight Login Page</title>
+    <title>Bo Login Page</title>
     <link rel="stylesheet" type="text/css" href="/CSS/user_login.css">
 
 	<script>
