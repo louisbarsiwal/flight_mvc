@@ -6,11 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Flights</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/display_flight.css">
+    <title>Deleted Flights</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/deleted_flight.css">
+    
 </head>
 <body>
-    <h1>Available Flights</h1>
+    <h1>Deleted Flights</h1>
     <table>
         <thead>
             <tr>
@@ -21,20 +22,19 @@
                 <th>Destination</th>
                 <th>Departure Date & Time</th>
                 <th>Arrival Date & Time</th>
-                <th>Total Seats Available</th>
-                <th>Seats Available in Economy Class</th>
-                <th>Seats Available in Business Class</th>
-                <th>Price for Economy</th>
-                <th>Price for Business</th>
-                <th>Action</th>
-                <th>Edit</th> <!-- New column for edit -->
+                <th>Total Seats</th>
+                <th>Economy Seats</th>
+                <th>Business Seats</th>
+                <th>Economy Price</th>
+                <th>Business Price</th>
+                <th>Action</th> <!-- New column for action -->
             </tr>
         </thead>
         <tbody>
             <% 
-                List<Map<String, Object>> flights = (List<Map<String, Object>>) request.getAttribute("flights");
-                if (flights != null && !flights.isEmpty()) {
-                    for (Map<String, Object> flight : flights) {
+                List<Map<String, Object>> deletedFlights = (List<Map<String, Object>>) request.getAttribute("deletedFlights");
+                if (deletedFlights != null && !deletedFlights.isEmpty()) {
+                    for (Map<String, Object> flight : deletedFlights) {
             %>
             <tr>
                 <td><%= flight.get("airline_name") %></td>
@@ -50,15 +50,9 @@
                 <td><%= flight.get("economy_price") %></td>
                 <td><%= flight.get("business_price") %></td>
                 <td>
-                    <form action="/deleteFlight" method="post" style="display:inline;">
-                        <input type="hidden" name="flightId" value="<%= flight.get("flight_id") %>">
-                        <input type="submit" value="Delete" class="delete-button" onclick="return confirm('Are you sure you want to delete this flight?');">
-                    </form>
-                </td>
-                <td>
-                    <form action="/editFlight" method="get" style="display:inline;">
-                        <input type="hidden" name="flightId" value="<%= flight.get("flight_id") %>">
-                        <input type="submit" value="Edit" class="edit-button">
+                    <form action="/restoreFlight" method="post" style="display:inline;">
+                        <input type="hidden" name="flightId" value="<%= flight.get("id") %>">
+                        <input type="submit" value="Add Back" class="action-button" onclick="return confirm('Are you sure you want to add back this flight?');">
                     </form>
                 </td>
             </tr>
@@ -67,7 +61,7 @@
                 } else {
             %>
             <tr>
-                <td colspan="14">No flights available.</td>
+                <td colspan="13">No deleted flights available.</td>
             </tr>
             <% 
                 }
