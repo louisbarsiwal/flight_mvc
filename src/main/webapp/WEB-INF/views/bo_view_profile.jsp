@@ -6,6 +6,15 @@
 <head>
     <title>View Profile</title>
     <link href="../css/view_profile.css" rel="stylesheet"/>
+	
+	<script>
+		        window.onload = function() {
+		            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+		            if (message) {
+		                alert(message);
+		            }
+		        };
+		    </script>
 </head>
 <body>
     <h1>View Profile</h1>
@@ -14,6 +23,17 @@
 
         <table>
         	<form:hidden path="boId" />
+			
+			<tr>
+			    <td>User Name:</td>
+			    <td>
+			        <form:input path="username" disabled="true" htmlEscape="false" />
+			    </td>
+			</tr>
+
+
+			
+			
             <tr>
                 <td>First Name:</td>
                 <td>

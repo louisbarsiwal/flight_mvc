@@ -2,7 +2,8 @@ package flightmanagement.app.controller;
 
 import java.io.IOException;
 
-import java.security.Principal;
+
+
 
 import java.sql.SQLException;
 
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import flightmanagement.app.dao.BusinessOwnerDao;
+
 import flightmanagement.app.dao.BusinessOwnerDaoImpl;
 import flightmanagement.app.dao.FlightManagerDaoImpl;
 import flightmanagement.app.entities.BusinessOwnerRegistration;
@@ -32,7 +33,7 @@ import flightmanagement.app.entities.PassengerRegistration;
 
 
 import flightmanagement.app.dao.FlightManagerDaoImpl;
-import flightmanagement.app.entities.BusinessOwnerRegistration;
+
 import flightmanagement.app.entities.FlightManagerRegistration;
 
 
@@ -44,6 +45,11 @@ import flightmanagement.app.utilities.Password;
 public class UserController {
 	
 	private BusinessOwnerRegistration businessOwnerRegistration;
+
+	private PassengerRegistration  passengerRegistration;
+	private FlightManagerRegistration flightManagerRegistration;
+	
+
 	private FlightManagerRegistration flightManagerRegistration;
 	private PassengerRegistration  passengerRegistration;
 
@@ -55,21 +61,72 @@ public class UserController {
 	@Autowired	
 	PassengerDaoImpl passengerdaoImpl;
 
+	@Autowired
+	BusinessOwnerDaoImpl businessOwnerDaoImpl;
+
 
 	@Autowired
 	FlightManagerDaoImpl flightManagerDaoImpl;
+	
+	@GetMapping("/Bologout")
+	public String Bologout() {
+		return "bo_user_login";
+	}
 
 
 	@GetMapping("/openBoLoginPage")
 	public String openBoLoginPage() {
 		return "bo_user_login";
 	}
+	
+	@GetMapping("/openforgotPasswordPage")
+	public String openforgotPasswordPage() {
+		return "bo_forgot_password";
+	}
+	
+
+	@PostMapping("/forgotPassword")
+	public String forgotPassword(@RequestParam String username, 
+	                             @RequestParam String password, 
+	                             RedirectAttributes attributes) 
+	                             throws IOException, SerialException, SQLException {
+	    
+	    // Fetch the BusinessOwnerRegistration based on email ID
+	    BusinessOwnerRegistration businessOwnerRegistration = businessOwnerDaoImpl.fetchUser(username);
+	    
+	    
+	    // Proceed with password hashing
+	    String passwordSalt = Password.generatePwdSalt(10);
+	    businessOwnerRegistration.setPasswordSalt(passwordSalt);
+	    
+	    String newPassword = password + passwordSalt; // Combine password and salt
+	    String passwordHash = Password.generatePwdHash(newPassword);
+	    businessOwnerRegistration.setPasswordHash(passwordHash);
+	    
+	    // Log the values for debugging
+	    System.out.println("Updating password for businessOwner_id: " + businessOwnerRegistration.getBoId());
+	    System.out.println("New password salt: " + passwordSalt);
+	    System.out.println("New password hash: " + passwordHash);
+
+	    // Update the password
+	    int result = businessOwnerDaoImpl.updateBusinessOwnerPassword(businessOwnerRegistration);
+	    
+	    // Check the result of the update operation
+	    if (result > 0) {
+	        attributes.addFlashAttribute("message", "New Password updated successfully");
+	        return "redirect:/user/openBoLoginPage";
+	    } else {
+	        attributes.addFlashAttribute("message", "New Password not updated succesfully");
+	        return "redirect:/user/openForgotPasswordPage";
+	    }
+	}
 
 
-
-	@GetMapping("/openLoginPage")
-	public String openLoginPage() {
-		return "bo_user_login";
+	
+	
+	@GetMapping("/openForgotPasswordPage")
+	public String openForgotPasswordPage() {
+		return "bo_forgot_password";
 	}
 
 	
@@ -90,7 +147,6 @@ public class UserController {
 		return modelAndView;
 	}
 	
-	
 	@GetMapping("/openViewProfilePage")
 	public ModelAndView viewProfile(ModelAndView modelAndView) {
 		modelAndView.setViewName("bo_view_profile");
@@ -99,7 +155,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/boUpdateProfile")
-	public String updateProfile(
+	public String boupdateProfile(
 			@ModelAttribute BusinessOwnerRegistration updatedBo,
 			RedirectAttributes attributes
 			) throws SerialException, IOException, SQLException {
@@ -107,9 +163,9 @@ public class UserController {
 		
 		try {
 			businessOwnerRegistration = businessOwnerDaoImpl.modifyUser(updatedBo); // Simulate updating the user object
-			attributes.addAttribute("message", "Profile updated successfully");
+			attributes.addFlashAttribute("message", "Profile updated successfully");
 		} catch(EmptyResultDataAccessException e) {
-			attributes.addAttribute("message", "Updation failed. Please try again later");
+			attributes.addFlashAttribute("message", "Updation failed. Please try again later");
 		}
 		return "redirect:/user/openViewProfilePage"; // Redirect back to view profile
 	}
@@ -271,7 +327,13 @@ public class UserController {
 		return "redirect:/user/openPassengerLogin";
 		
 	}
+
+	@GetMapping("/openRegistrationPage")
+	public String openRegistrationPage() {
+		return "user_registration";
+	}
 	
+
 	@GetMapping("/openFmLoginPage")
 	public String openFMLoginPage()
 	{
@@ -392,10 +454,7 @@ public class UserController {
 	public String openPassengerLogin() {
 		return "passenger_login";
 	}
-	@GetMapping("/openRegistrationPage")
-	public String openRegistrationPage() {
-		return "user_registration";
-	}
+	
 
 	@GetMapping("/openFlightPage")
 	public String openFlightPage() {
