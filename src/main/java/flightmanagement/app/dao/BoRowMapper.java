@@ -18,7 +18,9 @@ public class BoRowMapper implements RowMapper<BusinessOwnerRegistration> {
 		
 		BusinessOwnerRegistration businessOwnerRegistration = new BusinessOwnerRegistration();
 
-		businessOwnerRegistration.setBoId(rs.getInt("businessowner_id"));
+
+
+		businessOwnerRegistration.setBoId(rs.getInt("businessOwner_id"));
 		businessOwnerRegistration.setFirstName(rs.getString("first_name"));
 		businessOwnerRegistration.setLastName(rs.getString("last_name"));
 		businessOwnerRegistration.setEmailId(rs.getString("email_id"));

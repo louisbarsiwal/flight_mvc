@@ -37,12 +37,12 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 			throws IOException, SerialException, SQLException {
 		Blob profileImage = getBlob(flightManagerRegistration.getProfileImage());
 
-		String query = "INSERT INTO admin_flightmanager " + "(`first_name`, `last_name`, `email_id`, `mobile_no`, "
-				+ "`date_of_birth`, `username`, `password_salt`, `password_hash`, "
-				+ "`profile_image`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO admin_flightmanager " + "(first_name, last_name, email_id, mobile_no, "
+				+ "date_of_birth, gender, user_name, password_salt, password_hash, "
+				+ "profile_image) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
 		return jdbcTemplate.update(query, flightManagerRegistration.getFirstName(), flightManagerRegistration.getLastName(), flightManagerRegistration.getEmailId(),
-				flightManagerRegistration.getMobileNo(), flightManagerRegistration.getDateOfBirth(), flightManagerRegistration.getUsername(), flightManagerRegistration.getPasswordSalt(),
+				flightManagerRegistration.getMobileNo(), flightManagerRegistration.getDateOfBirth(),flightManagerRegistration.getGender(), flightManagerRegistration.getUsername(), flightManagerRegistration.getPasswordSalt(),
 				flightManagerRegistration.getPasswordHash(), profileImage);
 		
 	}
@@ -58,7 +58,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 
 	@Override
 	public FlightManagerRegistration fetchUser(String username) {
-		String sql = "SELECT * FROM admin_flightmanager WHERE username = ?";
+		String sql = "SELECT * FROM admin_flightmanager WHERE user_name = ?";
 		return jdbcTemplate.queryForObject(sql, new FmRowMapper(), username);
 	}
 

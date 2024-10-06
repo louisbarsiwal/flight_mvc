@@ -87,13 +87,25 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 		return jdbcTemplate.queryForObject(sql, new BoRowMapper(), boId);
 		
 	}
+	
+
+	@Override
+	public int updateBusinessOwnerPassword(BusinessOwnerRegistration businessOwnerRegistration)
+			throws IOException, SerialException, SQLException {
+		String query = "UPDATE admin_businessowner SET password_salt = ?, password_hash = ? WHERE businessOwner_id= ?";
+
+		return jdbcTemplate.update(query,businessOwnerRegistration.getPasswordSalt(),businessOwnerRegistration.getPasswordHash(),
+				businessOwnerRegistration.getBoId() );	
+	}
+	
+	
+
+
+	
 
 }
 	
 	
 
-	
-
-	
 
 

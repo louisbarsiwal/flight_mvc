@@ -31,6 +31,7 @@
                 <i class="fa fa-eye-slash" id="toggleIcon"></i>
             </span>
         </div><br/>
+		<p><a href="/user/openforgotPasswordPage">forgot password ?</a></p>
         <button type="submit">Login</button><br/>
         <p>Don't have an account? <a href="/user/openBoRegistrationPage">Register here</a></p>
     </form>
