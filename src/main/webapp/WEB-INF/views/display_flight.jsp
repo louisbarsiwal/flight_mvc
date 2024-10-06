@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Map"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,25 +26,45 @@
                 <th>Seats Available in Business Class</th>
                 <th>Price for Economy</th>
                 <th>Price for Business</th>
+                <th>Action</th> <!-- New column for action -->
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="flight" items="${flights}">
+            <% 
+                List<Map<String, Object>> flights = (List<Map<String, Object>>) request.getAttribute("flights");
+                if (flights != null && !flights.isEmpty()) {
+                    for (Map<String, Object> flight : flights) {
+            %>
             <tr>
-                <td>${flight.airline_name}</td>
-                <td>${flight.flight_no}</td>
-                <td>${flight.flight_model}</td>
-                <td>${flight.from_location}</td>
-                <td>${flight.to_location}</td>
-                <td>${flight.departure_datetime}</td>
-                <td>${flight.arrival_datetime}</td>
-                <td>${flight.total_seats}</td>
-                <td>${flight.economy_seats}</td>
-                <td>${flight.business_seats}</td>
-                <td>${flight.economy_price}</td>
-                <td>${flight.business_price}</td>
+                <td><%= flight.get("airline_name") %></td>
+                <td><%= flight.get("flight_no") %></td>
+                <td><%= flight.get("flight_model") %></td>
+                <td><%= flight.get("from_location") %></td>
+                <td><%= flight.get("to_location") %></td>
+                <td><%= flight.get("departure_datetime") %></td>
+                <td><%= flight.get("arrival_datetime") %></td>
+                <td><%= flight.get("total_seats") %></td>
+                <td><%= flight.get("economy_seats") %></td>
+                <td><%= flight.get("business_seats") %></td>
+                <td><%= flight.get("economy_price") %></td>
+                <td><%= flight.get("business_price") %></td>
+                <td>
+                    <form action="/deleteFlight" method="post" style="display:inline;">
+                        <input type="hidden" name="flightId" value="<%= flight.get("id") %>">
+                        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this flight?');">
+                    </form>
+                </td>
             </tr>
-            </c:forEach>
+            <% 
+                    }
+                } else {
+            %>
+            <tr>
+                <td colspan="13">No flights available.</td>
+            </tr>
+            <% 
+                }
+            %>
         </tbody>
     </table>
 </body>

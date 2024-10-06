@@ -48,7 +48,7 @@ table tbody tr:hover {
     color: #F1FAEE;
 }
 
-input[type="submit"] {
+input[type="submit"], a {
     background-color: #E63946;
     color: #F1FAEE;
     border: none;
@@ -64,4 +64,7 @@ input[type="submit"]:hover {
 
 input[type="submit"]:focus {
     outline: none;
+}
+a{
+	text-decoration: none;
 }
