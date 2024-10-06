@@ -24,15 +24,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import flightmanagement.app.dao.BusinessOwnerDaoImpl;
+import flightmanagement.app.dao.FlightManagerDaoImpl;
+import flightmanagement.app.entities.BusinessOwnerRegistration;
+import flightmanagement.app.entities.FlightManagerRegistration;
 
 import flightmanagement.app.dao.PassengerDaoImpl;
-import flightmanagement.app.entities.BusinessOwnerRegistration;
 import flightmanagement.app.entities.PassengerRegistration;
 
 
 import flightmanagement.app.dao.FlightManagerDaoImpl;
 
 import flightmanagement.app.entities.FlightManagerRegistration;
+
 
 import flightmanagement.app.utilities.Password;
 
@@ -42,13 +45,25 @@ import flightmanagement.app.utilities.Password;
 public class UserController {
 	
 	private BusinessOwnerRegistration businessOwnerRegistration;
+
 	private PassengerRegistration  passengerRegistration;
 	private FlightManagerRegistration flightManagerRegistration;
 	
+
+	private FlightManagerRegistration flightManagerRegistration;
+	private PassengerRegistration  passengerRegistration;
+
 	
-	PassengerDaoImpl passengerdaoImpl;
 	@Autowired
 	BusinessOwnerDaoImpl businessOwnerDaoImpl;
+
+	
+	@Autowired	
+	PassengerDaoImpl passengerdaoImpl;
+
+	@Autowired
+	BusinessOwnerDaoImpl businessOwnerDaoImpl;
+
 
 	@Autowired
 	FlightManagerDaoImpl flightManagerDaoImpl;
@@ -105,6 +120,7 @@ public class UserController {
 	        return "redirect:/user/openForgotPasswordPage";
 	    }
 	}
+
 
 	
 	
@@ -237,6 +253,7 @@ public class UserController {
 		}
 
 	}
+
 
 	@PostMapping("/passengerregister")
 	public String  passengerRegister(@ModelAttribute PassengerRegistration passengerRegistration, RedirectAttributes attributes)
