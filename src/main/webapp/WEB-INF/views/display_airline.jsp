@@ -31,12 +31,12 @@
                         <td><%= airline.get("airline_name") %></td>
                         <td><%= airline.get("airline_number") %></td>
                         <td><%= airline.get("model_number") %></td>
-                        <td>
-                            <form action="/flight/deleteAirline" method="post" style="display:inline;">
-                                <input type="hidden" name="airlineId" value="<%= airline.get("id") %>">
-                                <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this airline?');">
-                            </form>
-                        </td>
+						<td>
+							<form action="/deleteAirline" method="post" style="display:inline;">
+							        <input type="hidden" name="airlineId" value="<%= airline.get("id") %>">
+							        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this airline?');">
+							    </form>
+						</td>
                     </tr>
                 <% 
                         }
