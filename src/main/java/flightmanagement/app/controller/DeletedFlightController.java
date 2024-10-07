@@ -19,7 +19,7 @@ public class DeletedFlightController {
 	
 	@GetMapping("/openDeletedFlightPage")
 	public String getDeletedFlights(Model model) {
-	    String sql = "SELECT id, airline_name, flight_no, flight_model, from_location, to_location, "
+	    String sql = "SELECT flight_id, airline_name, flight_no, flight_model, from_location, to_location, "
 	            + "departure_datetime, arrival_datetime, total_seats, economy_seats, economy_price, "
 	            + "business_seats, business_price FROM deleted_flights";
 
@@ -31,7 +31,7 @@ public class DeletedFlightController {
 	@PostMapping("/restoreFlight")
 	public String addBackFlight(@RequestParam("flightId") String flightIdStr) {
 	    if (flightIdStr == null || flightIdStr.equals("null") || flightIdStr.isEmpty()) {
-//	        System.err.println("Received flightId is null or invalid: " + flightIdStr);
+	        System.err.println("Received flightId is null or invalid: " + flightIdStr);
 	        return "redirect:/openDeletedFlightPage"; 
 	    }
 
@@ -44,7 +44,7 @@ public class DeletedFlightController {
 	    }
 
 	    // Fetch the deleted flight data
-	    String selectSql = "SELECT * FROM deleted_flights WHERE id = ?";
+	    String selectSql = "SELECT * FROM deleted_flights WHERE flight_id = ?";
 	    List<Map<String, Object>> flights = jdbcTemplate.queryForList(selectSql, flightId);
 	    
 	    if (!flights.isEmpty()) {
@@ -53,13 +53,13 @@ public class DeletedFlightController {
 	                + "departure_datetime, arrival_datetime, total_seats, economy_seats, economy_price, "
 	                + "business_seats, business_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-	        jdbcTemplate.update(insertSql, flight.get("airline_name"), flight.get("flight_no"), flight.get("flight_model"),
+	        jdbcTemplate.update(insertSql,flight.get("airline_name"),flight.get("flight_no"), flight.get("flight_model"),
 	                flight.get("from_location"), flight.get("to_location"), flight.get("departure_datetime"),
 	                flight.get("arrival_datetime"), flight.get("total_seats"), flight.get("economy_seats"),
 	                flight.get("economy_price"), flight.get("business_seats"), flight.get("business_price"));
 
 	        // Optionally, delete the flight from deleted_flights
-	        String deleteSql = "DELETE FROM deleted_flights WHERE id = ?";
+	        String deleteSql = "DELETE FROM deleted_flights WHERE flight_id = ?";
 	        jdbcTemplate.update(deleteSql, flightId);
 	    }
 

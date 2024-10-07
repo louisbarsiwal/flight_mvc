@@ -30,11 +30,6 @@ import flightmanagement.app.entities.FlightManagerRegistration;
 
 import flightmanagement.app.dao.PassengerDaoImpl;
 import flightmanagement.app.entities.PassengerRegistration;
-
-
-
-
-
 import flightmanagement.app.utilities.Password;
 
 

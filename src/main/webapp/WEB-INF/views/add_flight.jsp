@@ -15,6 +15,7 @@
         <h2>Add Flight</h2> <!-- Added a title for clarity -->
         <form action="/flight/addFlight" method="post">
 			<div class="form-group">
+				<input type="hidden" id="flightId" name="flightId"  required>
 			        <label for="airline">Airline Name</label>
 					<select id="airline" name="airlineName">
                     <% 

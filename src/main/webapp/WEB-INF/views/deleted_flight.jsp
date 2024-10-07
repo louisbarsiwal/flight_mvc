@@ -51,7 +51,7 @@
                 <td><%= flight.get("business_price") %></td>
                 <td>
                     <form action="/restoreFlight" method="post" style="display:inline;">
-                        <input type="hidden" name="flightId" value="<%= flight.get("id") %>">
+                        <input type="hidden" name="flightId" value="<%= flight.get("flight_id") %>">
                         <input type="submit" value="Add Back" class="action-button" onclick="return confirm('Are you sure you want to add back this flight?');">
                     </form>
                 </td>
