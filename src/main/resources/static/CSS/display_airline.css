@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #F1FAEE; /* Light background */
-    color: #1D3557; /* Dark text color */
+    background-color: #F1FAEE;
+    color: #1D3557; 
     margin: 0;
     padding: 20px;
 }
@@ -10,13 +10,13 @@ body {
     max-width: 800px;
     margin: auto;
     padding: 20px;
-    background-color: #A8DADC; /* Light teal */
+    background-color: #A8DADC; 
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
-    color: #E63946; /* Red for headings */
+    color: #E63946; 
     text-align: center;
 }
 
@@ -32,21 +32,21 @@ th, td {
 }
 
 th {
-    background-color: #457B9D; /* Dark teal */
-    color: #F1FAEE; /* Light text color */
+    background-color: #457B9D; 
+    color: #F1FAEE; 
 }
 
 tr:nth-child(even) {
-    background-color: #F1FAEE; /* Light rows */
+    background-color: #F1FAEE; 
 }
 
 tr:nth-child(odd) {
-    background-color: #A8DADC; /* Slightly darker rows */
+    background-color: #A8DADC; 
 }
 
-input[type="submit"] {
-    background-color: #E63946; /* Button color */
-    color: #F1FAEE; /* Light text color */
+.delete-button {
+    background-color: #E63946; 
+    color: #F1FAEE; 
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
@@ -54,10 +54,24 @@ input[type="submit"] {
     transition: background-color 0.3s;
 }
 
-input[type="submit"]:hover {
-    background-color: #1D3557; /* Darker shade on hover */
+.delete-button:hover {
+    background-color: #1D3557; 
 }
 
 input[type="hidden"] {
-    display: none; /* Hide the hidden input */
+    display: none; 
+}
+
+.edit-button {
+    background-color: #3498db; 
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+    background-color: #2980b9; 
 }

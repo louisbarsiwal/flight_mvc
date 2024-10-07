@@ -24,9 +24,9 @@
         <div>
             <button type="submit">Add Airline</button>
         </div>
-        <c:if test="${not empty message}">
-            <div>${message}</div>
-        </c:if>
+		<% if (request.getAttribute("message") != null) { %>
+		    <div><%= request.getAttribute("message") %></div>
+		<% } %>
     </form>
     <a  href="/openDisplayAirlinePage">View Airlines</a>
 </body>

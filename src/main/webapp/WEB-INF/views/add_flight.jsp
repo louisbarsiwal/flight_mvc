@@ -31,7 +31,7 @@
 			    </div>
 			    <div class="form-group">
 			        <label for="flightNo">Flight No</label>
-					<select id="airlineNumber" name="airlineNumber">
+					<select id="airlineNumber" name="flightNo">
                     <% 
                         List<String> airlineNumbers = (List<String>) request.getAttribute("airlineNumbers");
                         if (airlineNumbers != null) {
@@ -46,7 +46,7 @@
 			    </div>
 			    <div class="form-group">
 			        <label for="flightModel">Flight Model</label>
-					<select id="modelNumber" name="modelNumber">
+					<select id="modelNumber" name="flightModel">
                     <% 
                         List<String> modelNumbers = (List<String>) request.getAttribute("modelNumbers");
                         if (modelNumbers != null) {
@@ -110,6 +110,9 @@
 			    <div class="form-group">
 			        <input type="submit" value="Add Flight">
 			    </div>
+				<% if (request.getAttribute("message") != null) { %>
+						    <div><%= request.getAttribute("message") %></div>
+						<% } %>
         </form>
     </div>
 </body>

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Controller // Ensure your class is annotated with @Controller
+@Controller 
 public class DisplayAirlineController {
     
     @Autowired

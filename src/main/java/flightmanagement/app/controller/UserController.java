@@ -50,7 +50,6 @@ public class UserController {
 	@Autowired
 	BusinessOwnerDaoImpl businessOwnerDaoImpl;
 
-	
 	@Autowired	
 	PassengerDaoImpl passengerdaoImpl;
 
