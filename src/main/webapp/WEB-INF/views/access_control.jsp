@@ -1,73 +1,74 @@
-<%@ page import="flightmanagement.app.entities.FlightManagerRegistration" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Map"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Flight Manager Access Control</title>
     <link rel="stylesheet" type="text/css" href="/CSS/access_control.css">
 </head>
 <body>
     <h2>Flight Manager Access Control</h2>
 
-    <%
-        // Get the list of flight managers from the request attribute
-        List<?> flightManagerList = (List<?>) request.getAttribute("flightManagerRegistration");
-
-        // Debugging: Print the flightManagerList to console
-        System.out.println("Flight Manager List: " + flightManagerList);
-
-        List<FlightManagerRegistration> flightManagerRegistrations = new ArrayList<>();
-        if (flightManagerList != null) {
-            for (Object obj : flightManagerList) {
-                if (obj instanceof FlightManagerRegistration) {
-                    flightManagerRegistrations.add((FlightManagerRegistration) obj);
-                }
-            }
-        }
-
-        // Display the success message if it exists
-        String successMessage = (String) request.getAttribute("successMessage");
-        if (successMessage != null) { 
+    <!-- Display success or error messages -->
+    <c:if test="${not empty successMessage}">
+        <div class="alert alert-success">${successMessage}</div>
+    </c:if>
+    <c:if test="${not empty errorMessage}">
+        <div class="alert alert-danger">${errorMessage}</div>
+    </c:if>
+    
+    <% 
+        List<Map<String, Object>> flightManagers = (List<Map<String, Object>>) request.getAttribute("flightManagerRegistration");
+        
+        if (flightManagers != null && !flightManagers.isEmpty()) {
     %>
-        <p style="color: green;"><%= successMessage %></p>
-    <% } %>
+        <table border="1">
+            <thead>
+                <tr>
+					<th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Status</th> <!-- Add a new header for Status -->
+                    <th>Actions</th> <!-- Add column for Grant/Revoke buttons -->
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                    for (Map<String, Object> flightManager : flightManagers) {
+                %>
+                    <tr>
+						<td><%= flightManager.get("flightManager_id") %></td>
+                        <td><%= flightManager.get("first_name") %></td>
+                        <td><%= flightManager.get("last_name") %></td>
+                        <td><%= flightManager.get("user_name") %></td>
+                        <td><%= flightManager.get("status") != null ? flightManager.get("status") : "Not Set" %></td> <!-- Show status -->
+                        <td>
+							<form action="${pageContext.request.contextPath}/user/grantAccess" method="post">
+								<input type="hidden" name="flightManagerId" value="<%= flightManager.get("flightManager_id") %>" />
+								                    <button type="submit">Grant Access</button>
+							</form>
 
-    <%
-        // Only show the form if flight managers exist
-        if (!flightManagerRegistrations.isEmpty()) {
-    %>
-        <form action="/user/submitAccess" method="POST">
-            <label for="flightManager">Select Flight Manager</label>
-            <select id="flightManager" name="flightManager" required>
-                <option value="" disabled selected>Choose a Flight Manager</option>
-                <% for (FlightManagerRegistration flightManager : flightManagerRegistrations) { %>
-                    <option value="<%= flightManager.getFmId() %>">
-                        <%= flightManager.getFirstName() + " " + flightManager.getLastName() %>
-                    </option>
-                <% } %>
-            </select>
+							<form action="${pageContext.request.contextPath}/user/revokeAccess" method="post">
+								<input type="hidden" name="flightManagerId" value="<%= flightManager.get("flightManager_id") %>" />
+								                   <button type="submit">Revoke Access</button>
+							</form>
 
-
-            <div class="radio-group">
-                <label>
-                    <input type="radio" name="access" value="grant" required>
-                    Grant Access
-                </label>
-                <label>
-                    <input type="radio" name="access" value="revoke">
-                    Revoke Access
-                </label>
-            </div>
-
-            <button type="submit">Submit</button>
-        </form>
-    <%
+                        </td>
+                    </tr>
+                <% 
+                    } 
+                %>
+            </tbody>
+        </table>
+    <% 
         } else {
     %>
         <p>No flight managers found.</p>
-    <%
-        }
+    <% 
+        } 
     %>
 </body>
 </html>

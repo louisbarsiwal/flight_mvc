@@ -15,10 +15,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 
 import flightmanagement.app.entities.BusinessOwnerRegistration;
-<<<<<<< HEAD
-=======
 
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 
 
 @Repository
@@ -97,8 +94,7 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 		
 	}
 	
-<<<<<<< HEAD
-=======
+
 
 	@Override
 	public int updateBusinessOwnerPassword(BusinessOwnerRegistration businessOwnerRegistration)
@@ -114,7 +110,6 @@ public class BusinessOwnerDaoImpl implements BusinessOwnerDao {
 
 	
 
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 }
 	
 	

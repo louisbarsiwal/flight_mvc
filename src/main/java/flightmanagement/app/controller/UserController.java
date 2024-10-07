@@ -2,11 +2,10 @@ package flightmanagement.app.controller;
 
 import java.io.IOException;
 
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.sql.rowset.serial.SerialException;
 
@@ -23,9 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
+import flightmanagement.app.dao.AddedFlightDaoImpl;
 import flightmanagement.app.dao.BusinessOwnerDaoImpl;
 import flightmanagement.app.dao.FlightManagerDaoImpl;
+import flightmanagement.app.entities.AddedFlight;
 import flightmanagement.app.entities.BusinessOwnerRegistration;
 import flightmanagement.app.entities.FlightManagerRegistration;
 
@@ -47,27 +47,11 @@ import java.util.*;
 @RequestMapping("/user")
 public class UserController {
 	
-
-
-	
-
-	private BusinessOwnerRegistration businessOwnerRegistration;
+    private BusinessOwnerRegistration businessOwnerRegistration;
 
 	private PassengerRegistration  passengerRegistration;
 	private FlightManagerRegistration flightManagerRegistration;
 	
-<<<<<<< HEAD
-	@Autowired
-	BusinessOwnerDaoImpl businessOwnerDaoImpl;
-	
-	@Autowired
-	PassengerDaoImpl passengerdaoImpl;
-
-	private FlightManagerRegistration flightManagerRegistration;
-=======
-
-	private FlightManagerRegistration flightManagerRegistration;
-	private PassengerRegistration  passengerRegistration;
 
 	
 	@Autowired
@@ -77,23 +61,19 @@ public class UserController {
 	@Autowired	
 	PassengerDaoImpl passengerdaoImpl;
 
-	@Autowired
-	BusinessOwnerDaoImpl businessOwnerDaoImpl;
-
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 
 	@Autowired
 	FlightManagerDaoImpl flightManagerDaoImpl;
 	
-<<<<<<< HEAD
+
 	@Autowired
     private PermissionService permissionService;
-=======
+
 	@GetMapping("/Bologout")
 	public String Bologout() {
 		return "bo_user_login";
 	}
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
+
 
 
 	@GetMapping("/openBoLoginPage")
@@ -107,9 +87,7 @@ public class UserController {
 	}
 	
 
-<<<<<<< HEAD
 
-=======
 	@PostMapping("/forgotPassword")
 	public String forgotPassword(@RequestParam String username, 
 	                             @RequestParam String password, 
@@ -145,7 +123,7 @@ public class UserController {
 	        return "redirect:/user/openForgotPasswordPage";
 	    }
 	}
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
+
 
 
 	
@@ -164,7 +142,6 @@ public class UserController {
 	public String openPassengerDashboard () {
 		return "passenger_dashboard";
 	}
-
 	@GetMapping("/openBoRegistrationPage")
 	public ModelAndView openRegistrationPage(ModelAndView modelAndView) {
 
@@ -374,6 +351,16 @@ public class UserController {
 		
 	}
 
+//	 @GetMapping("/openAccessControlPage")
+//	    public String showAccessControlPage(Model model) {
+//	        // Fetch all flight managers from the database
+//	        List<FlightManagerRegistration> flightManagerRegistrations = flightManagerDaoImpl.findAllFlightManagers();
+//	        // Add the list to the model
+//	        model.addAttribute("flightManagerRegistration", flightManagerRegistrations);
+//	        // Return the view name
+//	        return "access_control"; // Should match your JSP file (access_control.jsp)
+//	    }
+
 	@GetMapping("/openRegistrationPage")
 	public String openRegistrationPage() {
 		return "user_registration";
@@ -400,48 +387,7 @@ public class UserController {
 		return modelAndView;
 	}
 	
-//	@PostMapping("/Fmlogin")
-//	public String loginFlightManager(@RequestParam String username, 
-//			@RequestParam String password, 
-//			Model model, RedirectAttributes attributes) {
-//
-//		System.out.println("\n Flight Manager login request data: " + username + ", " + password);
-//
-//		try {
-//			flightManagerRegistration = flightManagerDaoImpl.fetchUser(username);
-//			
-//
-//			String pwdSalt = flightManagerRegistration .getPasswordSalt();
-//			String oldPwdHash = flightManagerRegistration .getPasswordHash();
-//			System.out.println("old Password hash: "+oldPwdHash);
-//
-//			String newPassword = password + pwdSalt;
-//			
-//			System.out.println("Password: "+newPassword);
-//			String newPwdHash = Password.generatePwdHash(newPassword);
-//			System.out.println("New Password hash: "+newPwdHash);
-//
-//			if (newPwdHash.equals(oldPwdHash)) {
-//				
-//				model.addAttribute("flightManagerRegistration ", flightManagerRegistration );
-//				 return "redirect:/user/openFmDashboard";
-//				
-//			}
-//			else
-//			{
-//				attributes.addFlashAttribute("message", "Invalid password");
-//				System.out.println("Invalid username or password");
-//			}
-//			
-//		}
-//
-//			 catch (EmptyResultDataAccessException e) {
-//			attributes.addFlashAttribute("message", "Incorrect Username");
-//		}
-//		return "redirect:/user/openFmLoginPage";
-//		
-//	}
-//	
+	
 	@PostMapping("/Fmregister")
 	public String registerFlightManager(@ModelAttribute FlightManagerRegistration flightManagerRegistration, RedirectAttributes attributes)
 			throws IOException, SerialException, SQLException {
@@ -473,7 +419,7 @@ public class UserController {
 		}
 
 	}
-	
+	 
 	
 	@GetMapping("/openuserprofile")
 	public String openUserProfilePage()
@@ -500,49 +446,75 @@ public class UserController {
 	public String openPassengerLogin() {
 		return "passenger_login";
 	}
-<<<<<<< HEAD
-	@GetMapping("/openRegistrationPage")
-	public String openRegistrationPage() {
-		return "user_registration";
-	}
-   @GetMapping("/openAccessControlPage") // Adjust the mapping as necessary
-   public String showAccessControlPage(Model model) {
-       List<FlightManagerRegistration> flightManagerRegistrations = flightManagerDaoImpl.findAllFlightManagers(); // Fetch the list from your DAO
-       model.addAttribute("flightManagerRegistration", flightManagerRegistrations); // Set it as a model attribute
-       return "access_control"; // This should match the name of your JSP file without the extension
-       
-   }
- 
-=======
-	
 
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 	@GetMapping("/openFlightPage")
 	public String openFlightPage() {
 		return "Flight";
 	}
 	
-	@PostMapping("/submitAccess")
-	public String submitAccess(@RequestParam("flightManager") Integer flightManagerId, 
-	                           @RequestParam("access") String access, 
-	                           Model model) 
-	{
-		if ("grant".equals(access)) {
-	        permissionService.grantPermissions(flightManagerId); // Updates the DB
-	        model.addAttribute("successMessage", "Access granted successfully.");
-	    } else if ("revoke".equals(access)) {
-	        permissionService.revokePermissions(flightManagerId); // Updates the DB
-	        model.addAttribute("successMessage", "Access revoked successfully.");
-	    }
+//	@PostMapping("/submitAccess")
+//	public String submitAccess(@RequestParam("flightManager") Integer flightManagerId, 
+//	                           @RequestParam("access") String access, 
+//	                           Model model) 
+//	{
+//		if ("grant".equals(access)) {
+//	        permissionService.grantPermissions(flightManagerId); // Updates the DB
+//	        model.addAttribute("successMessage", "Access granted successfully.");
+//	    } else if ("revoke".equals(access)) {
+//	        permissionService.revokePermissions(flightManagerId); // Updates the DB
+//	        model.addAttribute("successMessage", "Access revoked successfully.");
+//	    }
+//
+//	    return "access_control"; // Return to the same JSP or redirect as needed
+//	}
 
-	    return "access_control"; // Return to the same JSP or redirect as needed
-	}
-
+//	@PostMapping("/Fmlogin")
+//	public String loginFlightManager(@RequestParam("username") String username, 
+//	                                 @RequestParam("password") String password, 
+//	                                 Model model, RedirectAttributes attributes) {
+//	    
+//	    System.out.println("\nFlight Manager login request data: " + username + ", " + password);
+//	    FlightManagerRegistration flightManagerRegistration;
+//
+//	    try {
+//	        // Fetch the flight manager registration based on the username
+//	        flightManagerRegistration = flightManagerDaoImpl.fetchUser(username);
+//	        
+//	        Integer flightManagerId = flightManagerRegistration.getflightManagerId(); // Get the flight manager ID
+//
+//	        // Check if the flight manager is revoked
+//	        if (permissionService.isRevoked(flightManagerId)) {
+//	            attributes.addFlashAttribute("errorMessage", "Your access is not granted. Please wait for access.");
+//	            return "redirect:/user/openFmLoginPage"; // Redirect to the login page with an error message
+//	        }
+//
+//	        String pwdSalt = flightManagerRegistration.getPasswordSalt();
+//	        String oldPwdHash = flightManagerRegistration.getPasswordHash();
+//
+//	        // Combine the provided password with the salt and hash it
+//	        String newPassword = password + pwdSalt;
+//	        String newPwdHash = Password.generatePwdHash(newPassword);
+//
+//	        // Compare hashed passwords
+//	        if (newPwdHash.equals(oldPwdHash)) {
+//	            model.addAttribute("flightManagerRegistration", flightManagerRegistration);
+//	            return "redirect:/user/openFmDashboard"; // Redirect to the dashboard
+//	        } else {
+//	            attributes.addFlashAttribute("message", "Invalid password");
+//	        }
+//	    } catch (EmptyResultDataAccessException e) {
+//	        attributes.addFlashAttribute("message", "Incorrect Username");
+//	    } catch (Exception e) {
+//	        attributes.addFlashAttribute("message", "An error occurred. Please try again.");
+//	    }
+//
+//	    return "redirect:/user/openFmLoginPage"; // Redirect back to the login page
+//	}
 	@PostMapping("/Fmlogin")
 	public String loginFlightManager(@RequestParam("username") String username, 
 	                                 @RequestParam("password") String password, 
 	                                 Model model, RedirectAttributes attributes) {
-	    
+
 	    System.out.println("\nFlight Manager login request data: " + username + ", " + password);
 	    FlightManagerRegistration flightManagerRegistration;
 
@@ -550,12 +522,13 @@ public class UserController {
 	        // Fetch the flight manager registration based on the username
 	        flightManagerRegistration = flightManagerDaoImpl.fetchUser(username);
 	        
-	        Integer flightManagerId = flightManagerRegistration.getFmId(); // Get the flight manager ID
+	        Integer flightManagerId = flightManagerRegistration.getflightManagerId(); // Get the flight manager ID
 
-	        // Check if the flight manager is revoked
+	        // Check if the flight manager's access is revoked
 	        if (permissionService.isRevoked(flightManagerId)) {
+	            // Pop-up style message indicating access is not granted
 	            attributes.addFlashAttribute("errorMessage", "Your access is not granted. Please wait for access.");
-	            return "redirect:/user/openFmLoginPage"; // Redirect to the login page with an error message
+	            return "redirect:/user/openFmLoginPage"; // Redirect to login page with error message
 	        }
 
 	        String pwdSalt = flightManagerRegistration.getPasswordSalt();
@@ -568,7 +541,7 @@ public class UserController {
 	        // Compare hashed passwords
 	        if (newPwdHash.equals(oldPwdHash)) {
 	            model.addAttribute("flightManagerRegistration", flightManagerRegistration);
-	            return "redirect:/user/openFmDashboard"; // Redirect to the dashboard
+	            return "redirect:/user/openFmDashboard"; // Redirect to the flight manager dashboard
 	        } else {
 	            attributes.addFlashAttribute("message", "Invalid password");
 	        }
@@ -581,7 +554,93 @@ public class UserController {
 	    return "redirect:/user/openFmLoginPage"; // Redirect back to the login page
 	}
 
+
+//	 @GetMapping("/openAccessControlPage")
+//	    public String showAccessControlPage(Model model) {
+//	        // Fetch all flight managers from the database
+//	        List<Map<String, Object>> flightManagerRegistrations = flightManagerDaoImpl.findAllFlightManager();
+//
+//	        // Convert to List<Map<String, Object>>
+//	        List<Map<String, Object>> flightManagerList = new ArrayList<>();
+//	        for (FlightManagerRegistration flightManager : flightManagerRegistrations) {
+//	            Map<String, Object> flightManagerMap = new HashMap<>();
+//	            flightManagerMap.put("flightManagerId", flightManager.getflightManagerId());
+//	            flightManagerMap.put("first_name", flightManager.getFirstName());
+//	            flightManagerMap.put("last_name", flightManager.getLastName());
+//	            flightManagerMap.put("user_name", flightManager.getUsername());
+//
+//	            flightManagerList.add(flightManagerMap);
+//	        }
+//
+//	        // Add the list to the model
+//	        model.addAttribute("flightManagerRegistration", flightManagerList);
+//	        // Return the view name
+//	        return "access_control"; // Should match your JSP file (access_control.jsp)
+//	    }
+
+
+
+//	 @GetMapping("/openAccessControlPage")
+//	    public String showAccessControlPage(Model model) {
+//	        // Fetch all flight managers from the database
+//	        List<Map<String, Object>> flightManagerRegistrations = flightManagerDaoImpl.findAllFlightManager();
+//
+//	        // Add the fetched list to the model (check for null or empty list)
+//	        if (flightManagerRegistrations == null || flightManagerRegistrations.isEmpty()) {
+//	            model.addAttribute("errorMessage", "No flight managers found.");
+//	        } else {
+//	            model.addAttribute("flightManagerRegistration", flightManagerRegistrations);
+//	        }
+//
+//	        // Return the view name
+//	        return "access_control"; // Ensure access_control.jsp exists in the correct folder
+//	    }
+
+//	 @GetMapping("/openAccessControlpage")
+//	 public String showAccessControlPage(Model model) {
+//	     try {
+//	         // Fetch all flight managers and their access status
+//	         List<Map<String, Object>> flightManagers = flightManagerDaoImpl.findAllFlightManager();
+//	         model.addAttribute("flightManagerRegistration", flightManagers); // Pass the list to the JSP
+//	     } catch (Exception e) {
+//	         model.addAttribute("errorMessage", "Failed to load flight managers.");
+//	     }
+//	     return "access_control"; // Forward to the JSP page
+//	 }
+	@GetMapping("/openAccessControlPage")
+	public String openAccessControlPage(Model model) {
+	    List<Map<String, Object>> flightManagers = flightManagerDaoImpl.findAllFlightManager();
+	    model.addAttribute("flightManagerRegistration", flightManagers);
+	    return "access_control"; // Ensure this matches the name of your JSP file without extension
 	}
+
+	 @PostMapping("/grantAccess")
+	 public String grantAccess(@RequestParam("flightManagerId") Integer flightManagerId, 
+	                           RedirectAttributes attributes) {
+	     try {
+	         permissionService.grantPermissions(flightManagerId); // Call service to grant access
+	         attributes.addFlashAttribute("successMessage", "Access granted successfully.");
+	     } catch (Exception e) {
+	         attributes.addFlashAttribute("errorMessage", "Failed to grant access.");
+	     }
+	     return "redirect:/user/openAccessControlPage"; // Redirect back to the access control page
+	 }
+	 @PostMapping("/revokeAccess")
+	 public String revokeAccess(@RequestParam("flightManagerId") Integer flightManagerId, 
+	                            RedirectAttributes attributes) {
+	     try {
+	         permissionService.revokePermissions(flightManagerId); // Call service to revoke access
+	         attributes.addFlashAttribute("successMessage", "Access revoked successfully.");
+	     } catch (Exception e) {
+	         attributes.addFlashAttribute("errorMessage", "Failed to revoke access.");
+	     }
+	     return "redirect:/user/openAccessControlPage"; // Redirect back to the access control page
+	 }
+
+	  
+	}
+	
+	
 
 
 

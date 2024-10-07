@@ -7,12 +7,6 @@ import java.sql.SQLException;
 import javax.sql.rowset.serial.SerialException;
 
 import flightmanagement.app.entities.BusinessOwnerRegistration;
-<<<<<<< HEAD
-=======
-
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
-
-
 
 
 

@@ -40,13 +40,11 @@
   <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
   <a href="/openDisplayAirlinePage">DISPLAY AIRLINE</a>
   <a href="/user/openupdateflight">UPDATE FLIGHT</a>
-<<<<<<< HEAD
-  <a href="/user/openAccessControlPage">GRANT/REVOKE ACCESS</a>
-=======
+  <a href="/user/openAccessControlPage">FLIGHT MANAGERS</a>
   <a href="/user/Bologout">LOGOUT</a>
   
  
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
+
 </div>
  
 <div id="main">

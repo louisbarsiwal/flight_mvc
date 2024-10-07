@@ -2,14 +2,20 @@ package flightmanagement.app.dao;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import flightmanagement.app.entities.AddedFlight;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
 
 
 
@@ -19,7 +25,11 @@ public class AddedFlightDaoImpl implements AddedFlightDao {
 	
 	
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	private static JdbcTemplate jdbcTemplate;
+	
+	
+
+	
 
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
@@ -62,6 +72,15 @@ public class AddedFlightDaoImpl implements AddedFlightDao {
 
 	
 
+
+
+	
+
+			
+	}
+
+	
+
 	
 
     
@@ -73,4 +92,4 @@ public class AddedFlightDaoImpl implements AddedFlightDao {
 	
 	
 
-}
+

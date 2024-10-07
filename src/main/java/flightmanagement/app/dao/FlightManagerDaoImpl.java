@@ -4,10 +4,11 @@ import java.io.IOException;
 
 
 
+
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
-
+import java.util.Map;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
@@ -16,11 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
 import flightmanagement.app.entities.FlightManagerRegistration;
 
 
@@ -45,7 +42,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 			throws IOException, SerialException, SQLException {
 		Blob profileImage = getBlob(flightManagerRegistration.getProfileImage());
 
-<<<<<<< HEAD
+
 		String query = "INSERT INTO admin_flightmanager " + "(first_name, last_name, email_id, mobile_no, "
 				+ "date_of_birth, gender, user_name, password_salt, password_hash, " + "profile_image) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
@@ -55,11 +52,9 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 				flightManagerRegistration.getMobileNo(), flightManagerRegistration.getDateOfBirth(),
 				flightManagerRegistration.getGender(), flightManagerRegistration.getUsername(),
 				flightManagerRegistration.getPasswordSalt(), flightManagerRegistration.getPasswordHash(), profileImage);
-=======
-		String query = "INSERT INTO admin_flightmanager " + "(`first_name`, `last_name`, `email_id`, `mobile_no`, "
-				+ "`date_of_birth`, `user_name`, `password_salt`, `password_hash`, "
-				+ "`profile_image`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
->>>>>>> c28785d7b0456f9dc0f71b3af0bfb672df4b1680
+
+	
+
 
 	}
 	
@@ -76,12 +71,24 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 	}
 	
 		
+//	@Override
+//    public List<FlightManagerRegistration> findAllFlightManagers() {
+//        String sql = "SELECT * FROM admin_flightmanager"; // Adjust this SQL as per your schema
+//        return jdbcTemplate.query(sql, new FmRowMapper());
+//    }
+
 	@Override
-    public List<FlightManagerRegistration> findAllFlightManagers() {
-        String sql = "SELECT * FROM admin_flightmanager"; // Adjust this SQL as per your schema
-        return jdbcTemplate.query(sql, new FmRowMapper());
-    }
-	
+	public List<Map<String, Object>> findAllFlightManager() {
+	    String sql = "SELECT f.flightManager_id, f.first_name, f.last_name, f.user_name, a.status " +
+	                 "FROM admin_flightmanager f " +
+	                 "LEFT JOIN access_control a ON f.flightManager_id = a.flightManager_id"; // Assuming a JOIN based on flightManagerId
+
+	    return jdbcTemplate.queryForList(sql);
+	}
+
+
+
+
 	}
 
 

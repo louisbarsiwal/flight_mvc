@@ -6,6 +6,14 @@
 <head>
     <title>View Profile</title>
 	<link rel="stylesheet" type="text/css" href="/CSS/passenger_profile.css">
+	<script>
+	window.onload = function() {
+		            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+		            if (message) {
+		                alert(message);
+		            }
+		        };
+		    </script>
 </head>
 <body>
     <h1>View Profile</h1>
