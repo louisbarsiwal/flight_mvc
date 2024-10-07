@@ -1,16 +1,14 @@
 package flightmanagement.app.controller;
 
 import java.io.IOException;
-
-
-
-
 import java.sql.SQLException;
 
 import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.dao.EmptyResultDataAccessException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,9 +32,7 @@ import flightmanagement.app.dao.PassengerDaoImpl;
 import flightmanagement.app.entities.PassengerRegistration;
 
 
-import flightmanagement.app.dao.FlightManagerDaoImpl;
 
-import flightmanagement.app.entities.FlightManagerRegistration;
 
 
 import flightmanagement.app.utilities.Password;
@@ -45,11 +43,6 @@ import flightmanagement.app.utilities.Password;
 public class UserController {
 	
 	private BusinessOwnerRegistration businessOwnerRegistration;
-
-	private PassengerRegistration  passengerRegistration;
-	private FlightManagerRegistration flightManagerRegistration;
-	
-
 	private FlightManagerRegistration flightManagerRegistration;
 	private PassengerRegistration  passengerRegistration;
 
@@ -60,9 +53,6 @@ public class UserController {
 	
 	@Autowired	
 	PassengerDaoImpl passengerdaoImpl;
-
-	@Autowired
-	BusinessOwnerDaoImpl businessOwnerDaoImpl;
 
 
 	@Autowired
@@ -148,11 +138,13 @@ public class UserController {
 	}
 	
 	@GetMapping("/openViewProfilePage")
-	public ModelAndView viewProfile(ModelAndView modelAndView) {
+	public ModelAndView viewProfile(ModelAndView modelAndView) throws IOException {
+		businessOwnerRegistration.setImage(businessOwnerRegistration.getProfileImage().getInputStream());
 		modelAndView.setViewName("bo_view_profile");
 		modelAndView.addObject("businessOwnerRegistration", businessOwnerRegistration);
 		return modelAndView;
 	}
+	
 	
 	@PostMapping("/boUpdateProfile")
 	public String boupdateProfile(
@@ -162,16 +154,19 @@ public class UserController {
 		// Update user information in the database
 		
 		try {
-			businessOwnerRegistration = businessOwnerDaoImpl.modifyUser(updatedBo); // Simulate updating the user object
+			
+			businessOwnerRegistration = businessOwnerDaoImpl.modifyUser(updatedBo); 
+			// Simulate updating the user object
+			businessOwnerRegistration.setImage(businessOwnerRegistration.getProfileImage().getInputStream());
 			attributes.addFlashAttribute("message", "Profile updated successfully");
 		} catch(EmptyResultDataAccessException e) {
 			attributes.addFlashAttribute("message", "Updation failed. Please try again later");
 		}
 		return "redirect:/user/openViewProfilePage"; // Redirect back to view profile
 	}
-
-
-
+	
+	
+	
 	@GetMapping("/openPassengerRegistrationPage")
 	public ModelAndView openPassengerRegistrationPage(ModelAndView modelAndView) {
 
@@ -189,7 +184,7 @@ public class UserController {
 
 		try {
 			businessOwnerRegistration = businessOwnerDaoImpl.fetchUser(username);
-			
+			businessOwnerRegistration.setImage(businessOwnerRegistration.getProfileImage().getInputStream());
 
 			String pwdSalt = businessOwnerRegistration .getPasswordSalt();
 			String oldPwdHash = businessOwnerRegistration .getPasswordHash();
@@ -217,6 +212,11 @@ public class UserController {
 
 			 catch (EmptyResultDataAccessException e) {
 			attributes.addFlashAttribute("message", "Incorrect Username");
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+			attributes.addFlashAttribute("message", " Oops something went wrong");
 		}
 		return "redirect:/user/openBoLoginPage";
 		
