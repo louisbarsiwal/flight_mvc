@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import javax.sql.rowset.serial.SerialException;
 
 import flightmanagement.app.entities.BusinessOwnerRegistration;
-import flightmanagement.app.entities.PassengerRegistration;
+
 
 
 
@@ -16,7 +16,10 @@ public interface BusinessOwnerDao {
 	
 	
 	int insertBusinessOwner(BusinessOwnerRegistration businessOwnerRegistration) throws IOException,SerialException,SQLException;
+	int updateBusinessOwnerPassword(BusinessOwnerRegistration businessOwnerRegistration) throws IOException,SerialException,SQLException;
 	BusinessOwnerRegistration fetchUser(String username) ;
+	
+	
 	BusinessOwnerRegistration modifyUser(BusinessOwnerRegistration businessOwnerRegistration) 
 			throws SerialException, IOException, SQLException;
 	BusinessOwnerRegistration getUserById(int boId);

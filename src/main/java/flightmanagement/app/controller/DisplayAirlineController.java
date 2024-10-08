@@ -19,7 +19,7 @@ public class DisplayAirlineController {
 
     @GetMapping("/openDisplayAirlinePage")
     public String getAvailableAirline(Model model) {
-        String sql = "SELECT airline_name, airline_number, model_number FROM added_airline";
+        String sql = "SELECT id, airline_name, airline_number, model_number FROM added_airline";
 
         List<Map<String, Object>> airlines = jdbcTemplate.queryForList(sql);
 
@@ -29,21 +29,32 @@ public class DisplayAirlineController {
         return "display_airline"; // Ensure the JSP file name matches
     }
 
-//    @PostMapping("/deleteAirline")
-//    public String deleteAirline(@RequestParam("airlineId") int airlineId, Model model) {
-//        // Fetch the airline data to store in the deleted_airlines table
-//        String selectSql = "SELECT * FROM added_airline WHERE id = ?";
-//        Map<String, Object> airline = jdbcTemplate.queryForMap(selectSql, airlineId);
-//
-//        // Insert into deleted_airlines table
-//        String insertSql = "INSERT INTO deleted_airlines (airline_name, airline_number, model_number) VALUES (?, ?, ?)";
-//        jdbcTemplate.update(insertSql, airline.get("airline_name"), airline.get("airline_number"), airline.get("model_number"));
-//
-//        // Now delete from added_airline table
-//        String deleteSql = "DELETE FROM added_airline WHERE id = ?";
-//        jdbcTemplate.update(deleteSql, airlineId);
-//
-//        // Redirect to display page
-//        return "redirect:/openDisplayAirlinePage"; // Ensure the redirect is to the correct mapping
-//    }
+    @PostMapping("/deleteAirline")
+    public String deleteAirline(@RequestParam("airlineId") String airlineIdStr, Model model) {
+        if (airlineIdStr == null || airlineIdStr.equals("null") || airlineIdStr.isEmpty()) {
+            System.err.println("Received airlineId is null or invalid: " + airlineIdStr);
+            return "redirect:/openDisplayAirlinePage"; // Optionally add an error message
+        }
+
+        int airlineId;
+        try {
+            airlineId = Integer.parseInt(airlineIdStr);
+        } catch (NumberFormatException e) {
+            System.err.println("Error parsing airlineId: " + airlineIdStr);
+            return "redirect:/openDisplayAirlinePage"; // Optionally add an error message
+        }
+
+        // Proceed with fetching and deleting the airline as before
+        String selectSql = "SELECT * FROM added_airline WHERE id = ?";
+        Map<String, Object> airline = jdbcTemplate.queryForMap(selectSql, airlineId);
+
+        String insertSql = "INSERT INTO deleted_airlines (airline_name, airline_number, model_number) VALUES (?, ?, ?)";
+        jdbcTemplate.update(insertSql, airline.get("airline_name"), airline.get("airline_number"), airline.get("model_number"));
+
+        String deleteSql = "DELETE FROM added_airline WHERE id = ?";
+        jdbcTemplate.update(deleteSql, airlineId);
+
+        return "redirect:/openDisplayAirlinePage";
+    }
+
 }

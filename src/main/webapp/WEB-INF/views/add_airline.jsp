@@ -28,6 +28,6 @@
             <div>${message}</div>
         </c:if>
     </form>
-    <a  href="${pageContext.request.contextPath}/airline/list">View Airlines</a>
+    <a  href="/openDisplayAirlinePage">View Airlines</a>
 </body>
 </html>

@@ -164,10 +164,6 @@ public class BusinessOwnerRegistration
 				+ ", passwordHash=" + passwordHash + ", profileImage=" + profileImage + "]";
 
 	}
-	
-	
-	
-	
 }
 	
 	

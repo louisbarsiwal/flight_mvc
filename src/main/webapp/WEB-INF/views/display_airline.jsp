@@ -19,6 +19,7 @@
                     <th>Airline Number</th>
                     <th>Model Number</th>
                     <th>Action</th>
+                    <th>Edit</th> <!-- New column for edit -->
                 </tr>
             </thead>
             <tbody>
@@ -32,9 +33,15 @@
                         <td><%= airline.get("airline_number") %></td>
                         <td><%= airline.get("model_number") %></td>
                         <td>
-                            <form action="/flight/deleteAirline" method="post" style="display:inline;">
+                            <form action="/deleteAirline" method="post" style="display:inline;">
                                 <input type="hidden" name="airlineId" value="<%= airline.get("id") %>">
-                                <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this airline?');">
+                                <input type="submit" value="Delete" class="delete-button" onclick="return confirm('Are you sure you want to delete this airline?');">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/editAirline" method="get" style="display:inline;">
+                                <input type="hidden" name="airlineId" value="<%= airline.get("id") %>">
+                                <input type="submit" value="Edit" class="edit-button">
                             </form>
                         </td>
                     </tr>
@@ -43,7 +50,7 @@
                     } else {
                 %>
                     <tr>
-                        <td colspan="4">No airlines found.</td>
+                        <td colspan="5">No airlines found.</td>
                     </tr>
                 <% 
                     }

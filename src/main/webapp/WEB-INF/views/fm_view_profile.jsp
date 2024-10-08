@@ -19,10 +19,10 @@
 <body>
     <h1>View Profile</h1>
 
-	<form:form method="POST" action="/user/boUpdateProfile" modelAttribute="businessOwnerRegistration" enctype="multipart/form-data">
+	<form:form method="POST" action="/user/fmUpdateProfile" modelAttribute="flightManagerRegistration" enctype="multipart/form-data">
 
         <table>
-        	<form:hidden path="boId" />
+        	<form:hidden path="flightManagerId" />
 			
 			<tr>
 			    <td>User Name:</td>

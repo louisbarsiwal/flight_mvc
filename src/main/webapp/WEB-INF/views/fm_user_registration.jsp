@@ -11,11 +11,8 @@
 
 <div class="registration-container">
 
-    <form action="/user/Fmregister" method="post" enctype="multipart/form-data">
+    <form action="/user/openFmRegistrationPage" method="post" enctype="multipart/form-data">
 
-    <form action="/user/openfmuserregistrationPage" method="post" enctype="multipart/form-data">
-
-		
 		
         <label for="profileImage">Profile Image</label>
         <input type="file" id="profileImage" name="profileImage" accept="image/*">
