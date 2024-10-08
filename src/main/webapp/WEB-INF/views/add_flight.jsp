@@ -9,6 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Flight</title>
     <link rel="stylesheet" type="text/css" href="/CSS/add_flight.css">
+	
+	<script>
+		window.onload = function() {
+		const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+		if (message) {
+		alert(message);
+			 }
+	   };
+	</script>
 </head>
 <body>
     <div class="form-container">

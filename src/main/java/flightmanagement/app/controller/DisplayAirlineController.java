@@ -65,8 +65,8 @@ public class DisplayAirlineController {
         }
 
       
-        String selectSql = "SELECT * FROM added_airline WHERE id = ?";
-        Map<String, Object> airline = jdbcTemplate.queryForMap(selectSql, airlineId);
+        String selectSql = "SELECT * FROM added_airline WHERE airline_name = ?";
+        Map<String, Object> airline = jdbcTemplate.queryForMap(selectSql,airlineName);
         
        
 
