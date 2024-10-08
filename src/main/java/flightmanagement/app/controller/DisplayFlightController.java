@@ -1,6 +1,7 @@
 
 package flightmanagement.app.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,13 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import org.springframework.transaction.annotation.Transactional;
 
 import flightmanagement.app.dao.AddedFlightDaoImpl;
-import flightmanagement.app.entities.AddedAirline;
 import flightmanagement.app.entities.AddedFlight;
 
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,6 @@ public class DisplayFlightController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
-    private AddedFlight addedFlight;
     
     @Autowired
     AddedFlightDaoImpl addedFlightDaoImpl;
@@ -52,7 +50,8 @@ public class DisplayFlightController {
     }
     
     @PostMapping("/deleteFlight")
-    public String deleteFlight(@RequestParam("flightId") String flightIdStr, Model model) {
+    public String deleteFlight(@RequestParam("flightId") String flightIdStr,
+    		@RequestParam("airlineName") String airlineName, Model model) {
         System.out.println("Attempting to delete flight with ID: " + flightIdStr);
 
         if (flightIdStr == null || flightIdStr.equals("null") || flightIdStr.isEmpty()) {
@@ -76,25 +75,38 @@ public class DisplayFlightController {
             return "redirect:/openDisplayFlightPage";
         }
 
-        // Proceed with fetching and deleting the flight
-        Map<String, Object> flight = flights.get(0); // Get the first (and should be only) flight
+        // Proceed with fetching the flight
+        Map<String, Object> flight = flights.get(0);
 
-        // Insert into deleted_flights
-        String insertSql = "INSERT INTO deleted_flights (airline_name, flight_no, flight_model, from_location, to_location, "
-                + "departure_datetime, arrival_datetime, total_seats, economy_seats, economy_price, business_seats, business_price) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        int rowsInserted = jdbcTemplate.update(insertSql, flight.get("airline_name"), flight.get("flight_no"), flight.get("flight_model"),
-                flight.get("from_location"), flight.get("to_location"), flight.get("departure_datetime"),
-                flight.get("arrival_datetime"), flight.get("total_seats"), flight.get("economy_seats"),
-                flight.get("economy_price"), flight.get("business_seats"), flight.get("business_price"));
+        // Check if the airline exists in deleted_airlines
+        String checkAirlineSql = "SELECT * FROM deleted_airlines WHERE airline_name = ?";
+        List<Map<String, Object>> airlines = jdbcTemplate.queryForList(checkAirlineSql, flight.get("airline_name"));
 
-        if (rowsInserted > 0) {
-            System.out.println("Successfully inserted flight into deleted_flights.");
-        } else {
-            System.err.println("Failed to insert flight into deleted_flights.");
+        if (airlines.isEmpty()) {
+            //System.err.println("Cannot insert flight into deleted_flights; associated airline does not exist in deleted_airlines.");
+        	String selectSql1 = "SELECT * FROM added_airline WHERE airline_name = ?";
+            Map<String, Object> airline = jdbcTemplate.queryForMap(selectSql1, airlineName);
+        	String insertSql = "INSERT INTO deleted_airlines (airline_name, airline_number, model_number) VALUES (?, ?, ?)";
+            jdbcTemplate.update(insertSql, airline.get("airline_name"), airline.get("airline_number"), airline.get("model_number"));
         }
-        
-        
+            // Optionally delete the flight without inserting into deleted_flights
+       
+            // Insert into deleted_flights
+            String insertSql = "INSERT INTO deleted_flights (airline_name, flight_no, flight_model, from_location, to_location, "
+                    + "departure_datetime, arrival_datetime, total_seats, economy_seats, economy_price, business_seats, business_price) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            int rowsInserted = jdbcTemplate.update(insertSql, flight.get("airline_name"), flight.get("flight_no"), flight.get("flight_model"),
+                    flight.get("from_location"), flight.get("to_location"), flight.get("departure_datetime"),
+                    flight.get("arrival_datetime"), flight.get("total_seats"), flight.get("economy_seats"),
+                    flight.get("economy_price"), flight.get("business_seats"), flight.get("business_price"));
+
+            if (rowsInserted > 0) {
+                System.out.println("Successfully inserted flight into deleted_flights.");
+            } else {
+                System.err.println("Failed to insert flight into deleted_flights.");
+            }
+    
+
         // Delete the flight
         String deleteSql = "DELETE FROM added_flights WHERE flight_id = ?";
         int rowsDeleted = jdbcTemplate.update(deleteSql, flightId);
@@ -106,7 +118,10 @@ public class DisplayFlightController {
         }
 
         return "redirect:/openDisplayFlightPage";
-    }    
+    }
+
+    
+    
     @GetMapping("/openEditFlightPage")
     public ModelAndView openEditFlightPage(@RequestParam int flightId,Model model) {
     	

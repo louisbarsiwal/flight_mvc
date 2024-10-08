@@ -52,6 +52,8 @@
                 <td>
                     <form action="/restoreFlight" method="post" style="display:inline;">
                         <input type="hidden" name="flightId" value="<%= flight.get("flight_id") %>">
+						<input type="hidden" name="airlineName" value="<%= flight.get("airline_name") %>">
+												
                         <input type="submit" value="Add Back" class="action-button" onclick="return confirm('Are you sure you want to add back this flight?');">
                     </form>
                 </td>
