@@ -14,8 +14,8 @@
     <form action="/user/openFmRegistrationPage" method="post" enctype="multipart/form-data">
 
 		
-        <label for="profileImage">Profile Image</label>
-        <input type="file" id="profileImage" name="profileImage" accept="image/*">
+		<label for="Profileimage">Upload Image:</label>
+		<input type="file" name="profileImage" accept=".jpg, .jpeg, .png, .pdf" required>
 
         <label for="firstname">First Name</label>
         <input type="text" id="firstname" name="firstName" placeholder="Enter your Firstname"required>

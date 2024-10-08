@@ -12,6 +12,15 @@
 		AddedAirline addedAirline = 
 						(AddedAirline) request.getAttribute("addedAirline");
 					%>
+		<script>
+			window.onload = function() {
+			const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+			if (message) {
+				alert(message);
+				}
+			};
+		 </script>					
+	
 </head>
 <body>
 	<h1>Edit Airline</h1>

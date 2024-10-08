@@ -66,7 +66,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 		String query = "UPDATE admin_flightmanager SET password_salt = ?, password_hash = ? WHERE flightManager_id= ?";
 
 		return jdbcTemplate.update(query,flightManagerRegistration.getPasswordSalt(),flightManagerRegistration.getPasswordHash(),
-				flightManagerRegistration.getflightManagerId() );
+				flightManagerRegistration.getFlightManagerId() );
 	}
 
 	@Override
@@ -78,9 +78,9 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 				+ "mobile_no = ?, date_of_birth = ?, gender = ?, profile_image = ? WHERE businessOwner_id = ?";
 
 		jdbcTemplate.update(query, flightManagerRegistration.getFirstName(), flightManagerRegistration.getLastName(), flightManagerRegistration.getEmailId(), flightManagerRegistration.getMobileNo(),
-				flightManagerRegistration.getDateOfBirth(),flightManagerRegistration.getGender(), profileImage, flightManagerRegistration.getflightManagerId());
+				flightManagerRegistration.getDateOfBirth(),flightManagerRegistration.getGender(), profileImage, flightManagerRegistration.getFlightManagerId());
 		
-		return getUserById(flightManagerRegistration.getflightManagerId());
+		return getUserById(flightManagerRegistration.getFlightManagerId());
 		
 	}
 

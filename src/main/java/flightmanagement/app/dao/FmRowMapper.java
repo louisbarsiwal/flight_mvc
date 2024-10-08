@@ -19,7 +19,7 @@ public class FmRowMapper implements RowMapper<FlightManagerRegistration> {
 		FlightManagerRegistration flightManagerRegistration = new FlightManagerRegistration();
 
 	
-		flightManagerRegistration.setflightManagerId(rs.getInt("flightManager_id"));
+		flightManagerRegistration.setFlightManagerId(rs.getInt("flightManager_id"));
 		flightManagerRegistration.setFirstName(rs.getString("first_name"));
 		flightManagerRegistration.setLastName(rs.getString("last_name"));
 		flightManagerRegistration.setEmailId(rs.getString("email_id"));

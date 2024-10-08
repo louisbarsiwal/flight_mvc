@@ -38,11 +38,6 @@ import flightmanagement.app.utilities.Password;
 public class UserController {
 	
 	private BusinessOwnerRegistration businessOwnerRegistration;
-
-	private PassengerRegistration  passengerRegistration;
-	private FlightManagerRegistration flightManagerRegistration;
-	
-
 	private FlightManagerRegistration flightManagerRegistration;
 	private PassengerRegistration  passengerRegistration;
 
@@ -67,11 +62,6 @@ public class UserController {
 	@GetMapping("/openBoLoginPage")
 	public String openBoLoginPage() {
 		return "bo_user_login";
-	}
-	
-	@GetMapping("/openforgotPasswordPage")
-	public String openforgotPasswordPage() {
-		return "bo_forgot_password";
 	}
 	
 
@@ -160,17 +150,6 @@ public class UserController {
 		}
 		return "redirect:/user/openViewProfilePage"; // Redirect back to view profile
 	}
-	
-	
-	
-	@GetMapping("/openPassengerRegistrationPage")
-	public ModelAndView openPassengerRegistrationPage(ModelAndView modelAndView) {
-
-		System.out.println("\n passengerRegistrationPage is called");
-		modelAndView.setViewName("passenger_registration");
-		return modelAndView;
-	}
-
 
 	@PostMapping("/Bologin")
 	public String login(@RequestParam String username, 
@@ -268,15 +247,16 @@ public class UserController {
     }
 	
     @PostMapping("/fmforgotPassword")
-    public String fmforgotPassword(@RequestParam String username, 
-                                 @RequestParam String password, 
-                                 RedirectAttributes attributes) 
+    public String fmforgotPassword(@RequestParam("username") String username, 
+                                   @RequestParam("password") String password, 
+                                    RedirectAttributes attributes) 
                                  throws IOException, SerialException, SQLException {
         try {
     	
     	System.out.println(username);
     	
         FlightManagerRegistration flightManagerRegistration = flightManagerDaoImpl.fetchUser(username);
+        System.out.println(flightManagerRegistration);
 
         String passwordSalt = Password.generatePwdSalt(10);
         flightManagerRegistration.setPasswordSalt(passwordSalt);
@@ -286,7 +266,7 @@ public class UserController {
         flightManagerRegistration.setPasswordHash(passwordHash);
         
      // Log the values for debugging
-	    System.out.println("Updating password for flightManager_id: " + flightManagerRegistration.getflightManagerId());
+	    System.out.println("Updating password for flightManager_id: " + flightManagerRegistration.getFlightManagerId());
 	    System.out.println("New password salt: " + passwordSalt);
 	    System.out.println("New password hash: " + passwordHash);
 
@@ -314,8 +294,6 @@ public class UserController {
         modelAndView.addObject("flightManagerRegistration", flightManagerRegistration);
         return modelAndView;
     }
-    
-    
     
     
 
