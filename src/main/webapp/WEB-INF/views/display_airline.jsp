@@ -35,6 +35,7 @@
                         <td>
                             <form action="/deleteAirline" method="post" style="display:inline;">
                                 <input type="hidden" name="airlineId" value="<%= airline.get("id") %>">
+								<input type="hidden" name="airlineName" value="<%= airline.get("airline_name") %>">										
                                 <input type="submit" value="Delete" class="delete-button" onclick="return confirm('Are you sure you want to delete this airline?');">
                             </form>
                         </td>

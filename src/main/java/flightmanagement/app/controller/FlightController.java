@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/flight")
@@ -22,8 +23,7 @@ public class FlightController {
 
 	@Autowired
     private AddedFlightDaoImpl addedflightdaoimpl; 
-	
-	private AddedFlight addedFlight;
+
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -54,39 +54,18 @@ public class FlightController {
     }
 
     @PostMapping("/addFlight")
-    public String addFlight(@ModelAttribute AddedFlight addedFlight, Model model) {
+    public String addFlight(@ModelAttribute AddedFlight addedFlight, RedirectAttributes redirectAttributes) {
         System.out.println(addedFlight);
     	try {
         	addedflightdaoimpl.insertFlight(addedFlight);
-            model.addAttribute("message", "Flight added successfully");
+        	 redirectAttributes.addFlashAttribute("message", "Flight added successfully");
             System.out.println("successfully added");
         } catch (Exception e) {
         	e.printStackTrace();
-            model.addAttribute("error", "Error adding flight: " + e.getMessage());
+        	redirectAttributes.addFlashAttribute("error", "Error adding flight: " + e.getMessage());
         }
         return "redirect:/flight/openAddFlightPage"; 
     }
 }
     
     
-//    @PostMapping("/addFlight")
-//    public String addFlight(@ModelAttribute AddedFlight addedFlight, Model model) {
-//        try {
-//            if (addedFlight.getFlightId() != null) {
-//                // Logic for updating an existing flight
-//                addedflightdaoimpl.updateFlight(addedFlight);
-//                model.addAttribute("message", "Flight updated successfully");
-//            } else {
-//                // Logic for adding a new flight
-//                addedflightdaoimpl.insertFlight(addedFlight);
-//                model.addAttribute("message", "Flight added successfully");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            model.addAttribute("error", "Error adding flight: " + e.getMessage());
-//        }
-//        return "redirect:/openAddFlightPage"; 
-//    }
-//
-//  }
-

@@ -12,5 +12,8 @@ CREATE TABLE deleted_flights (
     economy_price DECIMAL(10, 2) NOT NULL,
     business_seats INT NOT NULL,
     business_price DECIMAL(10, 2) NOT NULL,
-    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (airline_name) REFERENCES deleted_airlines(airline_name)ON DELETE CASCADE
 );
+
+
