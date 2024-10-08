@@ -38,7 +38,6 @@
   <a href="/airline/openAddAirlinePage">ADD AIRLINE</a>
   <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
   <a href="/openDisplayAirlinePage">DISPLAY AIRLINE</a>
-  <a href="/user/openupdateflight">UPDATE FLIGHT</a>
   <a href="/user/Bologout">LOGOUT</a>
   
  
