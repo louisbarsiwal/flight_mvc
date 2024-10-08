@@ -1,40 +1,76 @@
 package flightmanagement.app.entities;
 
 public class AddedAirline {
+	private int airLineId;
     private String airlineName;
     private String airlineNumber;
     private String modelNumber;
+    
+    
+    
 
   
-    public String getAirlineName() {
-        return airlineName;
-    }
+    public AddedAirline() {
+		super();
+		
+	}
 
-    public void setAirlineName(String airlineName) {
-        this.airlineName = airlineName;
-    }
+	public AddedAirline(int airLineId, String airlineName, String airlineNumber, String modelNumber) {
+		super();
+		this.airLineId = airLineId;
+		this.airlineName = airlineName;
+		this.airlineNumber = airlineNumber;
+		this.modelNumber = modelNumber;
+	}
+	
+	
 
-    public String getAirlineNumber() {
-        return airlineNumber;
-    }
+	public AddedAirline(String airlineName, String airlineNumber, String modelNumber) {
+		super();
+		this.airlineName = airlineName;
+		this.airlineNumber = airlineNumber;
+		this.modelNumber = modelNumber;
+	}
 
-    public void setAirlineNumber(String airlineNumber) {
-        this.airlineNumber = airlineNumber;
-    }
+	public int getAirLineId() {
+		return airLineId;
+	}
 
-    public String getModelNumber() {
-        return modelNumber;
-    }
+	public void setAirLineId(int airLineId) {
+		this.airLineId = airLineId;
+	}
 
-    public void setModelNumber(String modelNumber) {
-        this.modelNumber = modelNumber;
-    }
+	public String getAirlineName() {
+		return airlineName;
+	}
+
+	public void setAirlineName(String airlineName) {
+		this.airlineName = airlineName;
+	}
+
+	public String getAirlineNumber() {
+		return airlineNumber;
+	}
+
+	public void setAirlineNumber(String airlineNumber) {
+		this.airlineNumber = airlineNumber;
+	}
+
+	public String getModelNumber() {
+		return modelNumber;
+	}
+
+	public void setModelNumber(String modelNumber) {
+		this.modelNumber = modelNumber;
+	}
 
 	@Override
 	public String toString() {
-		return "Airline [airlineName=" + airlineName + ", airlineNumber=" + airlineNumber + ", modelNumber="
-				+ modelNumber + "]";
+		return "\n AddedAirline [airLineId=" + airLineId + ", airlineName=" + airlineName + ", airlineNumber="
+				+ airlineNumber + ", modelNumber=" + modelNumber + "]";
 	}
+
+	
     
     
 }

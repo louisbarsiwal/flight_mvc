@@ -4,8 +4,7 @@ package flightmanagement.app.entities;
 
 public class AddedFlight {
 
-	private Long flightId;
-
+	private Integer flightId;
 	private String airlineName;
 	private String flightNo;
 	private String flightModel;
@@ -23,7 +22,7 @@ public class AddedFlight {
 		super();
 	}
 
-	public AddedFlight(Long flightId, String airlineName, String flightNo, String flightModel, String fromLocation,
+	public AddedFlight(Integer flightId, String airlineName, String flightNo, String flightModel, String fromLocation,
 			String toLocation, String departureDateTime, String arrivalDateTime, int totalSeats,
 			int economySeats, double economyPrice, int businessSeats, double businessPrice) {
 		super();
@@ -60,11 +59,11 @@ public class AddedFlight {
 		this.businessPrice = businessPrice;
 	}
 
-	public Long getFlightId() {
+	public Integer getFlightId() {
 		return flightId;
 	}
 
-	public void setFlightId(Long flightId) {
+	public void setFlightId(Integer flightId) {
 		this.flightId = flightId;
 	}
 
@@ -166,7 +165,7 @@ public class AddedFlight {
 
 	@Override
 	public String toString() {
-		return "AddedFlight [flightId=" + flightId + ", airlineName=" + airlineName + ", flightNo=" + flightNo
+		return "\n AddedFlight [flightId=" + flightId + ", airlineName=" + airlineName + ", flightNo=" + flightNo
 				+ ", flightModel=" + flightModel + ", fromLocation=" + fromLocation + ", toLocation=" + toLocation
 				+ ", departureDateTime=" + departureDateTime + ", arrivalDateTime=" + arrivalDateTime + ", totalSeats="
 				+ totalSeats + ", economySeats=" + economySeats + ", economyPrice=" + economyPrice + ", businessSeats="

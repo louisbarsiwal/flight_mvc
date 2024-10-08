@@ -1,5 +1,6 @@
 package flightmanagement.app.entities;
 
+import java.io.InputStream;
 import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +19,19 @@ public class BusinessOwnerRegistration
 	private String passwordSalt;
 	private String passwordHash;
 	private MultipartFile profileImage;
+	private InputStream image;
 	
+	
+	
+	
+	public InputStream getImage() {
+		return image;
+	}
+
+	public void setImage(InputStream image) {
+		this.image = image;
+	}
+
 	public BusinessOwnerRegistration() {
 		super();
 		

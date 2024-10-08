@@ -33,6 +33,7 @@
                 <td>
                     <form action="/restoreAirline" method="post" style="display:inline;">
                         <input type="hidden" name="airlineId" value="<%= airline.get("id") %>">
+						<input type="hidden" name="airlineName" value="<%= airline.get("airline_name") %>">
                         <input type="submit" value="Add Back">
                     </form>
                 </td>
