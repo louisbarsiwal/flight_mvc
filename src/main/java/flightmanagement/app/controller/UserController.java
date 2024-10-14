@@ -68,10 +68,20 @@ public class UserController {
 	@PostMapping("/forgotPassword")
 	public String forgotPassword(@RequestParam String username, 
 	                             @RequestParam String password, 
+	                             @RequestParam String confirmPassword, 
 	                             RedirectAttributes attributes) 
 	                             throws IOException, SerialException, SQLException {
 	    
-	    // Fetch the BusinessOwnerRegistration based on username
+		//String password = businessOwnerRegistration.getPassword();
+	    //String confirmPassword = businessOwnerRegistration.getConfirmPassword();
+		 if (!password.equals(confirmPassword)) {
+		        attributes.addFlashAttribute("message", "Passwords do not match.");
+		        return "redirect:/user/openForgotPasswordPage";
+		 }
+		 
+		 try {
+			 
+		
 	    BusinessOwnerRegistration businessOwnerRegistration = businessOwnerDaoImpl.fetchUser(username);
 	    
 	    
@@ -97,14 +107,19 @@ public class UserController {
 	        return "redirect:/user/openBoLoginPage";
 	    } else {
 	        attributes.addFlashAttribute("message", "New Password not updated succesfully");
-	        return "redirect:/user/openForgotPasswordPage";
+	        return "redirect:/user/openforgotPasswordPage";
 	    }
+		}
+		 catch (EmptyResultDataAccessException e) {
+				attributes.addFlashAttribute("message", "Incorrect Username!Please Enter the Correct Username");
+				 return "redirect:/user/openforgotPasswordPage";
 	}
+}
 
 
 	
 	
-	@GetMapping("/openForgotPasswordPage")
+	@GetMapping("/openforgotPasswordPage")
 	public String openForgotPasswordPage() {
 		return "bo_forgot_password";
 	}
@@ -139,10 +154,32 @@ public class UserController {
 			) throws SerialException, IOException, SQLException {
 		// Update user information in the database
 		
+		String firstName = updatedBo.getFirstName();
+	    String lastName = updatedBo.getLastName();
+	    String email = updatedBo.getEmailId();
+	    String mobileNo = updatedBo.getMobileNo();
+	    
+	    if (!firstName.matches("^[a-zA-Z]{3,20}$")) {
+	        attributes.addFlashAttribute("message", "First name must be between 3-20 characters and contain only alphabets.");
+	        return "redirect:/user/openViewProfilePage";
+	    }
+	    if (!lastName.matches("^[a-zA-Z]{3,20}$")) {
+	        attributes.addFlashAttribute("message", "Last name must be between 3-20 characters and contain only alphabets.");
+	        return "redirect:/user/openViewProfilePage";
+	    }
+	    if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+	        attributes.addFlashAttribute("message", "Email must be in the format of example@gmail.com.");
+	        return "redirect:/user/openViewProfilePage";
+	    }
+	    if (!mobileNo.matches("^\\d{10}$")) {
+	        attributes.addFlashAttribute("message", "Phone number must be 10 digits.");
+	        return "redirect:/user/openViewProfilePage";
+	    }
+	    
 		try {
 			
 			businessOwnerRegistration = businessOwnerDaoImpl.modifyUser(updatedBo); 
-			// Simulate updating the user object
+			
 			businessOwnerRegistration.setImage(businessOwnerRegistration.getProfileImage().getInputStream());
 			attributes.addFlashAttribute("message", "Profile updated successfully");
 		} catch(EmptyResultDataAccessException e) {
@@ -187,7 +224,7 @@ public class UserController {
 		}
 
 			 catch (EmptyResultDataAccessException e) {
-			attributes.addFlashAttribute("message", "Incorrect Username");
+			attributes.addFlashAttribute("message", "Incorrect Username!Incorrect Username!Please Enter the Correct Username");
 		} 
 		catch (IOException e) 
 		{
@@ -197,38 +234,67 @@ public class UserController {
 		return "redirect:/user/openBoLoginPage";
 		
 	}
+		
 	
 	@PostMapping("/Boregister")
 	public String register(@ModelAttribute BusinessOwnerRegistration businessOwnerRegistration, RedirectAttributes attributes)
-			throws IOException, SerialException, SQLException {
+	        throws IOException, SerialException, SQLException {
 
+	    // Validation checks
+	    String firstName = businessOwnerRegistration.getFirstName();
+	    String lastName = businessOwnerRegistration.getLastName();
+	    String email = businessOwnerRegistration.getEmailId();
+	    String mobileNo = businessOwnerRegistration.getMobileNo();
+	    String username = businessOwnerRegistration.getUsername();
+	    String password = businessOwnerRegistration.getPassword();
+	    String confirmPassword = businessOwnerRegistration.getConfirmPassword();
 
-		// Password Encryption starts
-		String passwordSalt = Password.generatePwdSalt(10);
-		businessOwnerRegistration.setPasswordSalt(passwordSalt);
+	    if (!firstName.matches("^[a-zA-Z]{3,20}$")) {
+	        attributes.addFlashAttribute("message", "First name must be between 3-20 characters and contain only alphabets.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	    if (!lastName.matches("^[a-zA-Z]{3,20}$")) {
+	        attributes.addFlashAttribute("message", "Last name must be between 3-20 characters and contain only alphabets.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	    if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+	        attributes.addFlashAttribute("message", "Email must be in the format of example@gmail.com.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	    if (!mobileNo.matches("^\\d{10}$")) {
+	        attributes.addFlashAttribute("message", "Phone number must be 10 digits.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	    if (!username.matches("^[a-zA-Z0-9_]{6,15}$")) {
+	        attributes.addFlashAttribute("message", "Username must be between 6-15 characters and contain only alphabets, numbers, and underscores.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
 
-		// temporary data => password+salt
-		String newPassword = businessOwnerRegistration.getPassword() + passwordSalt; // 1234rdvyjtftyf
-		
-		System.out.println("Password: "+newPassword);
+	    if (!password.equals(confirmPassword)) {
+	        attributes.addFlashAttribute("message", "Passwords do not match.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
 
-		String passwordHash = Password.generatePwdHash(newPassword);
-		
-		businessOwnerRegistration.setPasswordHash(passwordHash);
-		// Password Encryption completes
-		System.out.println("Password hash: "+passwordHash);
+	    // Password Encryption starts
+	    String passwordSalt = Password.generatePwdSalt(10);
+	    businessOwnerRegistration.setPasswordSalt(passwordSalt);
 
-		int result = businessOwnerDaoImpl.insertBusinessOwner(businessOwnerRegistration);
+	    String newPassword = password + passwordSalt;
+	    String passwordHash = Password.generatePwdHash(newPassword);
+	    businessOwnerRegistration.setPasswordHash(passwordHash);
 
-		if (result > 0) {
-			attributes.addFlashAttribute("message", "Registration Successful");
-			return "redirect:/user/openBoLoginPage";
-		} else {
-			attributes.addFlashAttribute("message", "Registration Failed");
-			return "redirect:/user/openBoRegistrationPage";
-		}
+	    int result = businessOwnerDaoImpl.insertBusinessOwner(businessOwnerRegistration);
+	  
 
+	    if (result > 0) {
+	        attributes.addFlashAttribute("message", "Registration Successful");
+	        return "redirect:/user/openBoLoginPage";
+	    } else {
+	        attributes.addFlashAttribute("message", "Registration Failed");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
 	}
+
 
 
 	@GetMapping("/Fmlogout")
