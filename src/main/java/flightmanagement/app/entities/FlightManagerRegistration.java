@@ -163,6 +163,7 @@ public class FlightManagerRegistration
 				+ ", passwordSalt=" + passwordSalt + ", passwordHash=" + passwordHash + ", profileImage=" + profileImage
 				+ "]";
 	}
+
 	
 	
 }

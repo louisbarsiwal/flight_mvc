@@ -42,7 +42,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 			throws IOException, SerialException, SQLException {
 		Blob profileImage = getBlob(flightManagerRegistration.getProfileImage());
 
-<<<<<<< HEAD
+
 
 		String query = "INSERT INTO admin_flightmanager " + "(first_name, last_name, email_id, mobile_no, "
 				+ "date_of_birth, gender, user_name, password_salt, password_hash, " + "profile_image) "
@@ -53,21 +53,6 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 				flightManagerRegistration.getMobileNo(), flightManagerRegistration.getDateOfBirth(),
 				flightManagerRegistration.getGender(), flightManagerRegistration.getUsername(),
 				flightManagerRegistration.getPasswordSalt(), flightManagerRegistration.getPasswordHash(), profileImage);
-
-=======
-		String query = "INSERT INTO admin_flightmanager " 
-		        + "(first_name, last_name, email_id, mobile_no, "
-				+ "date_of_birth,gender, user_name, password_salt, password_hash, "
-				+ "profile_image) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
-
-		return jdbcTemplate.update(query, flightManagerRegistration.getFirstName(), flightManagerRegistration.getLastName(), 
-				flightManagerRegistration.getEmailId(),flightManagerRegistration.getMobileNo(), flightManagerRegistration.getDateOfBirth(),
-				flightManagerRegistration.getGender(), flightManagerRegistration.getUsername(), flightManagerRegistration.getPasswordSalt(),
-				flightManagerRegistration.getPasswordHash(), profileImage);
-		
-	}
->>>>>>> f48867274ea59ea50f67138acb77a43bc59f801a
-	
 
 
 	}
@@ -83,8 +68,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 		String sql = "SELECT * FROM admin_flightmanager WHERE user_name = ?";
 		return jdbcTemplate.queryForObject(sql, new FmRowMapper(), username);
 	}
-<<<<<<< HEAD
-=======
+
 
 	@Override
 	public int updateFlightManagerPassword(FlightManagerRegistration flightManagerRegistration)
@@ -117,7 +101,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 		
 	}
 
->>>>>>> f48867274ea59ea50f67138acb77a43bc59f801a
+
 	
 	@Override
 	public List<Map<String, Object>> findAllFlightManager() {

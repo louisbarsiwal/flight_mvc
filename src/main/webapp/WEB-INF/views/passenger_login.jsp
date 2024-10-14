@@ -27,7 +27,7 @@
             </span>
         </div><br/>
         <button type="submit">Login</button><br/>
-		<p><a href="/user/openforgotPasswordPage">forgot password ?</a></p>
+		<!--p><a href="/user/openforgotPasswordPage">forgot password ?</a></p-->
         <p>Don't have an account? <a href="/user/openPassengerRegistration">Register here</a></p>
     </form>
 
