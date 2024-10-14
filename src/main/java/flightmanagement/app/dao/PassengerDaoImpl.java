@@ -81,5 +81,15 @@ public class PassengerDaoImpl implements PassengerDao {
 		return jdbcTemplate.queryForObject(sql, new PassengerRowMapper(), passenger_Id);
 		
 	}	
+	
+	@Override
+	public int updatePassengerPassword(PassengerRegistration passengerRegistration)
+			throws IOException, SerialException, SQLException {
+		String query = "UPDATE admin_passenger SET password_salt = ?, password_hash = ? WHERE passenger_Id= ?";
+
+		return jdbcTemplate.update(query,passengerRegistration.getPasswordSalt(),passengerRegistration.getPasswordHash(),
+				passengerRegistration.getPassenger_Id() );	
+	}
+	
 
 }

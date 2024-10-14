@@ -70,26 +70,45 @@ public class AddedFlightDaoImpl implements AddedFlightDao {
         return jdbcTemplate.queryForObject(sql, new FlightRowMapper(), flightNo);
     }
 
-	
+	@Override
+	public AddedFlight updateFlight(AddedFlight addedFlight) throws IOException, SerialException, SQLException {
+String query = "UPDATE added_flights SET airline_name = ? , flight_no = ?, flight_model = ?, from_location = ?, "
+		+ "to_location = ?, departure_datetime = ?, arrival_datetime = ?, total_seats = ?, "
+		+ "economy_seats = ?,economy_price = ?, business_seats = ?, business_price = ? WHERE flight_id = ?";
+        
+     
+   
+        int rowsAffected = jdbcTemplate.update(query,
+        		addedFlight.getAirlineName(),
+        		addedFlight.getFlightNo(),
+        		addedFlight.getFlightModel(),
+        		addedFlight.getFromLocation(),
+        		addedFlight.getToLocation(),
+        		addedFlight.getDepartureDateTime(),
+        		addedFlight.getArrivalDateTime(),
+        		addedFlight.getTotalSeats(),
+        		addedFlight.getEconomySeats(),
+        		addedFlight.getEconomyPrice(),
+        		addedFlight.getBusinessSeats(),
+        		addedFlight.getBusinessPrice(),
+        		addedFlight.getFlightId());
+        
+        // Check if any rows were affected
+        if (rowsAffected == 0) {
+            throw new SQLException("No rows affected. Update failed for ID: " + addedFlight.getFlightId());
+        }
+        
+        return getUserById(addedFlight.getFlightId());
+    }
 
 
+	@Override
+	public AddedFlight getUserById(int flightId) {
+		String sql = "SELECT * FROM added_flights WHERE flight_id = ?";
+		return jdbcTemplate.queryForObject(sql, new FlightRowMapper(), flightId);
+		
+	}	
+}
 
-	
-
-			
-	}
-
-	
-
-	
-
-    
-
-	
-
-	
-
-	
-	
 
 

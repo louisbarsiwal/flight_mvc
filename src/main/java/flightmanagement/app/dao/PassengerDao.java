@@ -18,5 +18,7 @@ public interface PassengerDao {
 	PassengerRegistration getUserById(int passenger_Id);
 	PassengerRegistration modifyPassengerProfile(PassengerRegistration passengerRegistration)
 			throws SerialException, IOException, SQLException;
+	int updatePassengerPassword(PassengerRegistration passengerRegistration)
+			throws IOException, SerialException, SQLException;
 
 }

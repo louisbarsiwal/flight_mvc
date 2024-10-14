@@ -70,13 +70,6 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 		return jdbcTemplate.queryForObject(sql, new FmRowMapper(), username);
 	}
 	
-		
-//	@Override
-//    public List<FlightManagerRegistration> findAllFlightManagers() {
-//        String sql = "SELECT * FROM admin_flightmanager"; // Adjust this SQL as per your schema
-//        return jdbcTemplate.query(sql, new FmRowMapper());
-//    }
-
 	@Override
 	public List<Map<String, Object>> findAllFlightManager() {
 	    String sql = "SELECT f.flightManager_id, f.first_name, f.last_name, f.user_name, a.status " +

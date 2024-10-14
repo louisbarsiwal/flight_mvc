@@ -19,8 +19,6 @@ public interface FlightManagerDao {
 	
 	int insertFlightManager(FlightManagerRegistration flightManagerRegistration) throws IOException,SerialException,SQLException;
 	FlightManagerRegistration fetchUser(String username) ;
-	//List<FlightManagerRegistration> findAllFlightManagers();
-	 //List<Map<String, Object>> findAllFlightManagers();
 	List<Map<String, Object>> findAllFlightManager();
 	
 	

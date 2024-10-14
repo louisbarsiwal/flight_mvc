@@ -39,8 +39,8 @@
                             </form>
                         </td>
                         <td>
-                            <form action="/editAirline" method="get" style="display:inline;">
-                                <input type="hidden" name="airlineId" value="<%= airline.get("id") %>">
+                            <form action="/openEditAirlinePage" method="get" style="display:inline;">
+								<input type="hidden" name="airLineId" value="<%= airline.get("id") %>">
                                 <input type="submit" value="Edit" class="edit-button">
                             </form>
                         </td>

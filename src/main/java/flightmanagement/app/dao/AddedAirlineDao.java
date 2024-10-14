@@ -13,4 +13,6 @@ public interface AddedAirlineDao {
 	
 	int insertAirline(AddedAirline addedairline) throws IOException,SerialException,SQLException;
 	AddedAirline fetchAirlineByNumber(String airlineNumber);
+	AddedAirline updateAirline(AddedAirline addedAirline)throws IOException,SerialException,SQLException;
+	AddedAirline getUserById(int airLineId);
 }

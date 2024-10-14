@@ -10,6 +10,8 @@
     <h1>Add Airline</h1>
     <form action="/airline/addAirline" method="post">
         <div>
+			
+			
             <label for="airlineName">Airline Name:</label>
             <input type="text" id="airlineName" name="airlineName" required>
         </div>
@@ -24,9 +26,9 @@
         <div>
             <button type="submit">Add Airline</button>
         </div>
-        <c:if test="${not empty message}">
-            <div>${message}</div>
-        </c:if>
+		<% if (request.getAttribute("message") != null) { %>
+		    <div><%= request.getAttribute("message") %></div>
+		<% } %>
     </form>
     <a  href="/openDisplayAirlinePage">View Airlines</a>
 </body>

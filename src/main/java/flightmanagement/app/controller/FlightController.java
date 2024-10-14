@@ -93,10 +93,15 @@ public class FlightController {
 
     @Autowired
     private AddedFlightDaoImpl addedflightdaoimpl; 
+
     
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    
+    	
+	private AddedFlight addedFlight;
+	
+	
+
     @GetMapping("/openAddFlightPage")
     public String openAddFlightPage(Model model) {
         String sql = "SELECT airline_name, airline_number, model_number FROM added_airline";
@@ -131,6 +136,29 @@ public class FlightController {
             e.printStackTrace();
             model.addAttribute("error", "Error adding flight: " + e.getMessage());
         }
-        return "add_flight"; 
+        return "redirect:/flight/openAddFlightPage"; 
     }
 }
+ 
+    
+//    @PostMapping("/addFlight")
+//    public String addFlight(@ModelAttribute AddedFlight addedFlight, Model model) {
+//        try {
+//            if (addedFlight.getFlightId() != null) {
+//                // Logic for updating an existing flight
+//                addedflightdaoimpl.updateFlight(addedFlight);
+//                model.addAttribute("message", "Flight updated successfully");
+//            } else {
+//                // Logic for adding a new flight
+//                addedflightdaoimpl.insertFlight(addedFlight);
+//                model.addAttribute("message", "Flight added successfully");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            model.addAttribute("error", "Error adding flight: " + e.getMessage());
+//        }
+//        return "redirect:/openAddFlightPage"; 
+//    }
+//
+//  }
+

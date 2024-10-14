@@ -10,6 +10,8 @@ public class AirlineRowMapper implements RowMapper<AddedAirline> {
 	@Override
 	public AddedAirline mapRow(ResultSet rs, int rowNum) throws SQLException {
 		AddedAirline addedAirline = new AddedAirline();
+		
+		addedAirline.setAirLineId(rs.getInt("id"));
 		addedAirline.setAirlineName(rs.getString("airline_name"));
 		addedAirline.setAirlineNumber(rs.getString("airline_number"));
 		addedAirline.setModelNumber(rs.getString("model_number"));
