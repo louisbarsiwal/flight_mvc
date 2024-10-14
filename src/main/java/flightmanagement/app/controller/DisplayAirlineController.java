@@ -48,7 +48,9 @@ public class DisplayAirlineController {
     }
 
     @PostMapping("/deleteAirline")
-    public String deleteAirline(@RequestParam("airlineId") String airlineIdStr, Model model) {
+    public String deleteAirline(@RequestParam("airlineId") String airlineIdStr, 
+    		@RequestParam("airlineName") String airlineName,
+    		Model model) {
         if (airlineIdStr == null || airlineIdStr.equals("null") || airlineIdStr.isEmpty()) {
             System.err.println("Received airlineId is null or invalid: " + airlineIdStr);
             return "redirect:/openDisplayAirlinePage"; // Optionally add an error message
@@ -63,18 +65,33 @@ public class DisplayAirlineController {
         }
 
       
-        String selectSql = "SELECT * FROM added_airline WHERE id = ?";
-        Map<String, Object> airline = jdbcTemplate.queryForMap(selectSql, airlineId);
+        String selectSql = "SELECT * FROM added_airline WHERE airline_name = ?";
+        Map<String, Object> airline = jdbcTemplate.queryForMap(selectSql,airlineName);
+        
+       
 
         String insertSql = "INSERT INTO deleted_airlines (airline_name, airline_number, model_number) VALUES (?, ?, ?)";
         jdbcTemplate.update(insertSql, airline.get("airline_name"), airline.get("airline_number"), airline.get("model_number"));
+        
+        String selectSql1 = "SELECT * FROM added_flights WHERE airline_name = ?";
+        Map<String, Object> flight = jdbcTemplate.queryForMap(selectSql1, airlineName);
+
+        String insertSql1 ="INSERT INTO deleted_flights (airline_name, flight_no, flight_model, from_location, to_location, "
+                + "departure_datetime, arrival_datetime, total_seats, economy_seats, economy_price, business_seats, business_price) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        jdbcTemplate.update(insertSql1, flight.get("airline_name"), flight.get("flight_no"), flight.get("flight_model"),
+                flight.get("from_location"), flight.get("to_location"), flight.get("departure_datetime"),
+                flight.get("arrival_datetime"), flight.get("total_seats"), flight.get("economy_seats"),
+                flight.get("economy_price"), flight.get("business_seats"), flight.get("business_price"));
+
+        
+        
 
         String deleteSql = "DELETE FROM added_airline WHERE id = ?";
         jdbcTemplate.update(deleteSql, airlineId);
 
         return "redirect:/openDisplayAirlinePage";
     }
-    
     
     
     @GetMapping("/openEditAirlinePage")

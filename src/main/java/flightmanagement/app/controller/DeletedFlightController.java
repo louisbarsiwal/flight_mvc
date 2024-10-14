@@ -1,5 +1,6 @@
 package flightmanagement.app.controller;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import flightmanagement.app.dao.FlightRowMapper;
+import flightmanagement.app.entities.AddedFlight;
 
 @Controller
 public class DeletedFlightController {
@@ -29,7 +33,8 @@ public class DeletedFlightController {
 	}
 	
 	@PostMapping("/restoreFlight")
-	public String addBackFlight(@RequestParam("flightId") String flightIdStr) {
+	public String addBackFlight(@RequestParam("flightId") String flightIdStr,
+			@RequestParam("airlineName") String airlineName ) {
 	    if (flightIdStr == null || flightIdStr.equals("null") || flightIdStr.isEmpty()) {
 	        System.err.println("Received flightId is null or invalid: " + flightIdStr);
 	        return "redirect:/openDeletedFlightPage"; 
@@ -47,6 +52,9 @@ public class DeletedFlightController {
 	    String selectSql = "SELECT * FROM deleted_flights WHERE flight_id = ?";
 	    List<Map<String, Object>> flights = jdbcTemplate.queryForList(selectSql, flightId);
 	    
+	    
+        
+	    
 	    if (!flights.isEmpty()) {
 	        Map<String, Object> flight = flights.get(0);
 	        String insertSql = "INSERT INTO added_flights (airline_name, flight_no, flight_model, from_location, to_location, "
@@ -60,13 +68,20 @@ public class DeletedFlightController {
 
 	        // Optionally, delete the flight from deleted_flights
 	        String deleteSql = "DELETE FROM deleted_flights WHERE flight_id = ?";
-	        jdbcTemplate.update(deleteSql, flightId);
+	        jdbcTemplate.update(deleteSql, flightId);  
+	        
+	        String deleteSql1 = "DELETE FROM deleted_airlines WHERE airline_name = ?";
+	        jdbcTemplate.update(deleteSql1,airlineName);
+	        
 	    }
+	    
+	   
+	    
+	   
 
 	    return "redirect:/openDisplayFlightPage";
-	}
+     }
+	
 
-	
-	
-	
+
 }

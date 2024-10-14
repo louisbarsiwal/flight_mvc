@@ -70,6 +70,7 @@ public class AddedFlightDaoImpl implements AddedFlightDao {
         return jdbcTemplate.queryForObject(sql, new FlightRowMapper(), flightNo);
     }
 
+
 	@Override
 	public AddedFlight updateFlight(AddedFlight addedFlight) throws IOException, SerialException, SQLException {
 String query = "UPDATE added_flights SET airline_name = ? , flight_no = ?, flight_model = ?, from_location = ?, "

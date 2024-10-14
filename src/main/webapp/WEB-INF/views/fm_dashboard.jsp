@@ -21,25 +21,21 @@
   <span id="companyName">XYZ FLIGHTS</span>
    <div class="profile-icon" onclick="toggleDropdown()">
      <img src="/images/profile-icon.png" alt="Profile Icon">
-     <div id="dropdown" class="dropdown-content">
-       <a href="/user/openBoLoginPage">Business Owner</a>
-       <a href="/user/openfmuserloginPage">Flight Manager</a>
-       <a href="/user/openPassengerLogin">Customer</a>
-    </div>
+     
   </div>
 </div>
  
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="/user/openuserprofile">VIEW PROFILE</a>
-  <a href="/openAddFlightPage">ADD FLIGHT</a>
-  <a href="#deleteFlight">DELETE FLIGHT</a>
-  <a href="#deleteFlight">DELETE AIRLINE</a>
-  <a href="#addAirline">ADD AIRLINE</a>
+  <a href="/user/openFmViewProfilePage">VIEW PROFILE</a>
+  <a href="/flight/openAddFlightPage">ADD FLIGHT</a>
+  <a href="/openDeletedAirlinePage">DELETED AIRLINE</a>
+  <a href="/openDeletedFlightPage">DELETED FLIGHT</a>
+  <a href="/airline/openAddAirlinePage">ADD AIRLINE</a>
   <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
-  <a href="#bookFlight">DISPLAY AIRLINE</a>
-  <a href="/user/openupdateflight">UPDATE FLIGHT</a>
-  <a href="/user/opencancelflight">CANCEL FLIGHT</a>
+  <a href="/openDisplayAirlinePage">DISPLAY AIRLINE</a>
+  <a href="/user/Fmlogout">LOGOUT</a>
+  
  
 </div>
  

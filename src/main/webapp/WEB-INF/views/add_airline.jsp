@@ -5,6 +5,14 @@
     <meta charset="UTF-8">
     <title>Add Airline</title>
     <link rel="stylesheet" type="text/css" href="/CSS/add_airline.css">
+	<script>
+		        window.onload = function() {
+		            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+		            if (message) {
+		                alert(message);
+		            }
+		        };
+		    </script>
 </head>
 <body>
     <h1>Add Airline</h1>
