@@ -12,7 +12,10 @@ public class FlightRowMapper implements RowMapper<AddedFlight> {
         
         AddedFlight addedFlight = new AddedFlight();
         
+
+        //addedFlight.setFlightId(rs.getLong("flightManager_id")); 
         addedFlight.setFlightId(rs.getInt("flight_id")); 
+
         addedFlight.setAirlineName(rs.getString("airline_name"));
         addedFlight.setFlightNo(rs.getString("flight_no"));
         addedFlight.setFlightModel(rs.getString("flight_model"));

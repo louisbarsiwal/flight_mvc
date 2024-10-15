@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Flight Login Page</title>
+    <title>Bo Login Page</title>
     <link rel="stylesheet" type="text/css" href="/CSS/user_login.css">
 
 	<script>
@@ -15,7 +15,6 @@
 	            }
 	        };
 	    </script>
-
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -31,7 +30,7 @@
                 <i class="fa fa-eye-slash" id="toggleIcon"></i>
             </span>
         </div><br/>
-		<p><a href="/user/openforgotPasswordPage">forgot password ?</a></p>
+		<p><a href="/user/openForgotPasswordPage">forgot password ?</a></p>
         <button type="submit">Login</button><br/>
         <p>Don't have an account? <a href="/user/openBoRegistrationPage">Register here</a></p>
     </form>
