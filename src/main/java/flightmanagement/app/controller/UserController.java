@@ -11,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -154,7 +155,7 @@ public class UserController {
 	@PostMapping("/Bologin")
 	public String login(@RequestParam String username, 
 			@RequestParam String password, 
-			Model model, RedirectAttributes attributes) {
+			ModelMap modelMap, RedirectAttributes attributes) {
 
 		System.out.println("\n login request data: " + username + ", " + password);
 
@@ -174,7 +175,7 @@ public class UserController {
 
 			if (newPwdHash.equals(oldPwdHash)) {
 					
-				model.addAttribute("businessOwnerRegistration ", businessOwnerRegistration );
+				modelMap.addAttribute("businessOwnerRegistration ", businessOwnerRegistration );
 				 return "redirect:/user/openBoDashboard";
 				
 			}

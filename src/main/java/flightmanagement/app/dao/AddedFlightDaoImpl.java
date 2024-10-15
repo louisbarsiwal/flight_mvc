@@ -1,7 +1,9 @@
 package flightmanagement.app.dao;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.rowset.serial.SerialException;
 
@@ -99,4 +101,16 @@ String query = "UPDATE added_flights SET airline_name = ? , flight_no = ?, fligh
 		
 	}	
 
+	
+	public List<AddedFlight> searchFlights(String from, String to, String date) {
+
+		String sql = "SELECT * FROM added_flights WHERE from_location = ? AND to_location = ? AND departure_datetime LIKE ?";
+
+	    System.out.println("started searching ");
+	    return jdbcTemplate.query(sql, new FlightRowMapper(), from, to, date + "%");
+	}
+
+	
+	
+	
 }
