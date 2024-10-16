@@ -90,6 +90,7 @@ public class PassengerDaoImpl implements PassengerDao {
 		return jdbcTemplate.update(query,passengerRegistration.getPasswordSalt(),passengerRegistration.getPasswordHash(),
 				passengerRegistration.getPassenger_Id() );	
 	}
+
 	
 
 }
