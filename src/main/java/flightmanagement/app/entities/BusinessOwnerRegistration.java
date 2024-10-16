@@ -20,6 +20,8 @@ public class BusinessOwnerRegistration
 	private String passwordHash;
 	private MultipartFile profileImage;
 	private InputStream image;
+	private String confirmPassword;
+	
 	
 	
 	
@@ -166,6 +168,17 @@ public class BusinessOwnerRegistration
 
 	public void setProfileImage(MultipartFile profileImage) {
 		this.profileImage = profileImage;
+	}
+	
+	
+	
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	@Override

@@ -1,6 +1,5 @@
-/* Add this to your existing CSS file */
 body {
-  background-image: url('../images/background.jpg'); /* Path to your image */
+  background-image: url('../images/background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -10,7 +9,7 @@ body {
 }
 
 .header, .booking-form {
-  background-color: rgba(255, 255, 255, 0.8); /* Optional: to make content readable over background */
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 #main {
@@ -18,16 +17,16 @@ body {
 }
 
 .sidebar a {
-  color: #000; /* Ensure links are visible */
+  color: #000;
 }
 
 .header, .booking-form {
   position: relative;
-  z-index: 1; /* Ensure these elements are above the blurred background */
+  z-index: 1;
 }
 
 .header {
-  background-color: rgb(98 86 86); /* Semi-transparent background */
+  background-color: rgb(98, 86, 86);
   padding: 24px;
   text-align: left;
   font-size: 25px;
@@ -87,9 +86,6 @@ body {
   display: block;
 }
 
-
-
-
 .closebtn {
   position: absolute;
   top: 0;
@@ -112,7 +108,7 @@ body {
 .booking-form form {
   display: flex;
   gap: 10px;
-  background-color: rgb(98 86 86); /* Semi-transparent background */
+  background-color: rgb(98, 86, 86);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -132,7 +128,7 @@ body {
 }
 
 .booking-form button {
-	background-color: #333333;
+  background-color: #333333;
   color: white;
   border: none;
   cursor: pointer;
@@ -141,4 +137,17 @@ body {
 
 .booking-form button:hover {
   background-color: #0056b3;
+}
+
+h1, p {
+  text-align: center;
+}
+
+.flight-card {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

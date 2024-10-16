@@ -72,7 +72,7 @@
 			    <div class="form-group">
 			        <label for="from">From</label>
 			        <select id="from" name="fromLocation"> <!-- Changed here -->
-			            <option value="NYC">New York City</option>
+			            <option value="DEL">New Delhi</option>
 			            <option value="LAX">Los Angeles</option>
 			            <option value="CHI">Chicago</option>
 			            <option value="ATL">Atlanta</option>
@@ -86,7 +86,7 @@
 			    <div class="form-group">
 			        <label for="to">To</label>
 			        <select id="to" name="toLocation"> <!-- Changed here -->
-			            <option value="NYC">New York City</option>
+			            <option value="BOM">Mumbai</option>
 			            <option value="LAX">Los Angeles</option>
 			            <option value="CHI">Chicago</option>
 			            <option value="ATL">Atlanta</option>

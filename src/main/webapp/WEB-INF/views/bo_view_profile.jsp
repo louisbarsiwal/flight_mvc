@@ -27,14 +27,12 @@
 <body>
     <h1>View Profile</h1>
 	
-	<form:form method="POST" action="/user/boUpdateProfile" modelAttribute="businessOwnerRegistration" enctype="multipart/form-data">
+	<form:form method="POST" action="/user/boUpdateProfile" modelAttribute="businessOwnerRegistration" enctype="multipart/form-data" onsubmit= "return validateForm();">
 		
         <table>
 			
 			<tr>
-				<center><p><img src="data:image/jpg;base64,
-					<%= ViewImage.displayImage(businessOwnerRegistration.getImage()) %>" width="100" 
-					height="150"></p><center>
+				<center><p><img src="data:image/jpg;base64,<%= ViewImage.displayImage(businessOwnerRegistration.getImage()) %>" width="100" height="150"></p><center>
 			</tr>
 			
 			<tr>
@@ -98,7 +96,40 @@
         <button type="submit">Save Changes</button>
     </form:form>
     
-   
+	<script>
+		            
+	function validateForm() {
+	    const firstName = document.getElementById("firstname").value;
+	    const lastName = document.getElementById("lastname").value;
+	    const email = document.getElementById("email").value;
+	    const mobile = document.getElementById("mobile").value;
+	    
+	    
+	    const namePattern = /^[a-zA-Z]{3,20}$/;
+	    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+	    const mobilePattern = /^\d{10}$/;
+	   
+
+	    if (!namePattern.test(firstName)) {
+	        alert("First name must be between 3-20 characters and contain only alphabets.");
+	        return false;
+	    }
+	    if (!namePattern.test(lastName)) {
+	        alert("Last name must be between 3-20 characters and contain only alphabets.");
+	        return false;
+	    }
+	    if (!emailPattern.test(email)) {
+	        alert("Email must be in the format of example@gmail.com.");
+	        return false;
+	    }
+	    if (!mobilePattern.test(mobile)) {
+	        alert("Phone number must be 10 digits.");
+	        return false;
+	    }
+	    return true;
+	}
+	</script>
+
 
 </body>
 </html>

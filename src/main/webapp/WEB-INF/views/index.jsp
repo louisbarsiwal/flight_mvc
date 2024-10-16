@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="flightmanagement.app.entities.AddedFlight" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Flight Management System</title>
-<style>
-	h1, p {text-align: center;}
-</style>
 </head>
 <body>
 				
@@ -34,27 +33,27 @@
 
 <div id="main">
   <div class="booking-form">
-    <form>
-      <select name="source" required>
-        <option value="" disabled selected>Source</option>
-        <option value="New Delhi">New Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-        <!-- Add more options as needed -->
-      </select>
+    <form action="/" method= "GET" onsubmit="searchFlights(event)">
+		<select id="source" name="source" required>
+		    <option value="" disabled selected>Source</option>
+		    <option value="DEL">New Delhi</option>
+		    <option value="BOM">Mumbai</option>
+		</select>
 
-      <select name="destination" required>
-        <option value="" disabled selected>Destination</option>
-        <option value="New Delhi">New Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-        <!-- Add more options as needed -->
-      </select>
+		<select id="destination" name="destination" required>
+		    <option value="" disabled selected>Destination</option>
+		    <option value="DEL">New Delhi</option>
+		    <option value="BOM">Mumbai</option>
+		</select>
+
+
 
       <select name="tripType" id="tripType" onchange="toggleReturnDate()" required>
         <option value="oneway">One Way</option>
         <option value="return">Return</option>
       </select>
 
-      <input type="date" name="departureDate" id="departureDate" required>
+		<input type="date" id="departureDate" name="departureDate" required>
       <input type="date" name="returnDate" id="returnDate" style="display:none;">
 
       <input type="number" name="passengers" min="1" value="1" placeholder="Adults" required>
@@ -64,9 +63,30 @@
         <option value="business">Business</option>
       </select>
 
-      <button type="submit">Search</button>
+      <button type="submit" onClick="searchFlights(event)">Search</button>
     </form>
   </div>
+  
+  <div class="available-flights" id="availableFlights">
+	<%
+	          List<AddedFlight> flights = (List<AddedFlight>) request.getAttribute("flights");
+	          if (flights != null && !flights.isEmpty()) {
+	              for (AddedFlight flight : flights) {
+	      %>
+	                  <div class="flight-card">
+	                      <p><strong>From:</strong> <%= flight.getFromLocation() %></p>
+	                      <p><strong>To:</strong> <%= flight.getToLocation() %></p>
+	                      <p><strong>Departure Time:</strong> <%= flight.getDepartureDateTime() %></p>
+	                  </div>
+	      <%
+	              }
+	          } else {
+	      %>
+	              <p>No flights available for the selected criteria.</p>
+	      <%
+	          }
+	      %>
+            </div>
 </div>
 
 <script>
@@ -115,6 +135,42 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector(".booking-form form"); // Ensure this targets your form correctly
+    form.addEventListener("submit", searchFlights);
+});
+
+
+function displayFlights(flights) {
+    var availableFlightsDiv = document.getElementById("availableFlights");
+    availableFlightsDiv.innerHTML = ""; // Clear previous results
+
+    if (flights.length === 0) {
+        availableFlightsDiv.innerHTML = `<p>No flights available for the selected criteria.</p>`;
+        return;
+    }
+
+    flights.forEach(flight => {
+        var flightCard = document.createElement("div");
+        flightCard.className = "flight-card";
+        flightCard.innerHTML = `
+            <div class="flight-details">
+                <h3>${flight.airlineName} (${flight.flightNo})</h3>
+                <p>Model: ${flight.flightModel}</p>
+                <p>From: ${flight.fromLocation} - To: ${flight.toLocation}</p>
+                <p>Departure: ${flight.departureDateTime} - Arrival: ${flight.arrivalDateTime}</p>
+                <p>Economy Price: ₹${flight.economyPrice} - Business Price: ₹${flight.businessPrice}</p>
+            </div>
+            <button class="book-now" onclick="bookFlight('${flight.flightNo}')">Book Now</button>
+        `;
+        availableFlightsDiv.appendChild(flightCard);
+    });
+}
+
+
+
 
 </script>
 </body>

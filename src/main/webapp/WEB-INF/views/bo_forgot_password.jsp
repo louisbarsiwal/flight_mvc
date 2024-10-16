@@ -16,19 +16,34 @@
 </head>
 <body>
     <div class="form-container">
-        <form action="/user/forgotPassword" method="post"> <!-- Change 'yourActionUrl' to your actual action URL -->
+        <form action="/user/forgotPassword" method="post" onsubmit=" return validateForm();"> <!-- Change 'yourActionUrl' to your actual action URL -->
             <div class="form-group">
 				<label for="username">User Name:</label>
 				    <input type="text"id="username" name="username" required />
                 <label for="newPassword">New Password:</label>
-                <input type="password" id="newPassword" name="password" required />
+                <input type="password" id="newpassword" name="password" required />
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required />
+                <input type="password" id="confirmpassword" name="confirmPassword" required />
             </div>
             <button type="submit" class="save-button">Save</button>
         </form>
     </div>
+	
+	<script>
+		            
+	function validateForm() {
+		
+		const password = document.getElementById("newpassword").value;
+		const confirmPassword = document.getElementById("confirmpassword").value;
+		if (password !== confirmPassword) {
+		        alert("Passwords do not match.");
+		        return false;
+		    }
+		    return true;
+		}
+		</script>
+		   
 </body>
 </html>
