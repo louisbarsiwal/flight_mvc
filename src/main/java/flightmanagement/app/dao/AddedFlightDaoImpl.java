@@ -28,11 +28,9 @@ public class AddedFlightDaoImpl implements AddedFlightDao {
 	
 	
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
-	
 
-	
+	private JdbcTemplate jdbcTemplate;
+
 
 	public JdbcTemplate getJdbcTemplate() {
 		return jdbcTemplate;
