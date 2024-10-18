@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="form-container">
-        <form action="/user/passengerforgotPassword" method="post"> <!-- Change 'yourActionUrl' to your actual action URL -->
+        <form action="/user/openPassengerForgotPage" method="post"> <!-- Change 'yourActionUrl' to your actual action URL -->
             <div class="form-group">
 				<label for="username">User Name</label>
 				    <input type="text"id="username" name="username" required />

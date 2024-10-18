@@ -19,6 +19,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -50,7 +51,6 @@ public class UserController {
 	
 
     private BusinessOwnerRegistration businessOwnerRegistration;
-
 	private PassengerRegistration  passengerRegistration;
 	private FlightManagerRegistration flightManagerRegistration;
 	
@@ -68,6 +68,8 @@ public class UserController {
 	@Autowired
 	FlightManagerDaoImpl flightManagerDaoImpl;
 	
+	@Autowired
+	AddedFlightDaoImpl addedFlightDaoImpl;
 
 	@Autowired
     private PermissionService permissionService;
@@ -78,7 +80,11 @@ public class UserController {
 	public String Bologout() {
 		return "bo_user_login";
 	}
-
+	@GetMapping("/passengerlogout")
+	public String passenger_logout() {
+		return "passenger_login";
+	}
+   
 
 
 	@GetMapping("/openBoLoginPage")
@@ -137,24 +143,55 @@ public class UserController {
 				attributes.addFlashAttribute("message", "Incorrect Username!Please Enter the Correct Username");
 				 return "redirect:/user/openforgotPasswordPage";
 	}
-}
+	}
+	@PostMapping("/openPassengerForgotPage")
+	public String openPassengerForgotPage(@RequestParam String username, 
+	                             @RequestParam String password, 
+	                             RedirectAttributes attributes) 
+	                             throws IOException, SerialException, SQLException {
+	    
+	    // Fetch the BusinessOwnerRegistration based on username
+		PassengerRegistration passengeRegistration = passengerdaoImpl.fetchUser(username);
+	    
+	    
+	    // Proceed with password hashing
+	    String passwordSalt = Password.generatePwdSalt(10);
+	    passengeRegistration.setPasswordSalt(passwordSalt);
+	    
+	    String newPassword = password + passwordSalt; // Combine password and salt
+	    String passwordHash = Password.generatePwdHash(newPassword);
+	    passengeRegistration.setPasswordHash(passwordHash);
+	    
+	    // Log the values for debugging
+	    System.out.println("Updating password for passenger_id: " + passengeRegistration.getPassenger_Id());
+	    System.out.println("New password salt: " + passwordSalt);
+	    System.out.println("New password hash: " + passwordHash);
 
+	    // Update the password
+	    int result = passengerdaoImpl.updatePassengerPassword(passengeRegistration);
+	    
+	    // Check the result of the update operation
+	    if (result > 0) {
+	        attributes.addFlashAttribute("message", "New Password updated successfully");
+	        return "redirect:/user/passengerlogin";
+	    } else {
+	        attributes.addFlashAttribute("message", "New Password not updated succesfully");
+	        return "redirect:/user/PassengerForgotPage";
+	    }
+	}
 
-
-
-	
 	@GetMapping("/openforgotPasswordPage")
 	public String openForgotPasswordPage() {
 		return "bo_forgot_password";
 	}
-
-	
+	@GetMapping("/PassengerForgotPage")
+	public String PassengerForgotPage() {
+		return "passenger_forgot_password";
+	}
 	@GetMapping("/openBoDashboard")
 	public String openBoDashboard () {
 		return "bo_dashboard";
 	}
-
-	
 	@GetMapping("/openViewProfilePage")
 	public ModelAndView viewProfile(ModelAndView modelAndView) throws IOException {
 		businessOwnerRegistration.setImage(businessOwnerRegistration.getProfileImage().getInputStream());
@@ -235,7 +272,7 @@ public class UserController {
 	@PostMapping("/Bologin")
 	public String login(@RequestParam String username, 
 			@RequestParam String password, 
-			Model model, RedirectAttributes attributes) {
+			ModelMap modelMap, RedirectAttributes attributes) {
 
 		System.out.println("\n login request data: " + username + ", " + password);
 
@@ -255,7 +292,7 @@ public class UserController {
 
 			if (newPwdHash.equals(oldPwdHash)) {
 					
-				model.addAttribute("businessOwnerRegistration ", businessOwnerRegistration );
+				modelMap.addAttribute("businessOwnerRegistration ", businessOwnerRegistration );
 				 return "redirect:/user/openBoDashboard";
 				
 			}
@@ -684,7 +721,29 @@ public class UserController {
 	     return "redirect:/user/openAccessControlPage"; // Redirect back to the access control page
 	 }
 
-	  
+
+	 @GetMapping("/searchFlights")
+	 
+		public String searchFlights(@RequestParam(required = false) String source,
+				@RequestParam(required = false) String destination, @RequestParam(required = false) String departureDate,
+				@RequestParam(required = false) String tripType, Model model) {
+			System.out.println("Searching flights from " + source + " to " + destination + " on " + departureDate
+					+ " with trip type " + tripType);
+			if (source == null)
+				return "passenger_dashboard";
+	 
+			List<AddedFlight> flights = addedFlightDaoImpl.searchFlights(source, destination, departureDate);
+			model.addAttribute("flights", flights);
+			System.out.println("Flights found: " + flights.size()); // Debugging line
+			return "passenger_dashboard";
+	 
+		}
+	 @PostMapping("/openBookNowPage")
+	 public String showBookNowPage(@RequestParam("flightId") int flightId, Model model) {
+		    AddedFlight flight = addedFlightDaoImpl.getUserById(flightId);  // Fetch flight by ID
+		    model.addAttribute("flight", flight);
+		    return "book_now";
+		}
 	}
 	
 	

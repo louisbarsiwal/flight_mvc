@@ -33,13 +33,14 @@
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <a href="/user/openViewProfilePage">VIEW PROFILE</a>
-  <a href="/flight/openAddFlightPage">ADD FLIGHT</a>
-  <a href="/openDeletedAirlinePage">DELETED AIRLINE</a>
-  <a href="/openDeletedFlightPage">DELETED FLIGHT</a>
-  <a href="/airline/openAddAirlinePage">ADD AIRLINE</a>
-  <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
-  <a href="/openDisplayAirlinePage">DISPLAY AIRLINE</a>
-  <a href="/user/openupdateflight">UPDATE FLIGHT</a>
+  
+  <a href="/airline/openAddAirlinePage">ADD AIRLINES</a>
+  <a href="/flight/openAddFlightPage">ADD FLIGHTS</a>
+  <a href="/openDeletedAirlinePage">DELETED AIRLINES</a>
+  <a href="/openDeletedFlightPage">DELETED FLIGHTS</a>
+  <a href="/openDisplayAirlinePage">DISPLAY AIRLINES</a>
+  <a href="/openDisplayFlightPage">DISPLAY FLIGHTS</a>
+ 
   <a href="/user/openAccessControlPage">FLIGHT MANAGERS</a>
   <a href="/user/Bologout">LOGOUT</a>
   
