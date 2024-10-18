@@ -17,5 +17,6 @@ public interface AddedFlightDao {
 	
 	AddedFlight updateFlight(AddedFlight addedFlight)throws IOException,SerialException,SQLException;
 	AddedFlight getUserById(int flightId);
+	void updateSeatCounts(int flightId, int economySeatsBooked, int businessSeatsBooked);
 
 }
