@@ -1,55 +1,65 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Map"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Booking History</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/cancelled_tickets.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancelled Bookings</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/deleted_airline.css">
 </head>
 <body>
-
-<h2>Cancelled Tickets</h2>
-<table>
-    <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>PNR Number</th>
-            <th>Booking Date & Time</th>
-            <th>Flight No</th>
-            <th>Airline Name</th>
-            <th>Flight Model</th>
-            <th>From</th>
-            <th>Destination</th>
-            <th>Departure Date & Time</th>
-            <th>Arrival Date & Time</th>
-            <th>Class</th>
-            <th>Total Seats Booked</th>
-        </tr>
-    </thead>
-    <tbody>
-        <%-- Sample Data --%>
-        <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>PNR12345</td>
-            <td>2024-10-01 14:30</td>
-            <td>ind1</td>
-            <td>Indigo</td>
-            <td>zsa</td>
-            <td>NYC</td>
-            <td>LAX</td>
-            <td>2024-10-07 12:27</td>
-            <td>2024-10-07 16:30</td>
-            <td>Economy</td>
-            
-            <td>3</td>
-        </tr>
-        <%-- Add dynamic rows here from your backend --%>
-    </tbody>
-</table>
-
-
+    <h1>Cancelled Bookings</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>airline_name</th>
+                <th>flight_no</th>
+                <th>flight_model</th>
+                <th>from_location</th>
+				<th>to_location</th>
+				<th>departure_datetime</th>
+				<th>arrival_datetime</th>
+				<th>economy_seats</th>
+				<th>economy_price</th>
+				<th>business_seats</th>
+				<th>business_price</th>
+				<th>total_price</th>										
+            </tr>
+        </thead>
+        <tbody>
+            <% 
+                List<Map<String, Object>> cancelledBookings = (List<Map<String, Object>>) request.getAttribute("cancelledBookings");
+                if (cancelledBookings != null && !cancelledBookings.isEmpty()) {
+                    for (Map<String, Object> booking : cancelledBookings) {
+            %>
+            <tr>
+                <td><%= booking.get("airline_name") %></td>
+                <td><%= booking.get("flight_no") %></td>
+                <td><%= booking.get("flight_model") %></td>
+                <td><%= booking.get("from_location") %></td>
+                <td><%= booking.get("to_location") %></td>
+                <td><%= booking.get("departure_datetime") %></td>
+                <td><%= booking.get("arrival_datetime") %></td>
+                <td><%= booking.get("economy_seats") %></td>
+                <td><%= booking.get("economy_price") %></td>
+                <td><%= booking.get("business_seats") %></td>
+                <td><%= booking.get("business_price") %></td>
+                <td><%= booking.get("total_price") %></td>
+           
+            </tr>
+            <% 
+                    }
+                } else {
+            %>
+            <tr>
+                <td colspan="4">No cancelled bookings found.</td>
+            </tr>
+            <% 
+                }
+            %>
+        </tbody>
+    </table>
 </body>
 </html>
-

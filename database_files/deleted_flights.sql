@@ -1,7 +1,7 @@
 CREATE TABLE deleted_flights (
 	flight_id INT AUTO_INCREMENT PRIMARY KEY, 
     airline_name VARCHAR(20) NOT NULL,
-    flight_no VARCHAR(20) NOT NULL UNIQUE,
+    flight_no VARCHAR(20) NOT NULL ,
     flight_model VARCHAR(15) NOT NULL,
     from_location VARCHAR(45) NOT NULL,
     to_location VARCHAR(45) NOT NULL,

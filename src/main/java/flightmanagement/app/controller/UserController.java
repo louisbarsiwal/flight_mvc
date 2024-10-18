@@ -51,7 +51,6 @@ public class UserController {
 	
 
     private BusinessOwnerRegistration businessOwnerRegistration;
-
 	private PassengerRegistration  passengerRegistration;
 	private FlightManagerRegistration flightManagerRegistration;
 	
