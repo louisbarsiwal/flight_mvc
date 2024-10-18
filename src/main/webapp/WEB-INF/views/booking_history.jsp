@@ -12,42 +12,54 @@
 <table>
     <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>PNR Number</th>
-            <th>Booking Date & Time</th>
-            <th>Flight No</th>
+			<th>PNR Number</th>
             <th>Airline Name</th>
-            <th>Flight Model</th>
-            <th>From</th>
-            <th>Destination</th>
-            <th>Departure Date & Time</th>
-            <th>Arrival Date & Time</th>
-            <th>Class</th>
-            <th>Total Seats Booked</th>
+            <th>Flight Number</th>
+			<th>Flight Model</th>
+			<th>From</th>
+            <th>To</th>
+			<th>Booking DateTime</th>
+            <th>Departure DateTime</th>
+            <th>Arrival DateTime</th>
+            <th>Business Seats Booked</th>
+			<th>Business Class Price</th>
+			<th>Economy Seats Booked</th>
+			<th>Economy Class Price</th>
+			<th>Total Fare</th>
+			
             <th>Action</th>
         </tr>
     </thead>
-    <tbody>
-        <%-- Sample Data --%>
-        <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>PNR12345</td>
-            <td>2024-10-01 14:30</td>
-            <td>ind1</td>
-            <td>Indigo</td>
-            <td>zsa</td>
-            <td>NYC</td>
-            <td>LAX</td>
-            <td>2024-10-07 12:27</td>
-            <td>2024-10-07 16:30</td>
-            <td>Economy</td>
-            <td>3</td>
-            <td><button class="action-btn" onclick="confirmCancel()">Cancel</button></td>
-        </tr>
-        <%-- Add dynamic rows here from your backend --%>
-    </tbody>
+	<tbody>
+	            <% 
+	                List<Map<String, Object>> bookings = (List<Map<String, Object>>) request.getAttribute("bookings");
+	                if (bookings != null && !bookings.isEmpty()) {
+	                    for (Map<String, Object> booking : bookings) {
+	            %>
+	            <tr>
+	                <td><%= booking.get("airline_name") %></td>
+	                <td><%=booking.get("flight_no") %></td>
+	                <td><%= booking.get("flight_model") %></td>
+	                <td><%= booking.get("from_location") %></td>
+	                <td><%=booking.get("to_location") %></td>
+	                <td><%= booking.get("departure_datetime") %></td>
+	                <td><%= booking.get("arrival_datetime") %></td>
+					<td><%= booking.get("economy_seats") %></td>
+					<td><%= booking.get("economy_price") %></td>
+	                <td><%= booking.get("business_seats") %></td>
+	                <td><%= booking.get("business_price") %></td>
+					<td><%= booking.get("total_price") %></td>
+					<td><%= booking.get("airline_pnr_no") %></td>
+
+
+	                <td>
+	                    <form action="/cancelBooking" method="post" style="display:inline;">
+	                        <input type="hidden" name="bookingId" value="<%= booking.get("booking_id") %>">
+							<input type="hidden" name="airlineName" value="<%= booking.get("airline_name") %>">
+													
+	                        <input type="submit" value="Cancel" class="cancel-button" onclick="return confirm('Are you sure you want to cancel your booking?');">
+	                    </form>
+	                </td>
 </table>
 
 <script>
