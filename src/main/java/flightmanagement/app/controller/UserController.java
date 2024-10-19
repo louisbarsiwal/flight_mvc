@@ -262,14 +262,15 @@ public class UserController {
 
 
 	@GetMapping("/openPassengerProfilePage")
-	public ModelAndView passengerProfile(ModelAndView modelAndView) {
+	public ModelAndView openPassengerProfilePage(ModelAndView modelAndView) {
 		//PassengerRegistration passengerRegistration = new PassengerRegistration();
+		
 		modelAndView.setViewName("passenger_profile");
 		modelAndView.addObject("passengerRegistration", passengerRegistration);
 		return modelAndView;
 	}
 	@PostMapping("/passengerUpdateProfile")
-	public String updatePassengerProfile(
+	public String passengerUpdateProfile(
 			@ModelAttribute PassengerRegistration updatedPassenger,
 			RedirectAttributes attributes
 			) throws SerialException, IOException, SQLException {
@@ -282,6 +283,31 @@ public class UserController {
 			attributes.addAttribute("message", "Updation failed. Please try again later");
 		}
 		return "redirect:/user/openPassengerProfilePage"; // Redirect back to view profile
+	}
+	
+	@GetMapping("/openFmViewProfilePage")
+	public ModelAndView openFmViewProfilePage(ModelAndView modelAndView) {
+		
+		
+		modelAndView.setViewName("fm_view_profile");
+		modelAndView.addObject("flightManagerRegistration", flightManagerRegistration);
+		return modelAndView;
+	}
+	
+	@PostMapping("/FmEditProfile")
+	public String FmEditProfile(
+			@ModelAttribute FlightManagerRegistration updatedFm,
+			RedirectAttributes attributes
+			) throws SerialException, IOException, SQLException {
+		// Update user information in the database
+		
+		try {
+			flightManagerRegistration = flightManagerDaoImpl.modifyUser(flightManagerRegistration); // Simulate updating the user object
+			attributes.addAttribute("message", "Profile updated successfully");
+		} catch(EmptyResultDataAccessException e) {
+			attributes.addAttribute("message", "Updation failed. Please try again later");
+		}
+		return "redirect:/user/openFmViewProfilePage"; // Redirect back to view profile
 	}
 
 
@@ -459,57 +485,7 @@ public class UserController {
 		}
     }
 
-    @GetMapping("/openFmViewProfilePage")
-    public ModelAndView fmviewProfile(ModelAndView modelAndView) throws IOException {
-        // Assuming you already have the flightManagerRegistration object fetched from the database
-    	flightManagerRegistration.setImage(flightManagerRegistration.getProfileImage().getInputStream());
-        modelAndView.setViewName("fm_view_profile");
-        modelAndView.addObject("flightManagerRegistration", flightManagerRegistration);
-        return modelAndView;
-    }
-
-  
-   
-
-    @PostMapping("/fmUpdateProfile")
-    public String fmUpdateProfile(
-            @ModelAttribute FlightManagerRegistration updatedFm,
-            RedirectAttributes attributes
-            ) throws SerialException, IOException, SQLException {
-        // Update flight manager's information in the database
-
-        String firstName = updatedFm.getFirstName();
-        String lastName = updatedFm.getLastName();
-        String email = updatedFm.getEmailId();
-        String mobileNo = updatedFm.getMobileNo();
-
-        if (!firstName.matches("^[a-zA-Z]{3,20}$")) {
-            attributes.addFlashAttribute("message", "First name must be between 3-20 characters and contain only alphabets.");
-            return "redirect:/user/openFmViewProfilePage";
-        }
-        if (!lastName.matches("^[a-zA-Z]{3,20}$")) {
-            attributes.addFlashAttribute("message", "Last name must be between 3-20 characters and contain only alphabets.");
-            return "redirect:/user/openFmViewProfilePage";
-        }
-        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-            attributes.addFlashAttribute("message", "Email must be in the format of example@gmail.com.");
-            return "redirect:/flightManager/openViewProfilePage";
-        }
-        if (!mobileNo.matches("^\\d{10}$")) {
-            attributes.addFlashAttribute("message", "Phone number must be 10 digits.");
-            return "redirect:/user/openFmViewProfilePage";
-        }
-
-        try {
-            flightManagerRegistration = flightManagerDaoImpl.modifyUser(updatedFm);
-            flightManagerRegistration.setImage(flightManagerRegistration.getProfileImage().getInputStream());
-            attributes.addFlashAttribute("message", "Profile updated successfully");
-        } catch (EmptyResultDataAccessException e) {
-            attributes.addFlashAttribute("message", "Updation failed. Please try again later");
-        }
-
-        return "redirect:/user/openFmViewProfilePage"; // Redirect back to view profile
-    }
+    
 
 	
 	@GetMapping("/openFmDashboard")

@@ -85,7 +85,7 @@ public class FlightManagerDaoImpl implements FlightManagerDao {
 		Blob profileImage = getBlob(flightManagerRegistration.getProfileImage());
 
 		String query = "UPDATE admin_flightmanager SET first_name = ?, last_name = ?, email_id = ?, "
-				+ "mobile_no = ?, date_of_birth = ?, gender = ?, profile_image = ? WHERE businessOwner_id = ?";
+				+ "mobile_no = ?, date_of_birth = ?, gender = ?, profile_image = ? WHERE flightManager_id = ?";
 
 		jdbcTemplate.update(query, flightManagerRegistration.getFirstName(), flightManagerRegistration.getLastName(), flightManagerRegistration.getEmailId(), flightManagerRegistration.getMobileNo(),
 				flightManagerRegistration.getDateOfBirth(),flightManagerRegistration.getGender(), profileImage, flightManagerRegistration.getFlightManagerId());
