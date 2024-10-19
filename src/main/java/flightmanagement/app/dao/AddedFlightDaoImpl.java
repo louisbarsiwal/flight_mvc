@@ -1,6 +1,7 @@
 package flightmanagement.app.dao;
 
 import java.io.IOException;
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -117,6 +118,18 @@ String query = "UPDATE added_flights SET airline_name = ? , flight_no = ?, fligh
 	    return jdbcTemplate.query(sql, new FlightRowMapper(), from, to, date + "%");
 	}
 
+	@Override
+	public void updateSeatCounts(int flightId, int economySeatsBooked, int businessSeatsBooked) {
+		 // SQL query to reduce seats based on the booked count
+        String query = "UPDATE added_flights SET " +
+                       "economy_seats = economy_seats - ?, " +
+                       "business_seats = business_seats - ? " +
+                       "WHERE flight_id = ?";
+
+        jdbcTemplate.update(query, economySeatsBooked, businessSeatsBooked, flightId);
+		
+	}
+ 
 	
 	
 }

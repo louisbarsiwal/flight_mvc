@@ -71,5 +71,7 @@ public class AddedAirlineDaoImpl implements AddedAirlineDao {
 		return jdbcTemplate.queryForObject(sql, new AirlineRowMapper(),airLineId );
 		
 	}
+	
+	
 
 }

@@ -1,5 +1,5 @@
 CREATE TABLE deleted_flights (
-	flight_id INT AUTO_INCREMENT PRIMARY KEY, 
+	flight_id INT AUTO_INCREMENT PRIMARY KEY,
     airline_name VARCHAR(20) NOT NULL,
     flight_no VARCHAR(20) NOT NULL,
     flight_model VARCHAR(15) NOT NULL,
@@ -15,5 +15,6 @@ CREATE TABLE deleted_flights (
     deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (airline_name) REFERENCES deleted_airlines(airline_name)ON DELETE CASCADE
 );
-
-
+ 
+ 
+ 
