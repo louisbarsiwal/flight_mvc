@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancelled Bookings</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/deleted_airline.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/display_airline.css">
 </head>
 <body>
     <h1>Cancelled Bookings</h1>

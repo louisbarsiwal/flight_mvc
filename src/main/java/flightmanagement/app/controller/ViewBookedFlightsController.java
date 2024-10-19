@@ -30,7 +30,17 @@ public class ViewBookedFlightsController {
 	    @Autowired
 	    private AddedFlightDaoImpl addedFlightImpl; // Inject FlightDao to manage seat updates
 	    
-	    
+	    @GetMapping("/openBookingHistoryPage")
+		public String openBookingHistoryPage(Model model) {
+			String sql = "SELECT booking_id,airline_name,flight_no,flight_model, "
+					+ "from_location,to_location,departure_datetime,arrival_datetime,economy_seats,"
+					+ "economy_price,business_seats,business_price,total_price FROM booking_flights";
+			 
+	        List<Map<String, Object>> bookings = jdbcTemplate.queryForList(sql);
+	 
+	        model.addAttribute("bookings", bookings);
+			return "booking_history";
+		}
 	    
 	    @PostMapping("/booking")
 	    public String bookFlight(
@@ -119,7 +129,7 @@ public class ViewBookedFlightsController {
      
      String cancelBooking = "DELETE FROM booking_flights WHERE booking_id = ?";
      jdbcTemplate.update(cancelBooking, bookingId);
-     return "booking_history";
+     return "redirect:/openBookingHistoryPage";
 	  }
 	  
 	  @GetMapping("/openCancelledTickets")
@@ -130,7 +140,7 @@ public class ViewBookedFlightsController {
 		    
 		    List<Map<String, Object>> cancelledBookings = jdbcTemplate.queryForList(sql);
 		    model.addAttribute("cancelledBookings", cancelledBookings);
-		    return "cancelled_tickets"; // Ensure this matches the JSP file name
+		    return "cancelled_bookings"; // Ensure this matches the JSP file name
 	  }  
 
 

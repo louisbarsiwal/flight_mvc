@@ -29,6 +29,30 @@ public class FlightController {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	 @GetMapping("/searchFlights")
+	 
+		public String searchFlights(@RequestParam(required = false) String source,
+				@RequestParam(required = false) String destination, @RequestParam(required = false) String departureDate,
+				@RequestParam(required = false) String tripType, Model model) {
+			System.out.println("Searching flights from " + source + " to " + destination + " on " + departureDate
+					+ " with trip type " + tripType);
+			if (source == null)
+				return "passenger_dashboard";
+	 
+			List<AddedFlight> flights = addedflightdaoimpl.searchFlights(source, destination, departureDate);
+			model.addAttribute("flights", flights);
+			System.out.println("Flights found: " + flights.size()); // Debugging line
+			return "passenger_dashboard";
+	 
+		}
+	 
+	 @PostMapping("/openBookNowPage")
+	 public String showBookNowPage(@RequestParam("flightId") int flightId, Model model) {
+		    AddedFlight flight = addedflightdaoimpl.getUserById(flightId);  // Fetch flight by ID
+		    model.addAttribute("flight", flight);
+		    return "book_now";
+		}
 
     @GetMapping("/openAddFlightPage")
     public String openAddFlightPage(Model model) {

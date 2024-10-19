@@ -28,6 +28,7 @@
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <a href="/user/openFmViewProfilePage">VIEW PROFILE</a>
+  
   <a href="/flight/openAddFlightPage">ADD FLIGHT</a>
   <a href="/openDeletedAirlinePage">DELETED AIRLINE</a>
   <a href="/openDeletedFlightPage">DELETED FLIGHT</a>
