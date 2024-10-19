@@ -75,3 +75,27 @@ input[type="hidden"] {
 .edit-button:hover {
     background-color: #2980b9; 
 }
+
+.access-button {
+    background-color: #457B9D;
+    color: #F1FAEE;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 3px;
+}
+
+.access-button:hover {
+    background-color: #1D3557;
+}
+
+.access-button:focus {
+    outline: none;
+}
+
+#revoke-access{
+	background-color: #E63946;
+	
+}

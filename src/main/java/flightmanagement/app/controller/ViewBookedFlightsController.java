@@ -142,7 +142,33 @@ public class ViewBookedFlightsController {
 		    model.addAttribute("cancelledBookings", cancelledBookings);
 		    return "cancelled_bookings"; // Ensure this matches the JSP file name
 	  }  
+	  
+	  @PostMapping("/filterCancelledBookings")
+	  public String filterCancelledBookings(@RequestParam("searchTerm") String searchTerm, Model model) {
+	      String sql = "SELECT booking_id, airline_name, flight_no, flight_model, "
+	              + "from_location, to_location, departure_datetime, arrival_datetime, "
+	              + "economy_seats, economy_price, business_seats, business_price, total_price "
+	              + "FROM cancelled_bookings WHERE airline_name LIKE ? OR flight_no LIKE ?";
+	      
+	      List<Map<String, Object>> cancelledBookings = jdbcTemplate.queryForList(sql, "%" + searchTerm + "%", "%" + searchTerm + "%");
+	      
+	      model.addAttribute("cancelledBookings", cancelledBookings);
+	      return "cancelled_bookings"; // Ensure this matches the JSP file name
+	  }
 
+
+	  @PostMapping("/filterBookingHistory")
+	  public String filterBookingHistory(@RequestParam("searchTerm") String searchTerm, Model model) {
+	      String sql = "SELECT booking_id, airline_name, flight_no, flight_model, "
+	              + "from_location, to_location, departure_datetime, arrival_datetime, "
+	              + "economy_seats, economy_price, business_seats, business_price, total_price "
+	              + "FROM booking_flights WHERE airline_name LIKE ? OR flight_no LIKE ?";
+	      
+	      List<Map<String, Object>> bookings = jdbcTemplate.queryForList(sql, "%" + searchTerm + "%", "%" + searchTerm + "%");
+	      
+	      model.addAttribute("bookings", bookings);
+	      return "booking_history";
+	  }
 
 }
 

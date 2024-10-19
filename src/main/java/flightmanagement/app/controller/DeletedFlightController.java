@@ -82,6 +82,20 @@ public class DeletedFlightController {
 	    return "redirect:/openDisplayFlightPage";
      }
 	
+	@GetMapping("/filterDeletedFlights")
+	public String filterDeletedFlights(@RequestParam String searchTerm, Model model) {
+	    String sql = "SELECT flight_id, airline_name, flight_no, flight_model, from_location, to_location, "
+	            + "departure_datetime, arrival_datetime, total_seats, economy_seats, economy_price, "
+	            + "business_seats, business_price FROM deleted_flights WHERE airline_name LIKE ? OR flight_no LIKE ?";
+
+	    String filter = "%" + searchTerm + "%"; // Allows partial matches
+	    List<Map<String, Object>> deletedFlights = jdbcTemplate.queryForList(sql, filter, filter);
+
+	    model.addAttribute("deletedFlights", deletedFlights);
+	    return "deleted_flight"; // Return the same JSP page
+	}
+
+	
 
 
 }

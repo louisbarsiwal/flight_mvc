@@ -1,29 +1,146 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #F1FAEE;
+    color: #1D3557; 
+    margin: 0;
+    padding: 20px;
+}
+
+.table-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #A8DADC; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 h2 {
+    color: #E63946; 
     text-align: center;
-    color: red;
+	font-size: 30px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    margin-top: 20px;
 }
 
 th, td {
     padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
+    text-align: left;
 }
 
 th {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #457B9D; 
+    color: #F1FAEE; 
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #F1FAEE; 
 }
+
+tr:nth-child(odd) {
+    background-color: #A8DADC; 
+}
+
+.delete-button {
+    background-color: #E63946; 
+    color: #F1FAEE; 
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+    background-color: #1D3557; 
+}
+
+input[type="hidden"] {
+    display: none; 
+}
+
+.edit-button {
+    background-color: #3498db; 
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+    background-color: #2980b9; 
+}
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 20px; /* Optional: space above the button */
+}
+
+button, a {
+    background-color: #457B9D;
+    color: #F1FAEE;
+    border: none;
+    padding: 10px 15px; /* Adjusted padding for a smaller button */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex; /* Inline-flex to only take up the required space */
+    justify-content: center;
+    align-items: center;
+    width: auto; /* Width adapts to the button content */
+}
+
+a {
+    margin-top: 20px;
+    text-decoration: none;
+    width: auto; /* Ensures the link doesn't expand unnecessarily */
+}
+
+button:hover {
+    background-color: #1D3557;
+}
+
+.search-form {
+    background-color: #F1FAEE;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #457B9D;
+    border-radius: 5px;
+    width: 250px;
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.search-form input[type="text"]:focus {
+    border-color: #E63946;
+    outline: none;
+}
+
+.search-form input[type="submit"] {
+    padding: 10px 15px;
+    background-color: #457B9D;
+    color: #F1FAEE;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-form input[type="submit"]:hover {
+    background-color: #1D3557;
+}
+
