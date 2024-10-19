@@ -80,4 +80,34 @@ table tbody tr:hover {
     background-color: #2980b9; 
 }
 
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 20px; /* Optional: space above the button */
+}
+
+button, a {
+    background-color: #457B9D;
+    color: #F1FAEE;
+    border: none;
+    padding: 10px 15px; /* Adjusted padding for a smaller button */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex; /* Inline-flex to only take up the required space */
+    justify-content: center;
+    align-items: center;
+    width: auto; /* Width adapts to the button content */
+}
+
+a {
+    margin-top: 20px;
+    text-decoration: none;
+    width: auto; /* Ensures the link doesn't expand unnecessarily */
+}
+
+button:hover {
+    background-color: #1D3557;
+}
+
 

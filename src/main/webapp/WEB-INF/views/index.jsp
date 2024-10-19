@@ -17,7 +17,7 @@
 	<!--h1>Flight  Application</h1-->
 <div class="header" id="header">
  
-  <span id="companyName">XYZ FLIGHTS</span>
+  <span id="companyName">TravelWings</span>
    <div class="profile-icon" onclick="toggleDropdown()">
      <img src="images/profile-icon.png" alt="Profile Icon">
      <div id="dropdown" class="dropdown-content">
@@ -38,14 +38,21 @@
 		    <option value="" disabled selected>Source</option>
 		    <option value="DEL">New Delhi</option>
 		    <option value="BOM">Mumbai</option>
+			<option value="KOAA">Chennai</option>
+			<option value="HYD">Hyderabad</option>
+			<option value="BLR">Bangalore</option>
+
 		</select>
 
 		<select id="destination" name="destination" required>
 		    <option value="" disabled selected>Destination</option>
 		    <option value="DEL">New Delhi</option>
 		    <option value="BOM">Mumbai</option>
-		</select>
+			<option value="KOAA">Chennai</option>
+			<option value="HYD">Hyderabad</option>
+			<option value="BLR">Bangalore</option>
 
+		</select>
 
 
       <select name="tripType" id="tripType" onchange="toggleReturnDate()" required>

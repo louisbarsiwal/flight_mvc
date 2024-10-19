@@ -59,5 +59,11 @@
             </tbody>
         </table>
     </div>
+	<div class="button-container">
+		<a  href="/openDeletedAirlinePage">View Deleted Airlines</a>
+
+	</div>
+
+
 </body>
 </html>
