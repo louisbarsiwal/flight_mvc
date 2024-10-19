@@ -70,5 +70,9 @@
             %>
         </tbody>
     </table>
+	<div class="button-container">
+
+		<a  href="/openDisplayFlightPage">View Flights</a>
+		</div>
 </body>
 </html>

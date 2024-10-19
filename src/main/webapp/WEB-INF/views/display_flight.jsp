@@ -76,5 +76,10 @@
             %>
         </tbody>
     </table>
+	<div class="button-container">
+
+	<a  href="/openDeletedFlightPage">View Deleted Flights</a>
+	</div>
+
 </body>
 </html>

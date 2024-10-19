@@ -73,10 +73,10 @@
 			        <label for="from">From</label>
 			        <select id="from" name="fromLocation"> <!-- Changed here -->
 			            <option value="DEL">New Delhi</option>
-			            <option value="LAX">Los Angeles</option>
-			            <option value="CHI">Chicago</option>
-			            <option value="ATL">Atlanta</option>
-			            <option value="LHR">London</option>
+						<option value="BOM">Mumbai</option>
+						<option value="KOAA">Chennai</option>
+						<option value="HYD">Hyderabad</option>
+						<option value="BLR">Bangalore</option>
 			        </select>
 			    </div>
 			    <div class="form-group">
@@ -86,11 +86,11 @@
 			    <div class="form-group">
 			        <label for="to">To</label>
 			        <select id="to" name="toLocation"> <!-- Changed here -->
-			            <option value="BOM">Mumbai</option>
-			            <option value="LAX">Los Angeles</option>
-			            <option value="CHI">Chicago</option>
-			            <option value="ATL">Atlanta</option>
-			            <option value="LHR">London</option>
+						<option value="DEL">New Delhi</option>
+						<option value="BOM">Mumbai</option>
+						<option value="KOAA">Chennai</option>
+						<option value="HYD">Hyderabad</option>
+						<option value="BLR">Bangalore</option>
 			        </select>
 			    </div>
 			    <div class="form-group">
@@ -124,6 +124,9 @@
 						    <div><%= request.getAttribute("message") %></div>
 						<% } %>
         </form>
+		<centre>
+		<a  href="/openDisplayFlightPage">View Flights</a>
+        </centre>
     </div>
 </body>
 </html>
