@@ -10,4 +10,6 @@ public class FlightTicketController {
     public String showTicket() {
         return "flightTicket"; // This maps to flightTicket.jsp
     }
+    
+    
 }

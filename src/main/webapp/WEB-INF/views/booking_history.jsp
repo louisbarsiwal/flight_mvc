@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Booking History</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/booking_history.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/display_airline.css">
 </head>
 <body>
 

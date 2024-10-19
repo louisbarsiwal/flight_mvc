@@ -32,7 +32,7 @@
  
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="/user/openViewProfilePage">VIEW PROFILE</a>
+  <a href="/user/openBoViewProfilePage">VIEW PROFILE</a>
   
   <a href="/airline/openAddAirlinePage">ADD AIRLINES</a>
   <a href="/flight/openAddFlightPage">ADD FLIGHTS</a>

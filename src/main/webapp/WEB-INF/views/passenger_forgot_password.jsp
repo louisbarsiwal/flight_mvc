@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="form-container">
-        <form action="/user/openPassengerForgotPage" method="post"> <!-- Change 'yourActionUrl' to your actual action URL -->
+        <form action="/user/openPassengerForgotPage" method="post" onsubmit=" return validateForm();"> <!-- Change 'yourActionUrl' to your actual action URL -->
             <div class="form-group">
 				<label for="username">User Name</label>
 				    <input type="text"id="username" name="username" required />
@@ -30,5 +30,19 @@
             <button type="submit" class="save-button">Save</button>
         </form>
     </div>
-</body>
-</html>
+	<script>
+			            
+		function validateForm() {
+			
+			const password = document.getElementById("newPassword").value;
+			const confirmPassword = document.getElementById("confirmPassword").value;
+			if (password !== confirmPassword) {
+			        alert("Passwords do not match.");
+			        return false;
+			    }
+			    return true;
+			}
+			</script>
+			   
+	</body>
+	</html>

@@ -31,7 +31,7 @@
 <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <a href="/user/openPassengerProfilePage">PASSENGER PROFILE</a>
-    <a href="/user/openBookingHistoryPage">BOOKING HISTORY</a>  
+    <a href="/openBookingHistoryPage">BOOKING HISTORY</a>  
     <a href="/openCancelledTickets">CANCELLED TICKETS</a>
 
 	<a href="/user/passengerlogout">LOGOUT</a>
@@ -39,7 +39,7 @@
 
 <div id="main">
   <div class="booking-form">
-    <form action="/user/searchFlights" method= "GET" onsubmit="searchFlights(event)">
+    <form action="/flight/searchFlights" method= "GET" onsubmit="searchFlights(event)">
 		<select id="source" name="source" required>
 		    <option value="" disabled selected>Source</option>
 		    <option value="DEL">New Delhi</option>
@@ -87,7 +87,7 @@
 	                      <p><strong>Flight Number:</strong> <%= flight.getFlightNo() %></p>
 	                      <p><strong>Flight Model:</strong> <%= flight.getFlightModel() %></p>
 						  </div>
-				         <form action="/user/openBookNowPage" method="post" class="book-form">
+				         <form action="/flight/openBookNowPage" method="post" class="book-form">
 						 <input type="hidden" name="flightId" value="<%= flight.getFlightId() %>">
 						 <button type="submit" class="btn btn-primary">Book now</button>
 						 </form>

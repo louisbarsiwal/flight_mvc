@@ -18,8 +18,19 @@ public class PassengerRegistration
 	private String passwordSalt;
 	private String passwordHash;
 	private MultipartFile profileImage;
+	private String confirmPassword;
 	
 	
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
+
 	public PassengerRegistration() {
 		super();
 		

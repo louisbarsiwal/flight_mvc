@@ -10,17 +10,33 @@
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
         .header { background-color: #f2f2f2; font-weight: bold; }
-		
-		.container button{
-			border-radius:4px;
-			
-		}
+        .container button {
+            border-radius: 4px;
+            background-color: #4CAF50; /* Green */
+            color: white; /* White text */
+            border: none; /* No borders */
+            padding: 10px 15px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+        }
+        .container button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
     </style>
+	<script>
+		window.onload = function() {
+		const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+		if (message) {
+			alert(message);
+		 }
+	};
+	</script>
 </head>
 <body>
     <div class="container">
         <h2>Booking Confirmation</h2>
-		<a class="download-btn" href="downloadFile"><button>Download PDF</button></a>
+        <a class="download-btn" href="${pageContext.request.contextPath}/downloadFile">
+            <button>Download PDF</button>
+        </a>
         <table>
             <tr class="header">
                 <td>Trip ID</td>
@@ -74,8 +90,8 @@
                 <td>Class</td>
                 <td>Economy</td>
             </tr>
-			<tr>
-		        <td>Payment Method</td>
+            <tr>
+                <td>Payment Method</td>
                 <td>UPI</td>
             </tr>
         </table>
@@ -107,10 +123,10 @@
         <h3>Additional Information</h3>
         <p>Airline PNR: 5YDLEC</p>
         <p>Please reach the airport 4 hours before the departure time. Check-in counters at the airport close 60 minutes before departure.</p>
-        <p>Your carry-on baggage shouldn't weigh more than 7k gs.</p>
-        <p>Carry photo identification, you will need it as proof of identity while checking-in.</p>
+        <p>Your carry-on baggage shouldn't weigh more than 7kg.</p>
+        <p>Carry photo identification; you will need it as proof of identity while checking in.</p>
         <p>If cancellation or amendment is done, Cleartrip will charge Rs. 700/- per passenger per flight.</p>
-        <p>Kindly ensure that you have the relevant visa, immigration clearance and travel with a passport, with a validity of at least 6 months.</p>
+        <p>Kindly ensure that you have the relevant visa, immigration clearance, and travel with a passport valid for at least 6 months.</p>
     </div>
 </body>
 </html>
