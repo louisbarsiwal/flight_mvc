@@ -1,0 +1,122 @@
+body {
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           min-height: 100vh;
+           margin: 0;
+           background-color: #f4f4f4;
+           padding: 20px;
+           box-sizing: border-box;
+       }
+       form {
+           text-align: center;
+           background-color: white;
+           padding: 40px;
+           border-radius: 5px;
+           box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+           width: 100%;
+           max-width: 300px;
+           box-sizing: border-box;
+       }
+       .profile-icon {
+           width: 50px;
+           height: 50px;
+           margin-bottom: 20px; /* Space below the icon */
+       }
+       input, button {
+           width: calc(100% - 20px);
+           padding: 10px;
+           margin-bottom: 10px;
+           border: 1px solid #ccc;
+           border-radius: 3px;
+       }
+       button {
+           background-color: #457B9D;
+           color: white;
+           border: none;
+           cursor: pointer;
+       }
+       button:hover {
+           background-color : #457B9D ;
+       }
+       p {
+           margin-top: 15px;
+       }
+	   .login-title {
+	       color: #457B9D;
+	   }
+
+	   .input-field {
+	       width: 100%;
+	       padding: 10px;
+	       margin: 5px 0;
+	       box-sizing: border-box;
+	       border: 1px solid #ccc;
+	       border-radius: 4px;
+	   }
+
+	   .password-container {
+	       position: relative;
+	       display: inline-block;
+	       width: 100%;
+	   }
+
+	   .eye-icon {
+	       cursor: pointer;
+	       position: absolute;
+	       right: 10px;
+	       top: 50%;
+	       transform: translateY(-50%);
+	   }
+	   
+	   
+	   .center-container {
+	               display: flex;
+	               flex-direction: column;
+	               align-items: center;
+	               justify-content: center;
+	               height: 30vh; /* Full height to center vertically */
+	           }
+	           .email-label {
+	               margin-bottom: 10px; /* Space between label and input */
+	           }
+	           .email-input {
+	               padding: 5px; /* Padding for the input box */
+	               width: 200px; /* Set width of the input */
+	           }
+	
+			   .form-container {
+			               background: white;
+			               padding: 20px;
+			               border-radius: 5px;
+			               box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			           }
+			           .form-group {
+			               margin-bottom: 15px; /* Space between form fields */
+			           }
+			           .form-group label {
+			               display: block; /* Makes the label take full width */
+			               margin-bottom: 5px; /* Space between label and input */
+			           }
+			           .form-group input {
+			               width: 100%; /* Full width */
+			               padding: 10px; /* Padding for input */
+			               border: 1px solid #ccc; /* Border styling */
+			               border-radius: 3px; /* Rounded corners */
+			           }
+			           .save-button {
+			               width: 100%; /* Full width */
+			               padding: 10px; /* Padding for button */
+			               background-color: #007bff; /* Button color */
+			               color: white; /* Text color */
+			               border: none; /* No border */
+			               border-radius: 3px; /* Rounded corners */
+			               cursor: pointer; /* Pointer cursor on hover */
+			           }
+			           .save-button:hover {
+			               background-color: #0056b3; /* Darker button color on hover */
+			           }
+					   
+
+
+	   
