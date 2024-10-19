@@ -21,6 +21,9 @@
 	<form:form method="POST" action="/user/passengerUpdateProfile" modelAttribute="passengerRegistration" enctype="multipart/form-data">
 
         <table>
+			<tr>
+			<center><p><img src="data:image/jpg;base64,<%= ViewImage.displayImage(passengerRegistration.getImage()) %>" width="100" height="150"></p><center>
+		</tr>
         	<form:hidden path="passenger_Id" />
             <tr>
                 <td>First Name</td>

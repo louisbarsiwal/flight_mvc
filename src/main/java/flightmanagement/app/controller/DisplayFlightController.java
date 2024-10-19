@@ -31,7 +31,6 @@ public class DisplayFlightController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
     
-    
     @Autowired
     AddedFlightDaoImpl addedFlightDaoImpl;
 

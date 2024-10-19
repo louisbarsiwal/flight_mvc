@@ -1,6 +1,8 @@
 package flightmanagement.app.entities;
 
 
+import java.io.InputStream;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class PassengerRegistration 
@@ -18,11 +20,19 @@ public class PassengerRegistration
 	private String passwordSalt;
 	private String passwordHash;
 	private MultipartFile profileImage;
-	
+	private InputStream image;
+	private String confirmPassword;
 	
 	public PassengerRegistration() {
 		super();
 		
+	}
+	public InputStream getImage() {
+		return image;
+	}
+
+	public void setImage(InputStream image) {
+		this.image = image;
 	}
 
 
@@ -45,6 +55,24 @@ public class PassengerRegistration
 	}
 
 
+	public PassengerRegistration(String firstName, String lastName, String emailId, String mobileNo, int age,
+			String gender, String username, String password, String passwordSalt, String passwordHash,
+			MultipartFile profileImage, InputStream image, String confirmPassword) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailId = emailId;
+		this.mobileNo = mobileNo;
+		this.age = age;
+		this.gender = gender;
+		this.username = username;
+		this.password = password;
+		this.passwordSalt = passwordSalt;
+		this.passwordHash = passwordHash;
+		this.profileImage = profileImage;
+		this.image = image;
+		this.confirmPassword = confirmPassword;
+	}
 	public int getPassenger_Id() {
 		return passenger_Id;
 	}
@@ -163,6 +191,14 @@ public class PassengerRegistration
 	public void setProfileImage(MultipartFile profileImage) {
 		this.profileImage = profileImage;
 	}
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+
 
 
 	@Override
