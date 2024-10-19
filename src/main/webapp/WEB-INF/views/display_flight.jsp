@@ -11,6 +11,12 @@
 </head>
 <body>
     <h1>Available Flights</h1>
+	<div class="search-form">
+			    <form method="get" action="/filterFlights">
+			        <input type="text" name="searchTerm" placeholder="Search by Airline Name or Number..." required>
+			        <input type="submit" value="Filter">
+			    </form>
+	</div>		
     <table>
         <thead>
             <tr>

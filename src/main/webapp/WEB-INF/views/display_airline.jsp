@@ -12,6 +12,12 @@
 <body>
     <div class="table-container">
         <h2>Airline List</h2>
+		<div class="search-form">
+				    <form method="get" action="/filterAirlines">
+				        <input type="text" name="searchTerm" placeholder="Search by Airline Name or Number..." required>
+				        <input type="submit" value="Filter">
+				    </form>
+				</div>
         <table>
             <thead>
                 <tr>

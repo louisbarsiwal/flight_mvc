@@ -48,12 +48,12 @@
                         <td>
 							<form action="${pageContext.request.contextPath}/user/grantAccess" method="post">
 								<input type="hidden" name="flightManagerId" value="<%= flightManager.get("flightManager_id") %>" />
-								                    <button type="submit">Grant Access</button>
+								                    <button type="submit" class="access-button">Grant Access</button>
 							</form>
 
 							<form action="${pageContext.request.contextPath}/user/revokeAccess" method="post">
 								<input type="hidden" name="flightManagerId" value="<%= flightManager.get("flightManager_id") %>" />
-								                   <button type="submit">Revoke Access</button>
+								                   <button type="submit" class="access-button" id= "revoke-access">Revoke Access</button>
 							</form>
 
                         </td>
