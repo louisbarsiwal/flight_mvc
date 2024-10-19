@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F1FAEE;
+    color: #1D3557;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+	background-color: #A8DADC;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	width: 440px;
+	max-width: 90%;
+	margin-top: 30%;
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #E63946;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group select, .form-group input {
+    width: 100%; /* Ensures all fields have the same width */
+    padding: 10px; /* Added padding for better spacing */
+    border: 1px solid #457B9D;
+    border-radius: 5px;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.form-group input[type="number"] {
+    -moz-appearance: textfield; /* Hide the stepper arrows for number inputs */
+}
+
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Hide the stepper arrows for number inputs */
+    margin: 0;
+}
+
+.form-group input[type="submit"] {
+    background-color: #457B9D;
+    color: #F1FAEE;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #1D3557;
+}

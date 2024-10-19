@@ -1,0 +1,58 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #457B9D; /* Light green color */
+}
+
+.profile-form {
+    width: 250px;
+    margin: 50px auto;
+    padding: 70px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.profile-form h2 {
+    text-align: center;
+    color: #457B9D; /* Light green color */
+}
+
+img {
+    width: 150px; /* Adjust width as per your preference */
+    height: 150px; /* Adjust height as per your preference */
+    object-fit: cover; /* This ensures the image keeps aspect ratio while being resized */
+    border-radius: 50%; /* For the rounded-circle effect */
+}
+
+.profile-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #457B9D; /* Light green color */
+}
+
+.profile-form input[type="text"],
+.profile-form input[type="email"],
+.profile-form input[type="date"],
+.profile-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(192, 192, 192);
+    border-radius: 4px;
+}
+
+.profile-form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #457B9D; /* Light green color */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.profile-form input[type="submit"]:hover {
+    background-color: #457B9D; /* Darker green color */
+} 
