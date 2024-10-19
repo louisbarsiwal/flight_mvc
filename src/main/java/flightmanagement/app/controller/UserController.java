@@ -752,6 +752,19 @@ public class UserController {
 	     }
 	     return "redirect:/user/openAccessControlPage"; // Redirect back to the access control page
 	 }
+	 
+	 @GetMapping("/user/filterFlightManagers")
+	 public String filterFlightManagers(@RequestParam String searchTerm, Model model) {
+	     String sql = "SELECT flightManager_id, first_name, last_name, user_name, status "
+	                 + "FROM flight_managers WHERE first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ?";
+
+	     String filter = "%" + searchTerm + "%"; // Allows partial matches
+	     List<Map<String, Object>> flightManagers = jdbcTemplate.queryForList(sql, filter, filter, filter);
+
+	     model.addAttribute("flightManagerRegistration", flightManagers);
+	     return "access_control"; // Ensure this matches the name of your JSP file without extension
+	 }
+
 	
 	}
 	
