@@ -695,7 +695,7 @@ public class UserController {
 	public String openBookingHistoryPage(Model model) {
 		String sql = "SELECT booking_id,airline_name,flight_no,flight_model, "
 				+ "from_location,to_location,departure_datetime,arrival_datetime,economy_seats,"
-				+ "economy_price,business_seats,business_price,total_price,airline_pnr_no FROM booking_flights";
+				+ "economy_price,business_seats,business_price,total_price FROM booking_flights";
 		 
         List<Map<String, Object>> bookings = jdbcTemplate.queryForList(sql);
  

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.Map"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,22 +14,20 @@
 <table>
     <thead>
         <tr>
-			<th>PNR Number</th>
-            <th>Airline Name</th>
-            <th>Flight Number</th>
-			<th>Flight Model</th>
-			<th>From</th>
-            <th>To</th>
-			<th>Booking DateTime</th>
-            <th>Departure DateTime</th>
-            <th>Arrival DateTime</th>
-            <th>Business Seats Booked</th>
-			<th>Business Class Price</th>
-			<th>Economy Seats Booked</th>
-			<th>Economy Class Price</th>
-			<th>Total Fare</th>
-			
-            <th>Action</th>
+			<th>airline_name</th>
+			                <th>flight_no</th>
+			                <th>flight_model</th>
+			                <th>from_location</th>
+							<th>to_location</th>
+							<th>departure_datetime</th>
+							<th>arrival_datetime</th>
+							<th>economy_seats</th>
+							<th>economy_price</th>
+							<th>business_seats</th>
+							<th>business_price</th>
+							<th>total_price</th>	
+							<th>Action</th>
+							
         </tr>
     </thead>
 	<tbody>
@@ -49,7 +49,6 @@
 	                <td><%= booking.get("business_seats") %></td>
 	                <td><%= booking.get("business_price") %></td>
 					<td><%= booking.get("total_price") %></td>
-					<td><%= booking.get("airline_pnr_no") %></td>
 
 
 	                <td>
@@ -57,9 +56,14 @@
 	                        <input type="hidden" name="bookingId" value="<%= booking.get("booking_id") %>">
 							<input type="hidden" name="airlineName" value="<%= booking.get("airline_name") %>">
 													
-	                        <input type="submit" value="Cancel" class="cancel-button" onclick="return confirm('Are you sure you want to cancel your booking?');">
+	                        <input type="submit" value="Cancel Booking" class="cancel-button" onclick="return confirm('Are you sure you want to cancel your booking?');">
 	                    </form>
 	                </td>
+					</tr>
+					<% 
+					   }
+					   }
+					 %>
 </table>
 
 <script>

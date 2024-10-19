@@ -15,7 +15,7 @@ CREATE TABLE booking_flights (
     PRIMARY KEY (booking_id)
 );
 
-CREATE TABLE cancelled_flights (
+CREATE TABLE cancelled_bookings (
     booking_id INT NOT NULL AUTO_INCREMENT,
     airline_name VARCHAR(20) NOT NULL,
     flight_no VARCHAR(20) NOT NULL,
@@ -31,3 +31,5 @@ CREATE TABLE cancelled_flights (
     total_price DECIMAL(15,3) NOT NULL,
     PRIMARY KEY (booking_id)
 );
+
+
