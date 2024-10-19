@@ -31,8 +31,9 @@
 <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <a href="/user/openPassengerProfilePage">PASSENGER PROFILE</a>
-    <a href="#cancelTicket">CANCELLED TICKETS</a>
-    <a href="#bookinghistory">BOOKING HISTORY</a>  
+    <a href="/user/openBookingHistoryPage">BOOKING HISTORY</a>  
+    <a href="/openCancelledTickets">CANCELLED TICKETS</a>
+
 	<a href="/user/passengerlogout">LOGOUT</a>
 </div>
 
