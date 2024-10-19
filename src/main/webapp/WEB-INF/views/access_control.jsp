@@ -10,6 +10,12 @@
 </head>
 <body>
     <h2>Flight Manager Access Control</h2>
+	<div class="search-form">
+	    <form method="get" action="/user/filterFlightManagers">
+	        <input type="text" name="searchTerm" placeholder="Search by First Name, Last Name, or Username..." required>
+	        <input type="submit" value="Filter">
+	    </form>
+	</div>
 
     <!-- Display success or error messages -->
     <c:if test="${not empty successMessage}">
