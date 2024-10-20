@@ -22,7 +22,7 @@ public class PassengerRegistration
 	private MultipartFile profileImage;
 	private InputStream image;
 	private String confirmPassword;
-	
+
 	public PassengerRegistration() {
 		super();
 		

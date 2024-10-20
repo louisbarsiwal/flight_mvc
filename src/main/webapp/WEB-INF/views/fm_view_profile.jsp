@@ -26,7 +26,7 @@
 <body>
     <h1>View Profile</h1>
 	
-	<form:form method="POST" action="/user/fmUpdateProfile" modelAttribute="flightManagerRegistration" enctype="multipart/form-data" onsubmit= "return validateForm();">
+	<form:form method="POST" action="/user/fmUpdateProfile" modelAttribute="flightManagerRegistration" enctype="multipart/form-data">
 		
         <table>
 			
@@ -41,7 +41,11 @@
 			       </td>
 			    </tr>
 				
+<<<<<<< HEAD
         	<form:hidden path="flightManagerId" />
+=======
+        	<form:hidden path="flightManagerId"/>
+>>>>>>> d2b4aa5535c08201f7c610ccb0a76a1f51208524
 			
 			<tr>
 			    <td>User Name:</td>
