@@ -94,10 +94,16 @@
 		        alert("No seats are available in both Business and Economy Class. You cannot proceed to do payment.");
 		        return false; // Prevent form submission
 		    }
-
-
+				
+			if (businessSeats === 0 && economySeats === 0) {
+							        alert("you must enter atleast one seat in any class.");
+							        return false; // Prevent form submission
+							    }
+			 	
 		    return true; // Allow form submission
-		}
+			}
+		
+		
 
     </script>
 </head>

@@ -67,11 +67,10 @@
 					<label for="flightNo">Flight Number</label>
 					<input type="text" id="airlineNumber" name="flightNo" required> <!-- Changed from select to text input -->
 			    </div>
-			    <div class="form-group">
-					<label for="flightNo">Flight Number</label>
-				  <input type="text" id="airlineNumber" name="flightNo" required> <!-- Changed from select to text input -->
-
-			    </div>
+				<div class="form-group">
+		            <label for="flightModel">Flight Model:</label>
+		            <input type="text" id="modelNumber" name="flightModel" required>
+		        </div>
 			    <div class="form-group">
 			        <label for="from">From</label>
 			        <select id="from" name="fromLocation"> <!-- Changed here -->
