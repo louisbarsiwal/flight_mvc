@@ -10,7 +10,6 @@
 </head>
 <body>
 				
-			
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/CSS/fm_dashboard.css">
 </head>
@@ -30,20 +29,20 @@
  
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="/user/openFmViewProfilePage">VIEW PROFILE</a>
   
   <a href="/flight/openAddFlightPage">ADD FLIGHT</a>
-  <a href="/openDeletedAirlinePage">DELETED AIRLINE</a>
-  <a href="/openDeletedFlightPage">DELETED FLIGHT</a>
   <a href="/airline/openAddAirlinePage">ADD AIRLINE</a>
+  <a href="/openDeletedFlightPage">DELETED FLIGHT</a>
+  <a href="/openDeletedAirlinePage">DELETED AIRLINE</a>
   <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
   <a href="/openDisplayAirlinePage">DISPLAY AIRLINE</a>
+  <a href="/user/openDisplayPassengers">PASSENGERS LIST</a>
   <a href="/">LOGOUT</a>
   
  
 </div>
  
-
+ 
 </div>
  
 <script>
@@ -63,7 +62,7 @@ function toggleDropdown() {
   document.getElementById("dropdown").classList.toggle("show");
 }
  
-
+ 
  
 window.onclick = function(event) {
   if (!event.target.matches('.profile-icon img')) {
@@ -80,3 +79,4 @@ window.onclick = function(event) {
 </script>
 </body>
 </html>
+ 

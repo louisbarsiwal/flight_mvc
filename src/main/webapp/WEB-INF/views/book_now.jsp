@@ -38,7 +38,7 @@
             document.getElementById('totalEconomyPrice').value = economyTotal;
         }
 
-        // Validate seat inputs and show warning messages
+        
 		// Validate seat inputs and show warning messages
 		function validateSeats() {
 		    let businessSeatsInput = document.getElementById('businessSeats');
@@ -95,11 +95,6 @@
 		        return false; // Prevent form submission
 		    }
 
-		    // Check if user entered zero seats for both classes
-		    if (businessSeats === 0 && economySeats === 0) {
-		        alert("Please enter at least one seat in either Business or Economy Class to proceed.");
-		        return false; // Prevent form submission
-		    }
 
 		    return true; // Allow form submission
 		}
@@ -134,26 +129,34 @@
         <input type="hidden" name="economyPrice" value="<%= flight.getEconomyPrice() %>">
         <input type="hidden" name="businessPrice" value="<%= flight.getBusinessPrice() %>">
 
-        <label for="businessSeats">Enter Number of Business Seats:</label>
-        <input type="number" id="businessSeats" name="businessSeats" min="0" oninput="calculateFare(); validateSeats()" required>
+	    <label for="businessSeats">Enter Number of Business Seats:</label>
+	    <input type="number" id="businessSeats" name="businessSeats" min="0" oninput="calculateFare(); validateSeats()" required>
 
-        <label for="businessClassPrice">Business Class Price:</label>
-        <input type="text" id="businessClassPrice" name="businessClassPrice" readonly>
+	    <label for="businessClassPrice">Business Class Price:</label>
+	    <input type="text" id="businessClassPrice" name="businessClassPrice" readonly>
 
-        <label for="economySeats">Enter Number of Economy Seats:</label>
-        <input type="number" id="economySeats" name="economySeats" min="0" oninput="calculateFare(); validateSeats()" required>
+	    <label for="economySeats">Enter Number of Economy Seats:</label>
+	    <input type="number" id="economySeats" name="economySeats" min="0" oninput="calculateFare(); validateSeats()" required>
 
-        <label for="economyClassPrice">Economy Class Price:</label>
-        <input type="text" id="economyClassPrice" name="economyClassPrice" readonly>
+	    <label for="economyClassPrice">Economy Class Price:</label>
+	    <input type="text" id="economyClassPrice" name="economyClassPrice" readonly>
 
-        <label for="totalFare">Total Fare:</label>
-        <input type="text" id="totalFare" name="totalFare" readonly>
+	    <label for="totalFare">Total Fare:</label>
+	    <input type="text" id="totalFare" name="totalFare" readonly>
 
-        <!-- Hidden fields to store calculated prices -->
-        <input type="hidden" id="totalBusinessPrice" name="totalBusinessPrice">
-        <input type="hidden" id="totalEconomyPrice" name="totalEconomyPrice">
+	    <!-- Hidden fields to store calculated prices -->
+	    <input type="hidden" id="totalBusinessPrice" name="totalBusinessPrice">
+	    <input type="hidden" id="totalEconomyPrice" name="totalEconomyPrice">
 
-        <button type="submit" class="btn btn-primary">Proceed to Payment</button>
-    </form>
+	    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+	</form>
+
+
+
+    <script>
+        // Call validateSeats on page load to disable fields if needed
+        validateSeats();
+    </script>
+
 </body>
 </html>

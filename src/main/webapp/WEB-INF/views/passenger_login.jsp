@@ -28,7 +28,7 @@
         </div><br/>
         <button type="submit">Login</button><br/>
 		<p><a href="/user/PassengerForgotPage">forgot password ?</a></p>
-        <p>Don't have an account? <a href="/user/openPassengerRegistrationPage">Register here</a></p>
+        <p>Don't have an account? <a href="/user/openPassengerRegistration">Register here</a></p>
     </form>
 
     <script>

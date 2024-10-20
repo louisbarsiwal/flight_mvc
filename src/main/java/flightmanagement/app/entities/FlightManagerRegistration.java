@@ -1,6 +1,6 @@
 package flightmanagement.app.entities;
 
-import java.io.InputStream;
+
 import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -20,7 +20,6 @@ public class FlightManagerRegistration
 	private String passwordSalt;
 	private String passwordHash;
 	private MultipartFile profileImage;
-	private InputStream image;
 	private String confirmPassword;
 	
 	public FlightManagerRegistration() {
@@ -157,13 +156,7 @@ public class FlightManagerRegistration
 	public void setProfileImage(MultipartFile profileImage) {
 		this.profileImage = profileImage;
 	}
-	public InputStream getImage() {
-		return image;
-	}
-
-	public void setImage(InputStream image) {
-		this.image = image;
-	}
+	
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}

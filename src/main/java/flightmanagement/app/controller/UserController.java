@@ -243,8 +243,8 @@ public class UserController {
 		try {
 			
 			businessOwnerRegistration = businessOwnerDaoImpl.modifyUser(updatedBo); 
-			
 			businessOwnerRegistration.setImage(businessOwnerRegistration.getProfileImage().getInputStream());
+			
 			attributes.addFlashAttribute("message", "Profile updated successfully");
 		} catch(EmptyResultDataAccessException e) {
 			attributes.addFlashAttribute("message", "Updation failed. Please try again later");
@@ -255,8 +255,10 @@ public class UserController {
     
 
 	@GetMapping("/openPassengerProfilePage")
-	public ModelAndView passengerProfile(ModelAndView modelAndView) throws IOException {
+	public ModelAndView passengerProfile(ModelAndView modelAndView)
+	{
 		//PassengerRegistration passengerRegistration = new PassengerRegistration();
+		
 		modelAndView.setViewName("passenger_profile");
 		modelAndView.addObject("passengerRegistration", passengerRegistration);
 		return modelAndView;
@@ -310,13 +312,13 @@ public class UserController {
 		try {
 			
 			passengerRegistration = passengerdaoImpl.modifyPassengerProfile(updatedPassenger); 
-			
 			attributes.addFlashAttribute("message", "Profile updated successfully");
 		} catch(EmptyResultDataAccessException e) {
 			attributes.addFlashAttribute("message", "Updation failed. Please try again later");
 		}
 		return "redirect:/user/openPassengerProfilePage"; // Redirect back to view profile
-	}
+		}
+
 	@PostMapping("/Bologin")
 	public String login(@RequestParam String username, 
 			@RequestParam String password, 
@@ -365,66 +367,7 @@ public class UserController {
 	}
 		
 	
-	@PostMapping("/Boregister")
-	public String register(@ModelAttribute BusinessOwnerRegistration businessOwnerRegistration, RedirectAttributes attributes)
-	        throws IOException, SerialException, SQLException {
-
-	    // Validation checks
-	    String firstName = businessOwnerRegistration.getFirstName();
-	    String lastName = businessOwnerRegistration.getLastName();
-	    String email = businessOwnerRegistration.getEmailId();
-	    String mobileNo = businessOwnerRegistration.getMobileNo();
-	    String username = businessOwnerRegistration.getUsername();
-	    String password = businessOwnerRegistration.getPassword();
-	    String confirmPassword = businessOwnerRegistration.getConfirmPassword();
-
-	    if (!firstName.matches("^[a-zA-Z]{3,20}$")) {
-	        attributes.addFlashAttribute("message", "First name must be between 3-20 characters and contain only alphabets.");
-	        return "redirect:/user/openBoRegistrationPage";
-	    }
-	    if (!lastName.matches("^[a-zA-Z]{3,20}$")) {
-	        attributes.addFlashAttribute("message", "Last name must be between 3-20 characters and contain only alphabets.");
-	        return "redirect:/user/openBoRegistrationPage";
-	    }
-	    if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-	        attributes.addFlashAttribute("message", "Email must be in the format of example@gmail.com.");
-	        return "redirect:/user/openBoRegistrationPage";
-	    }
-	    if (!mobileNo.matches("^\\d{10}$")) {
-	        attributes.addFlashAttribute("message", "Phone number must be 10 digits.");
-	        return "redirect:/user/openBoRegistrationPage";
-	    }
-	    if (!username.matches("^[a-zA-Z0-9_]{6,15}$")) {
-	        attributes.addFlashAttribute("message", "Username must be between 6-15 characters and contain only alphabets, numbers, and underscores.");
-	        return "redirect:/user/openBoRegistrationPage";
-	    }
-
-	    if (!password.equals(confirmPassword)) {
-	        attributes.addFlashAttribute("message", "Passwords do not match.");
-	        return "redirect:/user/openBoRegistrationPage";
-	    }
-
-	    // Password Encryption starts
-	    String passwordSalt = Password.generatePwdSalt(10);
-	    businessOwnerRegistration.setPasswordSalt(passwordSalt);
-
-	    String newPassword = password + passwordSalt;
-	    String passwordHash = Password.generatePwdHash(newPassword);
-	    businessOwnerRegistration.setPasswordHash(passwordHash);
-
-	    int result = businessOwnerDaoImpl.insertBusinessOwner(businessOwnerRegistration);
-	  
-
-	    if (result > 0) {
-	        attributes.addFlashAttribute("message", "Registration Successful");
-	        return "redirect:/user/openBoLoginPage";
-	    } else {
-	        attributes.addFlashAttribute("message", "Registration Failed");
-	        return "redirect:/user/openBoRegistrationPage";
-	    }
-	}
-
-
+	
 
 	@GetMapping("/Fmlogout")
 	public String Fmlogout() {
@@ -490,57 +433,7 @@ public class UserController {
 		}
     }
 
-    @GetMapping("/openFmViewProfilePage")
-    public ModelAndView fmviewProfile(ModelAndView modelAndView) throws IOException {
-        // Assuming you already have the flightManagerRegistration object fetched from the database
-    	flightManagerRegistration.setImage(flightManagerRegistration.getProfileImage().getInputStream());
-        modelAndView.setViewName("fm_view_profile");
-        modelAndView.addObject("flightManagerRegistration", flightManagerRegistration);
-        return modelAndView;
-    }
-
-  
-   
-
-    @PostMapping("/fmUpdateProfile")
-    public String fmUpdateProfile(
-            @ModelAttribute FlightManagerRegistration updatedFm,
-            RedirectAttributes attributes
-            ) throws SerialException, IOException, SQLException {
-        // Update flight manager's information in the database
-
-        String firstName = updatedFm.getFirstName();
-        String lastName = updatedFm.getLastName();
-        String email = updatedFm.getEmailId();
-        String mobileNo = updatedFm.getMobileNo();
-
-        if (!firstName.matches("^[a-zA-Z]{3,20}$")) {
-            attributes.addFlashAttribute("message", "First name must be between 3-20 characters and contain only alphabets.");
-            return "redirect:/user/openFmViewProfilePage";
-        }
-        if (!lastName.matches("^[a-zA-Z]{3,20}$")) {
-            attributes.addFlashAttribute("message", "Last name must be between 3-20 characters and contain only alphabets.");
-            return "redirect:/user/openFmViewProfilePage";
-        }
-        if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
-            attributes.addFlashAttribute("message", "Email must be in the format of example@gmail.com.");
-            return "redirect:/flightManager/openViewProfilePage";
-        }
-        if (!mobileNo.matches("^\\d{10}$")) {
-            attributes.addFlashAttribute("message", "Phone number must be 10 digits.");
-            return "redirect:/user/openFmViewProfilePage";
-        }
-
-        try {
-            flightManagerRegistration = flightManagerDaoImpl.modifyUser(updatedFm);
-            flightManagerRegistration.setImage(flightManagerRegistration.getProfileImage().getInputStream());
-            attributes.addFlashAttribute("message", "Profile updated successfully");
-        } catch (EmptyResultDataAccessException e) {
-            attributes.addFlashAttribute("message", "Updation failed. Please try again later");
-        }
-
-        return "redirect:/user/openFmViewProfilePage"; // Redirect back to view profile
-    }
+    
 
 	
 	@GetMapping("/openFmDashboard")
@@ -556,10 +449,11 @@ public class UserController {
 		return modelAndView;
 	}
 	
-	@PostMapping("/fmregister")
-	public String register(@ModelAttribute FlightManagerRegistration flightManagerRegistration, RedirectAttributes attributes)
+	@PostMapping("/fmRegister")
+	public String fmRegister(@ModelAttribute FlightManagerRegistration flightManagerRegistration, RedirectAttributes attributes)
 	        throws IOException, SerialException, SQLException {
 
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
 	    // Validation checks
 	    String firstName = flightManagerRegistration.getFirstName();
 	    String lastName = flightManagerRegistration.getLastName();
@@ -570,6 +464,7 @@ public class UserController {
 	    String confirmPassword = flightManagerRegistration.getConfirmPassword();
 
 	    if (!firstName.matches("^[a-zA-Z]{3,20}$")) {
+	    	System.out.println(firstName);
 	        attributes.addFlashAttribute("message", "First name must be between 3-20 characters and contain only alphabets.");
 	        return "redirect:/user/openFmRegistrationPage";
 	    }
@@ -606,7 +501,7 @@ public class UserController {
 	    int result = flightManagerDaoImpl.insertFlightManager(flightManagerRegistration);
 	  
 	    if (result > 0) {
-	        attributes.addFlashAttribute("message", "Registration Successful");
+	        attributes.addFlashAttribute("message", "Registration Successful... Your access is under verification ");
 	        return "redirect:/user/openFmLoginPage";
 	    } else {
 	        attributes.addFlashAttribute("message", "Registration Failed");
@@ -617,7 +512,7 @@ public class UserController {
 	 
 
 
-	@GetMapping("/openPassengerRegistrationPage")
+	@GetMapping("/openPassengerRegistration")
 	public ModelAndView openPassengerRegistrationPage(ModelAndView modelAndView) {
 
 		System.out.println("\n passengerRegistrationPage is called");
@@ -859,21 +754,50 @@ public class UserController {
 
 
 	 
-	 @GetMapping("/user/filterFlightManagers")
+	 @GetMapping("/filterFlightManagers")
 	 public String filterFlightManagers(@RequestParam String searchTerm, Model model) {
-	     String sql = "SELECT flightManager_id, first_name, last_name, user_name, status "
-	                 + "FROM flight_managers WHERE first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ?";
+	     String sql = "SELECT flightManager_id, first_name, last_name, user_name "
+	                + "FROM admin_flightmanager WHERE first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ?";
 
 	     String filter = "%" + searchTerm + "%"; // Allows partial matches
 	     List<Map<String, Object>> flightManagers = jdbcTemplate.queryForList(sql, filter, filter, filter);
 
 	     model.addAttribute("flightManagerRegistration", flightManagers);
-	     return "access_control"; // Ensure this matches the name of your JSP file without extension
+	     return "access_control"; // Return the JSP page where the results will be displayed
 	 }
+	 
+	 @GetMapping("/openDisplayPassengers")
+	    public String openDisplayPassengers(Model model) {
+	        String sql = "SELECT passenger_Id, first_name, last_name, email, mobile_no, age, gender,username FROM admin_passenger";
+	 
+	        List<Map<String, Object>> passengers = jdbcTemplate.queryForList(sql);
+	 
+	        model.addAttribute("passengers", passengers);
+	        System.out.println(passengers);
+	 
+	        return "display_passengers"; // Ensure the JSP file name matches
+	    }
+	 
+	 
+	 @GetMapping("/filterPassengers")
+	    public String filterAirlines(@RequestParam String searchTerm, Model model) {
+	       
+		 String sql = "SELECT passenger_Id, first_name, last_name, email, mobile_no, age, gender,username "
+		 		+ "FROM admin_passenger WHERE passenger_Id LIKE ? OR first_name LIKE ? ";
+		 
+		 
+	        String filter = "%" + searchTerm + "%"; // Allows partial matches
+	        List<Map<String, Object>> passengers = jdbcTemplate.queryForList(sql, filter, filter);
+
+	        model.addAttribute("passengers", passengers);
+	        return "display_passengers"; // Return the same JSP page
+	    }
+
 
 	
 
 	}
+
 	
 	
 

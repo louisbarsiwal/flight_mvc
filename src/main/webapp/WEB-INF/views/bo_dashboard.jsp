@@ -38,8 +38,11 @@
   <a href="/openDeletedFlightPage">DELETED FLIGHTS</a>
   <a href="/openDisplayAirlinePage">DISPLAY AIRLINES</a>
   <a href="/openDisplayFlightPage">DISPLAY FLIGHTS</a>
- 
+  <a href="/user/openBoForgotPasswordPage">CHANGE PASSWORD</a>
+  
   <a href="/user/openAccessControlPage">FLIGHT MANAGERS</a>
+  <a href="/user/openDisplayPassengers">PASSENGERS LIST</a>
+  
   <a href="/">LOGOUT</a>
   
  

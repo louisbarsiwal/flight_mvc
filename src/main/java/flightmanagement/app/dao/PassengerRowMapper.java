@@ -31,14 +31,6 @@ public class PassengerRowMapper implements RowMapper<PassengerRegistration> {
         passengerRegistration.setUsername(rs.getString("username"));
 		passengerRegistration.setPasswordSalt(rs.getString("password_salt"));
 		passengerRegistration.setPasswordHash(rs.getString("password_hash"));		
-		//Blob profileImageBlob = rs.getBlob("profile_image");
-		
-		// Convert blob to MultipartFile
-		//byte[] imageBytes = profileImageBlob.getBytes(1, (int) profileImageBlob.length());
-		//MultipartFile profileImage = new ByteArrayMultiPartFile(imageBytes, "profileImage.jpg", "image/jpeg");
-		
-		//passengerRegistration.setProfileImage(profileImage);
-		
 		return passengerRegistration;
 		
 	}

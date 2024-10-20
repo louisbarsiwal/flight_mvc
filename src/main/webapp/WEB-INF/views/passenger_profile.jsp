@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ page import="flightmanagement.app.entities.PassengerRegistration"%>
+<%@ page import="flightmanagement.app.utilities.ViewImage"%>
 
 <html>
 <head>
@@ -91,19 +93,40 @@
             document.getElementById('profileForm').submit(); // Submit the form
         }
     </script>
+
+	<link rel="stylesheet" type="text/css" href="/CSS/passenger_profile.css">
+	<script>
+	window.onload = function() {
+		            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+		            if (message) {
+		                alert(message);
+		            }
+		        };
+		    </script>
+			
+			<%
+			PassengerRegistration passengerRegistration = 
+			(PassengerRegistration) request.getAttribute("passengerRegistration");
+							%>
+
 </head>
 <body>
     <h1>View Profile</h1>
 
     <form:form id="profileForm" method="POST" action="/user/passengerUpdateProfile" modelAttribute="passengerRegistration" enctype="multipart/form-data" onsubmit="validateForm(event)">
         <table>
-            <form:hidden path="passenger_Id" />
-            <tr>
-                <td>User Name:</td>
-                <td>
-                    <form:input path="username" disabled="true" htmlEscape="false" />
-                </td>
-            </tr>
+
+            
+
+        	<form:hidden path="passenger_Id" />
+			
+			<tr>
+			<td>User Name:</td>
+			<td>
+			<form:input path="username" disabled="true" htmlEscape="false" />
+			 </td>
+						</tr>
+
             <tr>
                 <td>First Name</td>
                 <td>

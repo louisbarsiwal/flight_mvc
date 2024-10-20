@@ -16,13 +16,10 @@
 
 <div class="header" id="header">
     <button class="openbtn" onclick="openNav()">☰</button>
-    <span id="companyName">XYZ FLIGHTS</span>
+    <span id="companyName">Travel Wings</span>
     <div class="profile-icon" onclick="toggleDropdown()">
         <img src="/images/profile-icon.png" alt="Profile Icon">
         <div id="dropdown" class="dropdown-content">
-            <a href="/user/openBoLoginPage">Business Owner</a>
-            <a href="/user/openfmuserloginPage">Flight Manager</a>
-            <a href="/user/openPassengerLogin">Passenger</a>
             <a href="/">Back to HomePage</a>
         </div>
     </div>
@@ -42,35 +39,33 @@
     <form action="/flight/searchFlights" method= "GET" onsubmit="searchFlights(event)">
 		<select id="source" name="source" required>
 		    <option value="" disabled selected>Source</option>
-		    <option value="DEL">New Delhi</option>
-		    <option value="BOM">Mumbai</option>
-			<option value="KOAA">Chennai</option>
+			<option value="DEL">New Delhi</option>
+            <option value="BOM">Mumbai</option>
+			<option value="MAA">Chennai</option>
 			<option value="HYD">Hyderabad</option>
-		    <option value="BLR">Bangalore</option>
-			
+			<option value="BLR">Bangalore</option>			
 		</select>
 
 		<select id="destination" name="destination" required>
-		    <option value="" disabled selected>Destination</option>
-		    <option value="DEL">New Delhi</option>
-		    <option value="BOM">Mumbai</option>
-			<option value="KOAA">Chennai</option>
-		    <option value="HYD">Hyderabad</option>
-		    <option value="BLR">Bangalore</option>
-			
+			<option value="" disabled selected>destination</option>
+			<option value="DEL">New Delhi</option>
+            <option value="BOM">Mumbai</option>
+			<option value="MAA">Chennai</option>
+			<option value="HYD">Hyderabad</option>
+			<option value="BLR">Bangalore</option>
+
 		</select>
 
 
 
       <select name="tripType" id="tripType" onchange="toggleReturnDate()" required>
         <option value="oneway">One Way</option>
-        <option value="return">Return</option>
       </select>
 
 		<input type="date" id="departureDate" name="departureDate" required>
       <input type="date" name="returnDate" id="returnDate" style="display:none;">
 
-      <input type="number" name="passengers" min="1" value="1" placeholder="Adults" required>
+      <input type="number" name="passengers" min="1" value="1" placeholder=" " required>
 
       <select name="class" required>
         <option value="economy">Economy</option>

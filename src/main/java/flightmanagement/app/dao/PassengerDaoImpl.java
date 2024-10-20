@@ -45,14 +45,6 @@ public class PassengerDaoImpl implements PassengerDao {
 	}
 	
 
-//	private Blob getBlob(MultipartFile image) throws IOException, SerialException, SQLException {
-//		byte[] byteArr = image.getBytes();
-//		Blob imageBlob = new SerialBlob(byteArr);
-//		return imageBlob;
-//	}
-//	
-	
-
 	@Override
 	public PassengerRegistration fetchUser(String username) {
 		String sql = "SELECT * FROM admin_passenger WHERE username = ?";
@@ -62,7 +54,7 @@ public class PassengerDaoImpl implements PassengerDao {
 	@Override
 	public PassengerRegistration modifyPassengerProfile(PassengerRegistration passengerRegistration)
 			throws SerialException, IOException, SQLException {
-		//Blob profileImage = getBlob(passengerRegistration.getProfileImage());
+		
 
 		String query = "UPDATE admin_passenger SET first_name = ?, last_name = ?, email = ?, "
 				+ "mobile_no = ?, age = ?, gender = ? WHERE passenger_Id = ?";

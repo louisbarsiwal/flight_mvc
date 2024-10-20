@@ -19,26 +19,17 @@ public class PassengerRegistration
 	private String password;
 	private String passwordSalt;
 	private String passwordHash;
-	private MultipartFile profileImage;
-	private InputStream image;
 	private String confirmPassword;
+
 
 	public PassengerRegistration() {
 		super();
 		
 	}
-	public InputStream getImage() {
-		return image;
-	}
-
-	public void setImage(InputStream image) {
-		this.image = image;
-	}
-
+	
 
 	public PassengerRegistration(int passenger_Id, String firstName, String lastName, String emailId, String mobileNo,
-			int age, String gender, String username, String password, String passwordSalt, String passwordHash,
-			MultipartFile profileImage) {
+			int age, String gender, String username, String password, String passwordSalt, String passwordHash) {
 		super();
 		this.passenger_Id = passenger_Id;
 		this.firstName = firstName;
@@ -51,7 +42,7 @@ public class PassengerRegistration
 		this.password = password;
 		this.passwordSalt = passwordSalt;
 		this.passwordHash = passwordHash;
-		this.profileImage = profileImage;
+		
 	}
 
 
@@ -69,8 +60,6 @@ public class PassengerRegistration
 		this.password = password;
 		this.passwordSalt = passwordSalt;
 		this.passwordHash = passwordHash;
-		this.profileImage = profileImage;
-		this.image = image;
 		this.confirmPassword = confirmPassword;
 	}
 	public int getPassenger_Id() {
@@ -183,14 +172,7 @@ public class PassengerRegistration
 	}
 
 
-	public MultipartFile getProfileImage() {
-		return profileImage;
-	}
-
-
-	public void setProfileImage(MultipartFile profileImage) {
-		this.profileImage = profileImage;
-	}
+	
 	public String getConfirmPassword() {
 		return confirmPassword;
 	}
@@ -206,7 +188,7 @@ public class PassengerRegistration
 		return "PassengerRegistration [passenger_Id=" + passenger_Id + ", firstName=" + firstName + ", lastName="
 				+ lastName + ", emailId=" + emailId + ", mobileNo=" + mobileNo + ", age=" + age + ", gender=" + gender
 				+ ", username=" + username + ", password=" + password + ", passwordSalt=" + passwordSalt
-				+ ", passwordHash=" + passwordHash + ", profileImage=" + profileImage + "]";
+				+ ", passwordHash=" + passwordHash + "]";
 	}
 
 
