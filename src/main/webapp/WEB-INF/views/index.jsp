@@ -85,6 +85,7 @@
 	                      <p><strong>To:</strong> <%= flight.getToLocation() %></p>
 	                      <p><strong>Departure Time:</strong> <%= flight.getDepartureDateTime() %></p>
 	                  </div>
+					  
 	      <%
 	              }
 	          }

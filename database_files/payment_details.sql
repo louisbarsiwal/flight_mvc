@@ -1,5 +1,5 @@
 CREATE TABLE payment_details (
-    transaction_id VARCHAR(255) PRIMARY KEY,
+    transaction_id VARCHAR(8) PRIMARY KEY,
     payment_method VARCHAR(50) NOT NULL,
     bank_name VARCHAR(100),
     card_number VARCHAR(20),
