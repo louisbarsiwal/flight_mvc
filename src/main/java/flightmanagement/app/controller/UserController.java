@@ -453,7 +453,7 @@ public class UserController {
 	public String fmRegister(@ModelAttribute FlightManagerRegistration flightManagerRegistration, RedirectAttributes attributes)
 	        throws IOException, SerialException, SQLException {
 
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
+		//System.out.println("");
 	    // Validation checks
 	    String firstName = flightManagerRegistration.getFirstName();
 	    String lastName = flightManagerRegistration.getLastName();
