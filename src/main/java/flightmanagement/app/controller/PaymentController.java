@@ -28,6 +28,11 @@ public class PaymentController {
         return "payment";
     }
     
+    @GetMapping("/openBookedTicket")
+    public String openBookedTicket() {
+        return "flightTicket";
+    }
+    
     @PostMapping("/submit")
     public String submitPayment(
         @RequestParam String paymentMethod,
@@ -53,8 +58,8 @@ public class PaymentController {
        int result= paymentDao.savePayment(payment);
        if (result > 0) {  
 
-        redirectAttributes.addFlashAttribute("message", "Payment submitted successfully with Transaction ID: " + transactionId);
-        return "flightTicket";
+        redirectAttributes.addFlashAttribute("message", "Payment submitted successfully with Transaction ID");
+        return "redirect:/payment/openBookedTicket";
        }	
     	else {
     		redirectAttributes.addFlashAttribute("message", "Payment Failed");

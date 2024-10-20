@@ -13,7 +13,7 @@ import flightmanagement.app.entities.BusinessOwnerRegistration;
 public interface BusinessOwnerDao {
 	
 	
-	int insertBusinessOwner(BusinessOwnerRegistration businessOwnerRegistration) throws IOException,SerialException,SQLException;
+	
 	int updateBusinessOwnerPassword(BusinessOwnerRegistration businessOwnerRegistration) throws IOException,SerialException,SQLException;
 	BusinessOwnerRegistration fetchUser(String username) ;
 	

@@ -11,7 +11,7 @@
 
 <div class="registration-container">
 
-	<form action="/user/fmregister" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+	<form action="/user/fmRegister" method="POST" enctype="multipart/form-data" onsubmit="return validateForm();">
 
 	    <label for="Profileimage">Upload Image:</label>
 	    <input type="file" name="profileImage" accept=".jpg, .jpeg, .png, .pdf" required>
@@ -65,7 +65,7 @@ function validateForm() {
     const namePattern = /^[a-zA-Z]{3,20}$/;
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     const mobilePattern = /^\d{10}$/;
-    const usernamePattern = /^[a-zA-Z0-9_]{6,15}$/;
+    const usernamePattern = /^[a-zA-Z0-9_]{5,15}$/;
 
     if (!namePattern.test(firstName)) {
         alert("First name must be between 3-20 characters and contain only alphabets.");

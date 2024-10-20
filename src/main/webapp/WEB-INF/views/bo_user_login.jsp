@@ -32,7 +32,7 @@
         </div><br/>
 		<p><a href="/user/openBoForgotPasswordPage">forgot password ?</a></p>
         <button type="submit">Login</button><br/>
-        <p>Don't have an account? <a href="/user/openBoRegistrationPage">Register here</a></p>
+        
     </form>
 
     <script>

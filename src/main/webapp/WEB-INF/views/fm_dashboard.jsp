@@ -30,7 +30,6 @@ fm_dashboard.jsp code
  
 <div id="mySidebar" class="sidebar">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <a href="/user/openFmViewProfilePage">VIEW PROFILE</a>
   
   <a href="/flight/openAddFlightPage">ADD FLIGHT</a>
   <a href="/airline/openAddAirlinePage">ADD AIRLINE</a>
