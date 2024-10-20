@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="flightmanagement.app.entities.BookingFlight" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,24 +13,24 @@
         .header { background-color: #f2f2f2; font-weight: bold; }
         .container button {
             border-radius: 4px;
-            background-color: #4CAF50; /* Green */
-            color: white; /* White text */
-            border: none; /* No borders */
-            padding: 10px 15px; /* Some padding */
-            cursor: pointer; /* Pointer/hand icon */
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            padding: 10px 15px; 
+            cursor: pointer; 
         }
         .container button:hover {
-            background-color: #45a049; /* Darker green on hover */
+            background-color: #45a049; 
         }
     </style>
-	<script>
-		window.onload = function() {
-		const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
-		if (message) {
-			alert(message);
-		 }
-	};
-	</script>
+    <script>
+        window.onload = function() {
+            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+            if (message) {
+                alert(message);
+            }
+        };
+    </script>
 </head>
 <body>
     <div class="container">
@@ -56,19 +57,19 @@
         <table>
             <tr class="header">
                 <td>Route</td>
-                <td>New Delhi to Kathmandu</td>
+                <td><%= request.getParameter("fromLocation") %> to <%= request.getParameter("toLocation") %></td>
             </tr>
             <tr>
                 <td>Date</td>
-                <td>Wed, 12 Jun 2024</td>
+                <td><%= request.getParameter("departureDatetime") %></td>
             </tr>
             <tr>
                 <td>Airline</td>
-                <td>Vistara</td>
+                <td><%= request.getParameter("airlineName") %></td>
             </tr>
             <tr>
                 <td>Flight Number</td>
-                <td>UK - 157</td>
+                <td><%= request.getParameter("flightNo") %></td>
             </tr>
             <tr>
                 <td>Fare Type</td>
@@ -76,15 +77,15 @@
             </tr>
             <tr>
                 <td>Departure</td>
-                <td>DEL 07:55 (New Delhi - Indira Gandhi Airport, Terminal 3)</td>
+                <td><%= request.getParameter("departureDatetime") %> (Departure Airport)</td>
             </tr>
             <tr>
                 <td>Arrival</td>
-                <td>KTM 10:30 (Kathmandu - Tribuvan Terminal I)</td>
+                <td>(Arrival Airport)</td>
             </tr>
             <tr>
                 <td>Duration</td>
-                <td>2h 20min</td>
+                <td>(Duration)</td>
             </tr>
             <tr>
                 <td>Class</td>
@@ -92,33 +93,38 @@
             </tr>
             <tr>
                 <td>Payment Method</td>
-                <td>UPI</td>
+                <td><%= request.getParameter("paymentMethod") %></td>
             </tr>
         </table>
 
-        <h3>Fare Breakup</h3>
-        <table>
-            <tr>
-                <td>Base Fare</td>
-                <td>Rs. 3,500</td>
-            </tr>
-            <tr>
-                <td>Discounts and Cashbacks</td>
-                <td>Rs. -1,100</td>
-            </tr>
-            <tr>
-                <td>Taxes and Fees</td>
-                <td>Rs. 2,042</td>
-            </tr>
-            <tr>
-                <td>GST (Airline)</td>
-                <td>Rs. 179</td>
-            </tr>
-            <tr class="header">
-                <td>Total Fare</td>
-                <td>Rs. 4,621</td>
-            </tr>
-        </table>
+		<h3>Fare Breakup</h3>
+		<table>
+		    <tr>
+		        <td>Base Fare</td>
+		        <td>Rs. <%= request.getParameter("economyPrice") != null ? request.getParameter("economyPrice") : "0" %></td>
+		    </tr>
+		    <tr>
+		        <td>Discounts and Cashbacks</td>
+		        <td>Rs. -<%= request.getParameter("totalBusinessPrice") != null ? request.getParameter("totalBusinessPrice") : "0" %></td>
+		    </tr>
+		    <tr>
+		        <td>Taxes and Fees</td>
+		        <td>Rs. <%= request.getParameter("totalEconomyPrice") != null ? request.getParameter("totalEconomyPrice") : "0" %></td>
+		    </tr>
+		    <tr>
+		        <td>GST (Airline)</td>
+		        <td>Rs. (GST Amount)</td>
+		    </tr>
+		    <tr class="header">
+		        <td>Total Fare</td>
+		        <td>Rs. <%= 
+		            Double.parseDouble(request.getParameter("economyPrice") != null ? request.getParameter("economyPrice") : "0") + 
+		            Double.parseDouble(request.getParameter("totalBusinessPrice") != null ? request.getParameter("totalBusinessPrice") : "0") + 
+		            Double.parseDouble(request.getParameter("totalEconomyPrice") != null ? request.getParameter("totalEconomyPrice") : "0") 
+		        %></td>
+		    </tr>
+		</table>
+
 
         <h3>Additional Information</h3>
         <p>Airline PNR: 5YDLEC</p>
