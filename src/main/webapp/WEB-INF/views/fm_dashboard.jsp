@@ -33,9 +33,9 @@
   <a href="/user/openFmViewProfilePage">VIEW PROFILE</a>
   
   <a href="/flight/openAddFlightPage">ADD FLIGHT</a>
-  <a href="/openDeletedAirlinePage">DELETED AIRLINE</a>
-  <a href="/openDeletedFlightPage">DELETED FLIGHT</a>
   <a href="/airline/openAddAirlinePage">ADD AIRLINE</a>
+  <a href="/openDeletedFlightPage">DELETED FLIGHT</a>
+  <a href="/openDeletedAirlinePage">DELETED AIRLINE</a>
   <a href="/openDisplayFlightPage">DISPLAY FLIGHT</a>
   <a href="/openDisplayAirlinePage">DISPLAY AIRLINE</a>
   <a href="/">LOGOUT</a>

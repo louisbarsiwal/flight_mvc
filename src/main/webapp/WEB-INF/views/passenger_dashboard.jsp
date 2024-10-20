@@ -44,6 +44,9 @@
 		    <option value="" disabled selected>Source</option>
 		    <option value="DEL">New Delhi</option>
 		    <option value="BOM">Mumbai</option>
+			<option value="MAA">Chennai</option>
+			<option value="HYD">Hyderabad</option>
+			<option value="BLR">Bangalore</option>
 			
 		</select>
 
@@ -51,19 +54,21 @@
 		    <option value="" disabled selected>Destination</option>
 		    <option value="DEL">New Delhi</option>
 		    <option value="BOM">Mumbai</option>
+			<option value="MAA">Chennai</option>
+			<option value="HYD">Hyderabad</option>
+			<option value="BLR">Bangalore</option>
 		</select>
 
 
 
       <select name="tripType" id="tripType" onchange="toggleReturnDate()" required>
         <option value="oneway">One Way</option>
-        <option value="return">Return</option>
       </select>
 
 		<input type="date" id="departureDate" name="departureDate" required>
       <input type="date" name="returnDate" id="returnDate" style="display:none;">
 
-      <input type="number" name="passengers" min="1" value="1" placeholder="Adults" required>
+      <input type="number" name="passengers" min="1" value="1" placeholder=" " required>
 
       <select name="class" required>
         <option value="economy">Economy</option>
