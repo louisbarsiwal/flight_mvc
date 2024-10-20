@@ -12,6 +12,8 @@ import flightmanagement.app.entities.BusinessOwnerRegistration;
 
 public interface BusinessOwnerDao {
 	
+	public int insertBusinessOwner(BusinessOwnerRegistration businessOwnerRegistration)
+			throws IOException, SerialException, SQLException;
 	
 	
 	int updateBusinessOwnerPassword(BusinessOwnerRegistration businessOwnerRegistration) throws IOException,SerialException,SQLException;

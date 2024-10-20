@@ -24,7 +24,7 @@
             <input type="text" id="airlineName" name="airlineName" required>
         </div>
         <div>
-            <label for="airlineNumber">Flight Number:</label>
+            <label for="airlineNumber">Airline Number:</label>
             <input type="text" id="airlineNumber" name="airlineNumber" required>
         </div>
         <div>

@@ -365,6 +365,74 @@ public class UserController {
 		return "redirect:/user/openBoLoginPage";
 		
 	}
+	
+	
+	@GetMapping("/openBoRegistrationPage")
+	public ModelAndView openBoRegistrationPage(ModelAndView modelAndView) {
+		System.out.println("\n openBoRegistrationPage is called");
+		modelAndView.setViewName("bo_user_registration");
+		return modelAndView;
+	}
+ 
+ 
+	@PostMapping("/Boregister")
+	public String register(@ModelAttribute BusinessOwnerRegistration businessOwnerRegistration, RedirectAttributes attributes)
+	        throws IOException, SerialException, SQLException {
+ 
+	    // Validation checks
+	    String firstName = businessOwnerRegistration.getFirstName();
+	    String lastName = businessOwnerRegistration.getLastName();
+	    String email = businessOwnerRegistration.getEmailId();
+	    String mobileNo = businessOwnerRegistration.getMobileNo();
+	    String username = businessOwnerRegistration.getUsername();
+	    String password = businessOwnerRegistration.getPassword();
+	    String confirmPassword = businessOwnerRegistration.getConfirmPassword();
+ 
+	    if (!firstName.matches("^[a-zA-Z]{3,20}$")) {
+	        attributes.addFlashAttribute("message", "First name must be between 3-20 characters and contain only alphabets.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	    if (!lastName.matches("^[a-zA-Z]{3,20}$")) {
+	        attributes.addFlashAttribute("message", "Last name must be between 3-20 characters and contain only alphabets.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	    if (!email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+	        attributes.addFlashAttribute("message", "Email must be in the format of example@gmail.com.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	    if (!mobileNo.matches("^\\d{10}$")) {
+	        attributes.addFlashAttribute("message", "Phone number must be 10 digits.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	    if (!username.matches("^[a-zA-Z0-9_]{6,15}$")) {
+	        attributes.addFlashAttribute("message", "Username must be between 6-15 characters and contain only alphabets, numbers, and underscores.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+ 
+	    if (!password.equals(confirmPassword)) {
+	        attributes.addFlashAttribute("message", "Passwords do not match.");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+ 
+	    // Password Encryption starts
+	    String passwordSalt = Password.generatePwdSalt(10);
+	    businessOwnerRegistration.setPasswordSalt(passwordSalt);
+ 
+	    String newPassword = password + passwordSalt;
+	    String passwordHash = Password.generatePwdHash(newPassword);
+	    businessOwnerRegistration.setPasswordHash(passwordHash);
+ 
+	    int result = businessOwnerDaoImpl.insertBusinessOwner(businessOwnerRegistration);
+
+ 
+	    if (result > 0) {
+	        attributes.addFlashAttribute("message", "Registration Successful");
+	        return "redirect:/user/openBoLoginPage";
+	    } else {
+	        attributes.addFlashAttribute("message", "Registration Failed");
+	        return "redirect:/user/openBoRegistrationPage";
+	    }
+	}
 		
 	
 	
@@ -744,14 +812,6 @@ public class UserController {
 		    return "book_now";
 		}
 	 
-	 @GetMapping("/openBoRegistrationPage")
-		public ModelAndView openBoRegistrationPage(ModelAndView modelAndView) {
-			
-			System.out.println("\n openBoRegistrationPage is called");
-			modelAndView.setViewName("bo_user_registration");
-			return modelAndView;
-		}
-
 
 	 
 	 @GetMapping("/filterFlightManagers")

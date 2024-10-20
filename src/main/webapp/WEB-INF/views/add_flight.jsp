@@ -12,11 +12,35 @@
 	
 	<script>
 		window.onload = function() {
-		const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
-		if (message) {
-		alert(message);
-			 }
-	   };
+					const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+					if (message) {
+						alert(message);
+					}
+					setMinDepartureDate();
+				};
+	   function setMinDepartureDate() {
+	   			const now = new Date();
+	   			const minDate = now.toISOString().slice(0, 16); // Get the current date and time in local format
+	   			document.getElementById('departure').setAttribute('min', minDate);
+	   		}
+
+	   		function updateArrivalDate() {
+	   			const departureDate = document.getElementById('departure').value;
+	   			document.getElementById('arrival').setAttribute('min', departureDate);
+	   		}
+
+			function calculateBusinessSeats() {
+			    const totalSeats = parseInt(document.getElementById('totalSeats').value) || 0;
+			    const economySeats = parseInt(document.getElementById('economySeats').value) || 0;
+			    
+			    const businessSeats = totalSeats - economySeats;
+			    document.getElementById('businessSeats').value = businessSeats >= 0 ? businessSeats : 0; // Ensure it doesn't go negative
+
+			    // Check if the sum of economy and business seats equals total seats
+			    if (economySeats + businessSeats !== totalSeats) {
+			        alert("Error: The sum of Economy and Business seats must equal Total Seats.");
+			    }
+			}
 	</script>
 </head>
 <body>
@@ -40,23 +64,13 @@
                 </select>
 			    </div>
 			    <div class="form-group">
-			        <label for="flightNo">Flight Number</label>
-					<select id="airlineNumber" name="flightNo">
-                    <% 
-                        List<String> airlineNumbers = (List<String>) request.getAttribute("airlineNumbers");
-                        if (airlineNumbers != null) {
-                            for (String number : airlineNumbers) {
-                    %>
-                        <option value="<%= number %>"><%= number %></option>
-                    <% 
-                            }
-                        } 
-                    %>
-                </select>
+					<label for="flightNo">Flight Number</label>
+					<input type="text" id="airlineNumber" name="flightNo" required> <!-- Changed from select to text input -->
 			    </div>
 			    <div class="form-group">
 					<label for="flightNo">Flight Number</label>
 				  <input type="text" id="airlineNumber" name="flightNo" required> <!-- Changed from select to text input -->
+
 			    </div>
 			    <div class="form-group">
 			        <label for="from">From</label>
@@ -70,7 +84,7 @@
 			    </div>
 			    <div class="form-group">
 			        <label for="departure">Departure (Date & Time)</label>
-			        <input type="datetime-local" id="departure" name="departureDateTime"> <!-- Changed here -->
+			        <input type="datetime-local" id="departure" name="departureDateTime" onchange="updateArrivalDate()" > <!-- Changed here -->
 			    </div>
 			    <div class="form-group">
 			        <label for="to">To</label>
@@ -88,11 +102,11 @@
 			    </div>
 			    <div class="form-group">
 			        <label for="totalSeats">Total Seats Available</label>
-			        <input type="number" id="totalSeats" name="totalSeats">
+			        <input type="number" id="totalSeats" name="totalSeats" oninput="calculateBusinessSeats()">
 			    </div>
 			    <div class="form-group">
 			        <label for="economySeats">Seats in Economy Class</label>
-			        <input type="number" id="economySeats" name="economySeats">
+			        <input type="number" id="economySeats" name="economySeats" oninput="calculateBusinessSeats()">
 			    </div>
 			    <div class="form-group">
 			        <label for="economyPrice">Price for Economy</label>

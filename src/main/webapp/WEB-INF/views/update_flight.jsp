@@ -47,35 +47,13 @@
             </div>
 
             <div class="form-group">
-                <label for="flightNo">Flight No</label>
-                <select id="flightNumber" name="flightNo">
-                    <% 
-                        List<String> airlineNumbers = (List<String>) request.getAttribute("airlineNumbers");
-                        if (airlineNumbers != null) {
-                            for (String number : airlineNumbers) {
-                    %>
-                        <option value="<%= number %>" <%= number.equals(addedFlight.getFlightNo()) ? "selected" : "" %>><%= number %></option>
-                    <% 
-                            }
-                        } 
-                    %>
-                </select>
+				<label for="flightNo">Flight Number</label>
+				<input type="text" id="flightNumber" name="flightNo" required> <!-- Changed from select to text input -->
             </div>
 
             <div class="form-group">
-                <label for="flightModel">Flight Model</label>
-                <select id="modelNumber" name="flightModel">
-                    <% 
-                        List<String> modelNumbers = (List<String>) request.getAttribute("modelNumbers");
-                        if (modelNumbers != null) {
-                            for (String model : modelNumbers) {
-                    %>
-                        <option value="<%= model %>" <%= model.equals(addedFlight.getFlightModel()) ? "selected" : "" %>><%= model %></option>
-                    <% 
-                            }
-                        } 
-                    %>
-                </select>
+				<label for="flightModel">Flight Model</label>
+				<input type="text" id="modelNumber" name="flightModel" required>
             </div>
 
             <div class="form-group">

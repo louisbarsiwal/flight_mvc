@@ -28,7 +28,7 @@ public class AirlineController {
             addedairlinedaoimpl.insertAirline(addedAirline); 
             model.addAttribute("message", "Airline added successfully");
         } catch (Exception e) {
-            model.addAttribute("message", "Error adding airline: " + e.getMessage());
+            model.addAttribute("message", "Error adding airline: Can't add same airline twice ");
         }
         return "add_airline"; 
     }

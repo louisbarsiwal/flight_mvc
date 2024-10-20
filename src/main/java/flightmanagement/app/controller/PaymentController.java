@@ -58,7 +58,7 @@ public class PaymentController {
        int result= paymentDao.savePayment(payment);
        if (result > 0) {  
 
-        redirectAttributes.addFlashAttribute("message", "Payment submitted successfully with Transaction ID");
+        redirectAttributes.addFlashAttribute("message", "Payment submitted successfully with Transaction ID" + transactionId);
         return "redirect:/payment/openBookedTicket";
        }	
     	else {
