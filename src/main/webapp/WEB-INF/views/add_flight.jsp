@@ -55,19 +55,8 @@
                 </select>
 			    </div>
 			    <div class="form-group">
-			        <label for="flightModel">Flight Model</label>
-					<select id="modelNumber" name="flightModel">
-                    <% 
-                        List<String> modelNumbers = (List<String>) request.getAttribute("modelNumbers");
-                        if (modelNumbers != null) {
-                            for (String model : modelNumbers) {
-                    %>
-                        <option value="<%= model %>"><%= model %></option>
-                    <% 
-                            }
-                        } 
-                    %>
-                </select>
+					<label for="flightNo">Flight Number</label>
+				  <input type="text" id="airlineNumber" name="flightNo" required> <!-- Changed from select to text input -->
 			    </div>
 			    <div class="form-group">
 			        <label for="from">From</label>
