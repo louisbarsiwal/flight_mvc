@@ -551,7 +551,7 @@ public class UserController {
 	    int result = flightManagerDaoImpl.insertFlightManager(flightManagerRegistration);
 	  
 	    if (result > 0) {
-	        attributes.addFlashAttribute("message", "Registration Successful");
+	        attributes.addFlashAttribute("message", "Registration Successful... Your access is under verification ");
 	        return "redirect:/user/openFmLoginPage";
 	    } else {
 	        attributes.addFlashAttribute("message", "Registration Failed");
