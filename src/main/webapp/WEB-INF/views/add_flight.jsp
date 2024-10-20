@@ -40,7 +40,7 @@
                 </select>
 			    </div>
 			    <div class="form-group">
-			        <label for="flightNo">Flight No</label>
+			        <label for="flightNo">Flight Number</label>
 					<select id="airlineNumber" name="flightNo">
                     <% 
                         List<String> airlineNumbers = (List<String>) request.getAttribute("airlineNumbers");
