@@ -35,9 +35,7 @@
 <body>
     <div class="container">
         <h2>Booking Confirmation</h2>
-        <a class="download-btn" href="${pageContext.request.contextPath}/downloadFile">
-            <button>Download PDF</button>
-        </a>
+        
         <table>
             <tr class="header">
                 <td>Trip ID</td>

@@ -49,7 +49,7 @@
                     <label for="cardNumber">Card Number:</label>
                     <input type="text" name="cardNumber" id="cardNumber" placeholder="0000-0000-0000-0000" oninput="formatCardNumber(this)" maxlength="19" pattern="^(\d{4}-){3}\d{4}$" required>
                     <label for="expiryDate">Expiry Date (MM/YY):</label>
-                    <input type="text" name="expiryDate" placeholder="MM/YY" maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" required>
+                    <input type="text" name="expiryDate" placeholder="MM/YY" maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" oninput="formatExpiryDate(this)" required>
                     <label for="cvv">CVV:</label>
                     <input type="password" name="cvv" placeholder="Enter CVV" maxlength="3" required>
                     <label for="cardHolderName">Card Holder Name:</label>
@@ -73,6 +73,11 @@
         </div>
     </div>
     <script>
+		
+		window.onload = function() {
+		        showPaymentDetails('netbanking'); // Set your default payment method here
+		    };
+		
         function showPaymentDetails(paymentMethod) {
             const fields = {
                 netbanking: document.getElementById("bankDropdown"),
@@ -117,6 +122,53 @@
                 }
             }
         }
+		
+		function formatCardNumber(input) {
+		    // Remove any non-digit characters
+		    let value = input.value.replace(/\D/g, '');
+		    
+		    // Split the value into groups of 4
+		    let formattedValue = '';
+		    for (let i = 0; i < value.length; i += 4) {
+		        if (i > 0) {
+		            formattedValue += '-';
+		        }
+		        formattedValue += value.substring(i, i + 4);
+		    }
+		    
+		    // Set the formatted value back to the input
+		    input.value = formattedValue;
+		}
+		
+
+		function formatExpiryDate(input) {
+		    // Remove any non-digit characters
+		    let value = input.value.replace(/\D/g, '');
+		    
+		    // Insert a slash after the first two digits
+		    if (value.length > 2) {
+		        value = value.slice(0, 2) + '/' + value.slice(2);
+		    }
+		    
+		    // Set the formatted value back to the input
+		    input.value = value;
+		    
+		    // Validate if the date is not in the past
+		    const currentDate = new Date();
+		    const currentMonth = currentDate.getMonth() + 1; // Months are zero-based
+		    const currentYear = currentDate.getFullYear() % 100; // Last two digits of the year
+		    
+		    if (value.length === 5) { // MM/YY format
+		        const [month, year] = value.split('/');
+		        const expiryMonth = parseInt(month, 10);
+		        const expiryYear = parseInt(year, 10);
+		        
+		        if (expiryYear < currentYear || (expiryYear === currentYear && expiryMonth < currentMonth)) {
+		            alert('The expiry date cannot be in the past.');
+		            input.value = ''; // Clear the input if invalid
+		        }
+		    }
+		}
     </script>
 </body>
 </html>
