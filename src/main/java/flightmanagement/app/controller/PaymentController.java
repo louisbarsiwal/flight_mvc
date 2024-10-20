@@ -37,7 +37,7 @@ public class PaymentController {
         @RequestParam(required = false) String cardHolderName,
         @RequestParam(required = false) String upiId,
         @RequestParam(required = false) String walletName,
-        @RequestParam double amount,
+        @RequestParam("amount")double amount,
         RedirectAttributes redirectAttributes) throws SQLException, IOException {
 
         System.out.println("Received payment method: " + paymentMethod);
