@@ -11,6 +11,14 @@
 </head>
 <body>
     <h1>Deleted Airlines</h1>
+	<div class="search-form">
+	    <form method="get" action="/filterDeletedAirlines">
+	        <input type="text" name="searchTerm" placeholder="Search by Airline Name or Number..." required>
+	        <input type="submit" value="Filter">
+	    </form>
+	</div>
+
+
     <table>
         <thead>
             <tr>
@@ -51,5 +59,7 @@
         </tbody>
     </table>
 	<a href="/openDisplayAirlinePage">Back to Airlines</a>
+	
+
 </body>
 </html>

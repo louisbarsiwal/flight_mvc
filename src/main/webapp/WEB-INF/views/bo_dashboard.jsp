@@ -18,13 +18,11 @@
 	<!--h1>Flight  Application</h1-->
 <div class="header" id="header">
   <button class="openbtn" onclick="openNav()">☰</button>
-  <span id="companyName">XYZ FLIGHTS</span>
+  <span id="companyName">TravelWings</span>
    <div class="profile-icon" onclick="toggleDropdown()">
      <img src="/images/profile-icon.png" alt="Profile Icon">
      <div id="dropdown" class="dropdown-content">
        <a href="/user/openBoLoginPage">Business Owner</a>
-       <a href="/user/openfmuserloginPage">Flight Manager</a>
-       <a href="/user/openPassengerLogin">Customer</a>
        <a href="/">Back to HomePage</a>
     </div>
   </div>
@@ -42,47 +40,15 @@
   <a href="/openDisplayFlightPage">DISPLAY FLIGHTS</a>
  
   <a href="/user/openAccessControlPage">FLIGHT MANAGERS</a>
-  <a href="/user/Bologout">LOGOUT</a>
+  <a href="/user/openDisplayPassengers">PASSENGERS LIST</a>
+  
+  <a href="/">LOGOUT</a>
   
  
 
 </div>
  
-<div id="main">
-  <div class="booking-form">
-    <form>
-      <select name="source" required>
-        <option value="" disabled selected>Source</option>
-        <option value="New Delhi">New Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-        <!-- Add more options as needed -->
-      </select>
- 
-      <select name="destination" required>
-        <option value="" disabled selected>Destination</option>
-        <option value="New Delhi">New Delhi</option>
-        <option value="Mumbai">Mumbai</option>
-        <!-- Add more options as needed -->
-      </select>
- 
-      <select name="tripType" id="tripType" onchange="toggleReturnDate()" required>
-        <option value="oneway">One Way</option>
-        <option value="return">Return</option>
-      </select>
- 
-      <input type="date" name="departureDate" id="departureDate" required>
-      <input type="date" name="returnDate" id="returnDate" style="display:none;">
- 
-      <input type="number" name="passengers" min="1" value="1" placeholder="Adults" required>
- 
-      <select name="class" required>
-        <option value="economy">Economy</option>
-        <option value="business">Business</option>
-      </select>
- 
-      <button type="submit">Search</button>
-    </form>
-  </div>
+
 </div>
  
 <script>
@@ -102,23 +68,7 @@ function toggleDropdown() {
   document.getElementById("dropdown").classList.toggle("show");
 }
  
-function toggleReturnDate() {
-  var tripType = document.getElementById("tripType").value;
-  var returnDate = document.getElementById("returnDate");
-  if (tripType === "return") {
-    returnDate.style.display = "inline-block";
-  } else {
-    returnDate.style.display = "none";
-  }
-}
- 
-function setMinDate() {
-  var today = new Date().toISOString().split('T')[0];
-  document.getElementById("departureDate").setAttribute('min', today);
-  document.getElementById("returnDate").setAttribute('min', today);
-}
- 
-window.onload = setMinDate;
+
  
 window.onclick = function(event) {
   if (!event.target.matches('.profile-icon img')) {

@@ -562,7 +562,7 @@ public class UserController {
 	 
 
 
-	@GetMapping("/openPassengerRegistrationPage")
+	@GetMapping("/openPassengerRegistration")
 	public ModelAndView openPassengerRegistrationPage(ModelAndView modelAndView) {
 
 		System.out.println("\n passengerRegistrationPage is called");
@@ -728,8 +728,49 @@ public class UserController {
 	     }
 	     return "redirect:/user/openAccessControlPage"; // Redirect back to the access control page
 	 }
+	 
+	 @GetMapping("/user/filterFlightManagers")
+	 public String filterFlightManagers(@RequestParam String searchTerm, Model model) {
+	     String sql = "SELECT flightManager_id, first_name, last_name, user_name, status "
+	                 + "FROM flight_managers WHERE first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ?";
+
+	     String filter = "%" + searchTerm + "%"; // Allows partial matches
+	     List<Map<String, Object>> flightManagers = jdbcTemplate.queryForList(sql, filter, filter, filter);
+
+	     model.addAttribute("flightManagerRegistration", flightManagers);
+	     return "access_control"; // Ensure this matches the name of your JSP file without extension
+	 }
+	 
+	 @GetMapping("/openDisplayPassengers")
+	    public String openDisplayPassengers(Model model) {
+	        String sql = "SELECT passenger_Id, first_name, last_name, email, mobile_no, age, gender,username FROM admin_passenger";
+	 
+	        List<Map<String, Object>> passengers = jdbcTemplate.queryForList(sql);
+	 
+	        model.addAttribute("passengers", passengers);
+	        System.out.println(passengers);
+	 
+	        return "display_passengers"; // Ensure the JSP file name matches
+	    }
+	 
+	 
+	 @GetMapping("/filterPassengers")
+	    public String filterAirlines(@RequestParam String searchTerm, Model model) {
+	       
+		 String sql = "SELECT passenger_Id, first_name, last_name, email, mobile_no, age, gender,username "
+		 		+ "FROM admin_passenger WHERE passenger_Id LIKE ? OR first_name LIKE ? ";
+		 
+		 
+	        String filter = "%" + searchTerm + "%"; // Allows partial matches
+	        List<Map<String, Object>> passengers = jdbcTemplate.queryForList(sql, filter, filter);
+
+	        model.addAttribute("passengers", passengers);
+	        return "display_passengers"; // Return the same JSP page
+	    }
+
 	
 	}
+
 	
 	
 

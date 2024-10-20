@@ -6,27 +6,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Booking History</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/display_airline.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/booking_history.css">
 </head>
 <body>
 
 <h2>Booking History</h2>
+<div class="search-form">
+	    <form method="get" action="/filterBookingHistory">
+	        <input type="text" name="searchTerm" placeholder="Search by Airline Name or Number..." required>
+	        <input type="submit" value="Filter">
+	    </form>
+	</div>
 <table>
     <thead>
         <tr>
-			<th>airline_name</th>
-			                <th>flight_no</th>
-			                <th>flight_model</th>
-			                <th>from_location</th>
-							<th>to_location</th>
-							<th>departure_datetime</th>
-							<th>arrival_datetime</th>
-							<th>economy_seats</th>
-							<th>economy_price</th>
-							<th>business_seats</th>
-							<th>business_price</th>
-							<th>total_price</th>	
-							<th>Action</th>
+			<th>Airline Name</th>
+			<th>Flight No</th>
+			<th>Flight Model</th>
+			<th>From Location</th>
+			<th>To Location</th>
+			<th>Departure Datetime</th>
+			<th>Arrival Datetime</th>
+			<th>Economy Seats</th>
+			<th>Economy Price</th>
+			<th>Business Seats</th>
+			<th>Business Price</th>
+			<th>Total Price</th>
+			<th>Action</th>
 							
         </tr>
     </thead>

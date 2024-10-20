@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <title>Payment Flow</title>
     <link rel="stylesheet" type="text/css" href="/CSS/payment.css">
+	
+	<script>
+			        window.onload = function() {
+			            const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+			            if (message) {
+			                alert(message);
+			            }
+			        };
+			    </script>
     
 </head>
 <body>

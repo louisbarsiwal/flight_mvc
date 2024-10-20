@@ -167,6 +167,21 @@ public class DisplayFlightController {
         // Redirect back to openEditAirlinePage with the airLineId
         return "redirect:/openEditFlightPage?flightId=" + updatedFlight.getFlightId();
     }
+    
+    @GetMapping("/filterFlights")
+    public String filterFlights(@RequestParam String searchTerm, Model model) {
+        String sql = "SELECT flight_id, airline_name, flight_no, flight_model, from_location, to_location, "
+                + "departure_datetime, arrival_datetime, total_seats, economy_seats, "
+                + "economy_price, business_seats, business_price "
+                + "FROM added_flights WHERE airline_name LIKE ? OR flight_no LIKE ? "
+                + "OR from_location LIKE ? OR to_location LIKE ?";
+
+        String filter = "%" + searchTerm + "%"; // To allow partial matches
+        List<Map<String, Object>> flights = jdbcTemplate.queryForList(sql, filter, filter, filter, filter);
+
+        model.addAttribute("flights", flights);
+        return "display_flight"; // Return the same JSP page
+    }
 }
     
 
