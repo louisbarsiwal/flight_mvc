@@ -131,5 +131,17 @@ public class DisplayAirlineController {
         // Redirect back to openEditAirlinePage with the airLineId
         return "redirect:/openEditAirlinePage?airLineId=" + updatedAirline.getAirLineId();
     }
+    
+    @GetMapping("/filterAirlines")
+    public String filterAirlines(@RequestParam String searchTerm, Model model) {
+        String sql = "SELECT id, airline_name, airline_number, model_number FROM added_airline WHERE airline_name LIKE ? OR airline_number LIKE ?";
+
+        String filter = "%" + searchTerm + "%"; // Allows partial matches
+        List<Map<String, Object>> airlines = jdbcTemplate.queryForList(sql, filter, filter);
+
+        model.addAttribute("airlines", airlines);
+        return "display_airline"; // Return the same JSP page
+    }
+
 }
 

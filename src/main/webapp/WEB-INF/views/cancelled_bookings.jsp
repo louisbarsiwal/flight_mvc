@@ -7,25 +7,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cancelled Bookings</title>
-    <link rel="stylesheet" type="text/css" href="/CSS/display_airline.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/cancelled_tickets.css">
 </head>
 <body>
     <h1>Cancelled Bookings</h1>
+	<div class="search-form">
+		    <form method="get" action="/filterCancelledBookings">
+		        <input type="text" name="searchTerm" placeholder="Search by Airline Name or Number..." required>
+		        <input type="submit" value="Filter">
+		    </form>
+		</div>
     <table>
         <thead>
             <tr>
-                <th>airline_name</th>
-                <th>flight_no</th>
-                <th>flight_model</th>
-                <th>from_location</th>
-				<th>to_location</th>
-				<th>departure_datetime</th>
-				<th>arrival_datetime</th>
-				<th>economy_seats</th>
-				<th>economy_price</th>
-				<th>business_seats</th>
-				<th>business_price</th>
-				<th>total_price</th>										
+				<th>Airline Name</th>
+				<th>Flight No</th>
+				<th>Flight Model</th>
+				<th>From Location</th>
+				<th>To Location</th>
+				<th>Departure Datetime</th>
+				<th>Arrival Datetime</th>
+				<th>Economy Seats</th>
+				<th>Economy Price</th>
+				<th>Business Seats</th>
+				<th>Business Price</th>
+				<th>Total Price</th>
+										
             </tr>
         </thead>
         <tbody>

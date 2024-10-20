@@ -128,7 +128,7 @@ body {
 }
 
 .booking-form button {
-  background-color: #333333;
+  background-color: #333333; /* Match this with your search button color */
   color: white;
   border: none;
   cursor: pointer;
@@ -136,18 +136,56 @@ body {
 }
 
 .booking-form button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker shade for hover effect */
 }
 
 h1, p {
   text-align: center;
 }
 
+.available-flights {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .flight-card {
-  border: 1px solid #ccc;
-  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 15px;
-  backdrop-filter: blur(10px);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  position: relative;
+  margin-top: 15px; /* Added space between cards */
+}
+
+.flight-info {
+  flex-grow: 1; /* Allows flight info to take available space */
+}
+
+.book-form {
+  display: flex; /* Ensures the button is contained */
+  justify-content: flex-end; /* Aligns button to the right */
+  margin-left: 20px; /* Space between flight info and button */
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color:  rgb(98, 86, 86); /* Match this color with the search button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
+}
+
+/* Additional Styles for Button Alignment */
+.flight-card .book-form {
+  margin-left: auto; /* Ensures the button is pushed to the right */
 }

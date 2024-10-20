@@ -33,25 +33,24 @@ public class PassengerDaoImpl implements PassengerDao {
 	@Override
 	public int insertPassenger(PassengerRegistration passengerRegistration)
 			throws IOException, SerialException, SQLException {
-		Blob profileImage = getBlob(passengerRegistration.getProfileImage());
+		//Blob profileImage = getBlob(passengerRegistration.getProfileImage());
 
 		String query = "INSERT INTO admin_passenger" + "(`first_name`, `last_name`, `email`, `mobile_no`, "
-				+ "`age`, `gender`,`username`, `password_salt`, `password_hash`, "
-				+ "`profile_image`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+				+ "`age`, `gender`,`username`, `password_salt`, `password_hash`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		return jdbcTemplate.update(query, passengerRegistration.getFirstName(), passengerRegistration.getLastName(), passengerRegistration.getEmailId(),
 				passengerRegistration.getMobileNo(), passengerRegistration.getAge(),passengerRegistration.getGender(), passengerRegistration.getUsername(),
-				passengerRegistration.getPasswordSalt(),passengerRegistration.getPasswordHash(), profileImage);
+				passengerRegistration.getPasswordSalt(),passengerRegistration.getPasswordHash());
 		
 	}
 	
 
-	private Blob getBlob(MultipartFile image) throws IOException, SerialException, SQLException {
-		byte[] byteArr = image.getBytes();
-		Blob imageBlob = new SerialBlob(byteArr);
-		return imageBlob;
-	}
-	
+//	private Blob getBlob(MultipartFile image) throws IOException, SerialException, SQLException {
+//		byte[] byteArr = image.getBytes();
+//		Blob imageBlob = new SerialBlob(byteArr);
+//		return imageBlob;
+//	}
+//	
 	
 
 	@Override
@@ -63,13 +62,13 @@ public class PassengerDaoImpl implements PassengerDao {
 	@Override
 	public PassengerRegistration modifyPassengerProfile(PassengerRegistration passengerRegistration)
 			throws SerialException, IOException, SQLException {
-		Blob profileImage = getBlob(passengerRegistration.getProfileImage());
+		//Blob profileImage = getBlob(passengerRegistration.getProfileImage());
 
 		String query = "UPDATE admin_passenger SET first_name = ?, last_name = ?, email = ?, "
-				+ "mobile_no = ?, age = ?, gender = ?, profile_image = ? WHERE passenger_Id = ?";
+				+ "mobile_no = ?, age = ?, gender = ? WHERE passenger_Id = ?";
 
 		jdbcTemplate.update(query, passengerRegistration.getFirstName(), passengerRegistration.getLastName(), passengerRegistration.getEmailId(), passengerRegistration.getMobileNo(),
-				passengerRegistration.getAge(),passengerRegistration.getGender(), profileImage, passengerRegistration.getPassenger_Id());
+				passengerRegistration.getAge(),passengerRegistration.getGender(),passengerRegistration.getPassenger_Id());
 		
 		return getUserById(passengerRegistration.getPassenger_Id());
 	}

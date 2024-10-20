@@ -39,7 +39,7 @@
                 passwordField.type = "text";
                 toggleIcon.classList.remove("fa-eye-slash");
                 toggleIcon.classList.add("fa-eye");
-                // Automatically hide the password after 0.5 second
+                // Automatically hide the password after 30 second
                 setTimeout(function() {
                     passwordField.type = "password";
                     toggleIcon.classList.remove("fa-eye");

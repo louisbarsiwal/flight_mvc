@@ -257,28 +257,10 @@ public class UserController {
 	@GetMapping("/openPassengerProfilePage")
 	public ModelAndView passengerProfile(ModelAndView modelAndView) throws IOException {
 		//PassengerRegistration passengerRegistration = new PassengerRegistration();
-		passengerRegistration.setImage(passengerRegistration.getProfileImage().getInputStream());
 		modelAndView.setViewName("passenger_profile");
 		modelAndView.addObject("passengerRegistration", passengerRegistration);
 		return modelAndView;
 	}
-//	@PostMapping("/passengerUpdateProfile")
-//	public String updatePassengerProfile(
-//			@ModelAttribute PassengerRegistration updatedPassenger,
-//			RedirectAttributes attributes
-//			) throws SerialException, IOException, SQLException {
-//		// Update user information in the database
-//		
-//		try {
-//			passengerRegistration = passengerdaoImpl.modifyPassengerProfile(updatedPassenger); // Simulate updating the user object
-//			attributes.addAttribute("message", "Profile updated successfully");
-//		} catch(EmptyResultDataAccessException e) {
-//			attributes.addAttribute("message", "Updation failed. Please try again later");
-//		}
-//		return "redirect:/user/openPassengerProfilePage"; // Redirect back to view profile
-//	}
-	
-	
 	@PostMapping("/passengerUpdateProfile")
 	public String updatePassengerProfile(
 	        @ModelAttribute PassengerRegistration updatedPassenger,
@@ -290,6 +272,8 @@ public class UserController {
 	    String lastName = updatedPassenger.getLastName();
 	    String email = updatedPassenger.getEmailId();
 	    String mobileNo = updatedPassenger.getMobileNo();
+	    int age = updatedPassenger.getAge();
+	    String gender = updatedPassenger.getGender();
 
 	    // Validate First Name
 	    if (!firstName.matches("^[a-zA-Z]{3,20}$")) {
@@ -314,6 +298,14 @@ public class UserController {
 	        attributes.addFlashAttribute("message", "Phone number must be 10 digits.");
 	        return "redirect:/user/openPassengerProfilePage"; // Redirect to the profile page with an error message
 	    }
+	    if (age < 0 || age > 120) {
+	        attributes.addFlashAttribute("message", "Age must be a valid number between 0 and 120.");
+	        return "redirect:/user/openPassengerProfilePage";
+	    }
+	    if (gender == null || (!gender.equalsIgnoreCase("male") && !gender.equalsIgnoreCase("female") && !gender.equalsIgnoreCase("other"))) {
+	        attributes.addFlashAttribute("message", "Gender must be 'male', 'female', or 'other'.");
+	        return "redirect:/user/openPassengerProfilePage";
+	    }
 
 		try {
 			
@@ -325,10 +317,6 @@ public class UserController {
 		}
 		return "redirect:/user/openPassengerProfilePage"; // Redirect back to view profile
 	}
-
-	
-	
-	
 	@PostMapping("/Bologin")
 	public String login(@RequestParam String username, 
 			@RequestParam String password, 
@@ -642,37 +630,6 @@ public class UserController {
 		return "passenger_dashboard";
 	}
 
-//	@PostMapping("/passengerregister")
-//	public String  passengerRegister(@ModelAttribute PassengerRegistration passengerRegistration, RedirectAttributes attributes)
-//			throws IOException, SerialException, SQLException {
-//
-//
-//		// Password Encryption starts
-//		String passwordSalt = Password.generatePwdSalt(10);
-//		passengerRegistration.setPasswordSalt(passwordSalt);
-//
-//		// temporary data => password+salt
-//		String newPassword = passengerRegistration.getPassword() + passwordSalt; // 1234rdvyjtftyf
-//		
-//		System.out.println("Password: "+newPassword);
-//
-//		String passwordHash = Password.generatePwdHash(newPassword);
-//		
-//		passengerRegistration.setPasswordHash(passwordHash);
-//		// Password Encryption completes
-//		System.out.println("Password hash: "+passwordHash);
-//
-//		int result = passengerdaoImpl.insertPassenger(passengerRegistration);
-//
-//		if (result > 0) {
-//			attributes.addFlashAttribute("message", "Registration Successful");
-//			return "redirect:/user/openPassengerRegistrationPage";
-//		} else {
-//			attributes.addFlashAttribute("message", "Registration Failed");
-//			return "redirect:/user/openPassengerRegistrationPage";
-//		}
-//	}
-//	}
 	@PostMapping("/passengerregister")
 	public String passengerRegister(@ModelAttribute PassengerRegistration passengerRegistration,
 	                                @RequestParam("confirmpassword") String confirmPassword,
@@ -720,6 +677,7 @@ public class UserController {
 	        attributes.addFlashAttribute("message", "Passwords do not match.");
 	        return "redirect:/user/openPassengerRegistrationPage";
 	    }
+
 
 	    // Password Encryption
 	    String passwordSalt = Password.generatePwdSalt(10);
@@ -783,7 +741,7 @@ public class UserController {
 		return "redirect:/user/openPassengerLogin";
 		
 	}
-
+	
 	@GetMapping("/openPassengerLogin")
 	public String openPassengerLogin() {
 		return "passenger_login";
@@ -867,6 +825,7 @@ public class UserController {
 
 
 
+
 	 @GetMapping("/searchFlights")
 	 
 		public String searchFlights(@RequestParam(required = false) String source,
@@ -897,6 +856,22 @@ public class UserController {
 			modelAndView.setViewName("bo_user_registration");
 			return modelAndView;
 		}
+
+
+	 
+	 @GetMapping("/user/filterFlightManagers")
+	 public String filterFlightManagers(@RequestParam String searchTerm, Model model) {
+	     String sql = "SELECT flightManager_id, first_name, last_name, user_name, status "
+	                 + "FROM flight_managers WHERE first_name LIKE ? OR last_name LIKE ? OR user_name LIKE ?";
+
+	     String filter = "%" + searchTerm + "%"; // Allows partial matches
+	     List<Map<String, Object>> flightManagers = jdbcTemplate.queryForList(sql, filter, filter, filter);
+
+	     model.addAttribute("flightManagerRegistration", flightManagers);
+	     return "access_control"; // Ensure this matches the name of your JSP file without extension
+	 }
+
+	
 
 	}
 	

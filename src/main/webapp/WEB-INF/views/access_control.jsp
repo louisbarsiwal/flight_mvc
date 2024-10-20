@@ -10,6 +10,12 @@
 </head>
 <body>
     <h2>Flight Manager Access Control</h2>
+	<div class="search-form">
+	    <form method="get" action="/user/filterFlightManagers">
+	        <input type="text" name="searchTerm" placeholder="Search by First Name, Last Name, or Username..." required>
+	        <input type="submit" value="Filter">
+	    </form>
+	</div>
 
     <!-- Display success or error messages -->
     <c:if test="${not empty successMessage}">
@@ -48,12 +54,12 @@
                         <td>
 							<form action="${pageContext.request.contextPath}/user/grantAccess" method="post">
 								<input type="hidden" name="flightManagerId" value="<%= flightManager.get("flightManager_id") %>" />
-								                    <button type="submit">Grant Access</button>
+								                    <button type="submit" class="access-button">Grant Access</button>
 							</form>
 
 							<form action="${pageContext.request.contextPath}/user/revokeAccess" method="post">
 								<input type="hidden" name="flightManagerId" value="<%= flightManager.get("flightManager_id") %>" />
-								                   <button type="submit">Revoke Access</button>
+								                   <button type="submit" class="access-button" id= "revoke-access">Revoke Access</button>
 							</form>
 
                         </td>

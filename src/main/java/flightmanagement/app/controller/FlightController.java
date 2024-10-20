@@ -35,6 +35,8 @@ public class FlightController {
 		public String searchFlights(@RequestParam(required = false) String source,
 				@RequestParam(required = false) String destination, @RequestParam(required = false) String departureDate,
 				@RequestParam(required = false) String tripType, Model model) {
+		 
+		 
 			System.out.println("Searching flights from " + source + " to " + destination + " on " + departureDate
 					+ " with trip type " + tripType);
 			if (source == null)

@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #F1FAEE;
     color: #1D3557;
-    margin: 0;
+    margin-top: 150px;
     padding: 0;
     display: flex;
     justify-content: center;
@@ -78,6 +78,75 @@ table tbody tr:hover {
 
 .edit-button:hover {
     background-color: #2980b9; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers the button horizontally */
+    margin-top: 20px; /* Optional: space above the button */
+}
+
+button, a {
+    background-color: #457B9D;
+    color: #F1FAEE;
+    border: none;
+    padding: 10px 15px; /* Adjusted padding for a smaller button */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex; /* Inline-flex to only take up the required space */
+    justify-content: center;
+    align-items: center;
+    width: auto; /* Width adapts to the button content */
+}
+
+a {
+    margin-top: 20px;
+    text-decoration: none;
+    width: auto; /* Ensures the link doesn't expand unnecessarily */
+}
+
+button:hover {
+    background-color: #1D3557;
+}
+
+.search-form {
+    background-color: #F1FAEE;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+	margin-top: 50px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    border: 1px solid #457B9D;
+    border-radius: 5px;
+    width: 250px;
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.search-form input[type="text"]:focus {
+    border-color: #E63946;
+    outline: none;
+}
+
+.search-form input[type="submit"] {
+    padding: 10px 15px;
+    background-color: #457B9D;
+    color: #F1FAEE;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-form input[type="submit"]:hover {
+    background-color: #1D3557;
 }
 
 

@@ -44,6 +44,9 @@
 		    <option value="" disabled selected>Source</option>
 		    <option value="DEL">New Delhi</option>
 		    <option value="BOM">Mumbai</option>
+			<option value="KOAA">Chennai</option>
+			<option value="HYD">Hyderabad</option>
+		    <option value="BLR">Bangalore</option>
 			
 		</select>
 
@@ -51,6 +54,10 @@
 		    <option value="" disabled selected>Destination</option>
 		    <option value="DEL">New Delhi</option>
 		    <option value="BOM">Mumbai</option>
+			<option value="KOAA">Chennai</option>
+		    <option value="HYD">Hyderabad</option>
+		    <option value="BLR">Bangalore</option>
+			
 		</select>
 
 
@@ -83,9 +90,16 @@
 	             
 						<div class="flight-card">
 						<div class="flight-info">
+						  <p><strong>From:</strong> <%= flight.getFromLocation() %></p>
+						  <p><strong>To:</strong> <%= flight.getToLocation() %></p>
 	                      <p><strong>Airline Name:</strong> <%= flight.getAirlineName() %></p>
 	                      <p><strong>Flight Number:</strong> <%= flight.getFlightNo() %></p>
 	                      <p><strong>Flight Model:</strong> <%= flight.getFlightModel() %></p>
+						  <p><strong>Arrival Time:</strong> <%= flight.getArrivalDateTime() %></p>
+						  <p><strong>Departure Time:</strong> <%= flight.getDepartureDateTime() %></p>
+						  <p><strong>Business class Price:</strong>₹<%=flight.getBusinessPrice()%></p>
+						  <p><strong>Economy class Price:</strong>₹<%=flight.getEconomyPrice()%></p>
+						  
 						  </div>
 				         <form action="/flight/openBookNowPage" method="post" class="book-form">
 						 <input type="hidden" name="flightId" value="<%= flight.getFlightId() %>">

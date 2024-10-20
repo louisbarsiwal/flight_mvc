@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %> 
 <%@ page import="flightmanagement.app.entities.AddedFlight" %>
 <%
     // Retrieve the flight details from the request attribute
@@ -39,49 +39,70 @@
         }
 
         // Validate seat inputs and show warning messages
-        function validateSeats() {
-            let businessSeats = parseInt(document.getElementById('businessSeats').value) || 0;
-            let economySeats = parseInt(document.getElementById('economySeats').value) || 0;
+		// Validate seat inputs and show warning messages
+		function validateSeats() {
+		    let businessSeatsInput = document.getElementById('businessSeats');
+		    let economySeatsInput = document.getElementById('economySeats');
 
-            let availableBusinessSeats = <%= flight.getBusinessSeats() %>;
-            let availableEconomySeats = <%= flight.getEconomySeats() %>;
+		    let businessSeats = parseInt(businessSeatsInput.value) || 0;
+		    let economySeats = parseInt(economySeatsInput.value) || 0;
 
-            let warningMessage = "";
+		    let availableBusinessSeats = <%= flight.getBusinessSeats() %>;
+		    let availableEconomySeats = <%= flight.getEconomySeats() %>;
 
-            // Check for Business Class availability
-            if (availableBusinessSeats === 0 && businessSeats > 0) {
-                warningMessage += "No Business Class seats available.\n";
-                document.getElementById('businessSeats').value = 0; // Reset to zero
-            } else if (businessSeats > availableBusinessSeats) {
-                warningMessage += `You cannot enter more than ${availableBusinessSeats} Business Class seats.\n`;
-                document.getElementById('businessSeats').value = availableBusinessSeats; // Reset to available seats
-            }
+		    // Check for negative seat inputs
+		    if (businessSeats < 0) {
+		        alert("You cannot enter negative numbers for Business Class seats.");
+		        businessSeatsInput.value = "0"; // Reset to zero
+		        calculateFare(); // Recalculate fare based on the adjusted values
+		        return false; // Prevent form submission
+		    } else if (economySeats < 0) {
+		        alert("You cannot enter negative numbers for Economy Class seats.");
+		        economySeatsInput.value = "0"; // Reset to zero
+		        calculateFare(); // Recalculate fare based on the adjusted values
+		        return false; // Prevent form submission
+		    }
 
-            // Check for Economy Class availability
-            if (availableEconomySeats === 0 && economySeats > 0) {
-                warningMessage += "No Economy Class seats available.\n";
-                document.getElementById('economySeats').value = 0; // Reset to zero
-            } else if (economySeats > availableEconomySeats) {
-                warningMessage += `You cannot enter more than ${availableEconomySeats} Economy Class seats.\n`;
-                document.getElementById('economySeats').value = availableEconomySeats; // Reset to available seats
-            }
+		    // Check for Business Class availability
+		    if (availableBusinessSeats === 0 && businessSeats > 0) {
+		        alert("No Business Class seats available.");
+		        businessSeatsInput.value = "0"; // Reset to zero
+		        calculateFare(); // Recalculate fare based on the adjusted values
+		        return false; // Prevent form submission
+		    } else if (businessSeats > availableBusinessSeats) {
+		        alert(`You cannot enter more than available Business Class seats.`);
+		        businessSeatsInput.value = "0"; // Reset to zero
+		        calculateFare(); // Recalculate fare based on the adjusted values
+		        return false; // Prevent form submission
+		    }
 
-            // Check if there are no available seats in both classes
-            if (availableBusinessSeats === 0 && availableEconomySeats === 0) {
-                warningMessage += "No seats are available in both Business and Economy classes.\n";
-            } else if (businessSeats <= 0 && economySeats <= 0) {
-                warningMessage += "Please enter a valid number of seats for at least one class.\n";
-            }
+		    // Check for Economy Class availability
+		    if (availableEconomySeats === 0 && economySeats > 0) {
+		        alert("No Economy Class seats available.");
+		        economySeatsInput.value = "0"; // Reset to zero
+		        calculateFare(); // Recalculate fare based on the adjusted values
+		        return false; // Prevent form submission
+		    } else if (economySeats > availableEconomySeats) {
+		        alert(`You cannot enter more than available Economy Class seats.`);
+		        economySeatsInput.value = "0"; // Reset to zero
+		        calculateFare(); // Recalculate fare based on the adjusted values
+		        return false; // Prevent form submission
+		    }
 
-            // Show warning message if there are any issues
-            if (warningMessage) {
-                alert(warningMessage.trim());
-                calculateFare(); // Recalculate fare based on the adjusted values
-                return false; // Prevent form submission
-            }
+		    // Check if both classes have no available seats
+		    if (availableBusinessSeats === 0 && availableEconomySeats === 0) {
+		        alert("No seats are available in both Business and Economy Class. You cannot proceed to do payment.");
+		        return false; // Prevent form submission
+		    }
 
-            return true; // Allow form submission
-        }
+		    // Check if user entered zero seats for both classes
+		    if (businessSeats === 0 && economySeats === 0) {
+		        alert("Please enter at least one seat in either Business or Economy Class to proceed.");
+		        return false; // Prevent form submission
+		    }
+
+		    return true; // Allow form submission
+		}
 
     </script>
 </head>
@@ -96,9 +117,9 @@
         <p><strong>Departure Time:</strong> <%= flight.getDepartureDateTime() %></p>
         <p><strong>Arrival Time:</strong> <%= flight.getArrivalDateTime() %></p>
         <p><strong>Business Seats Available:</strong> <%= flight.getBusinessSeats() %></p>
-        <p><strong>Business Class Price per Seat:</strong> $<%= flight.getBusinessPrice() %></p>
+        <p><strong>Business Class Price per Seat:</strong>₹<%= flight.getBusinessPrice() %></p>
         <p><strong>Economy Seats Available:</strong> <%= flight.getEconomySeats() %></p>
-        <p><strong>Economy Class Price per Seat:</strong> $<%= flight.getEconomyPrice() %></p>
+        <p><strong>Economy Class Price per Seat:</strong>₹<%= flight.getEconomyPrice() %></p>
     </div>
 
     <form action="/booking" method="post" class="fare-form" onsubmit="return validateSeats()">
@@ -110,8 +131,8 @@
         <input type="hidden" name="toLocation" value="<%= flight.getToLocation() %>">
         <input type="hidden" name="departureDatetime" value="<%= flight.getDepartureDateTime() %>">
         <input type="hidden" name="arrivalDatetime" value="<%= flight.getArrivalDateTime() %>">
-        <input type="hidden" name="economyPrice" value="<%= flight.getEconomyPrice() %>"> <!-- Ensure this line is present -->
-        <input type="hidden" name="businessPrice" value="<%= flight.getBusinessPrice() %>"> <!-- Also ensure this -->
+        <input type="hidden" name="economyPrice" value="<%= flight.getEconomyPrice() %>">
+        <input type="hidden" name="businessPrice" value="<%= flight.getBusinessPrice() %>">
 
         <label for="businessSeats">Enter Number of Business Seats:</label>
         <input type="number" id="businessSeats" name="businessSeats" min="0" oninput="calculateFare(); validateSeats()" required>
@@ -134,10 +155,5 @@
 
         <button type="submit" class="btn btn-primary">Proceed to Payment</button>
     </form>
-
-    <script>
-        // Call validateSeats on page load to disable fields if needed
-        validateSeats();
-    </script>
 </body>
 </html>

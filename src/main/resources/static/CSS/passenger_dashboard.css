@@ -179,6 +179,7 @@ body {
     border-radius: 5px;
     background-color: #f9f9f9;
     position: relative;
+	margin-top: 15px;
 }
 
 .flight-info {
@@ -191,7 +192,7 @@ body {
 
 .btn {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color:  rgb(98, 86, 86);
     color: white;
     border: none;
     border-radius: 5px;
