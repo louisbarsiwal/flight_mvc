@@ -24,11 +24,11 @@
             <input type="text" id="airlineName" name="airlineName" required>
         </div>
         <div>
-            <label for="airlineNumber">Airline Number:</label>
+            <label for="airlineNumber">Flight Number:</label>
             <input type="text" id="airlineNumber" name="airlineNumber" required>
         </div>
         <div>
-            <label for="modelNumber">Model Number:</label>
+            <label for="modelNumber">Flight Model:</label>
             <input type="text" id="modelNumber" name="modelNumber" required>
         </div>
         <div>
