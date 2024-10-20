@@ -96,9 +96,9 @@
         <p><strong>Departure Time:</strong> <%= flight.getDepartureDateTime() %></p>
         <p><strong>Arrival Time:</strong> <%= flight.getArrivalDateTime() %></p>
         <p><strong>Business Seats Available:</strong> <%= flight.getBusinessSeats() %></p>
-        <p><strong>Business Class Price per Seat:</strong> $<%= flight.getBusinessPrice() %></p>
+        <p><strong>Business Class Price per Seat:</strong> <%= flight.getBusinessPrice() %></p>
         <p><strong>Economy Seats Available:</strong> <%= flight.getEconomySeats() %></p>
-        <p><strong>Economy Class Price per Seat:</strong> $<%= flight.getEconomyPrice() %></p>
+        <p><strong>Economy Class Price per Seat:</strong> <%= flight.getEconomyPrice() %></p>
     </div>
 
 	<form action="/booking" method="post" class="fare-form" onsubmit="return validateSeats()">

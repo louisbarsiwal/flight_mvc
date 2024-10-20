@@ -19,7 +19,7 @@
         </div>
         <div class="content">
             <h1>Payment Here</h1>
-            <form action="/bookFlight" method="POST">
+            <form action="/payment/submit" method="POST">
                 <input type="hidden" id="paymentMethodInput" name="paymentMethod" required>
                 <div id="bankDropdown" class="hidden">
                     <label for="bankName">Select Bank:</label>
@@ -104,7 +104,7 @@
                 input.value = "";
                 input.removeAttribute("required");
             });
-
+ 
             // Show relevant field and set required attributes
             if (paymentMethod in fields) {
                 fields[paymentMethod].classList.remove("hidden");

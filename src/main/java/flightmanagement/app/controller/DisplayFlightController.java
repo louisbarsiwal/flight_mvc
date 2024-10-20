@@ -38,7 +38,7 @@ public class DisplayFlightController {
     public String getAvailableFlights(Model model) {
         String sql = "SELECT flight_id, airline_name, flight_no, flight_model, from_location, to_location, "
                 + "departure_datetime, arrival_datetime, total_seats, economy_seats, "
-                + "economy_price, business_seats, business_price FROM added_flights";
+                + "economy_price, business_seats, business_price FROM added_flights ORDER BY departure_datetime DESC";
 
         List<Map<String, Object>> flights = jdbcTemplate.queryForList(sql);
 
