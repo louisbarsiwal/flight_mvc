@@ -101,39 +101,40 @@
         <p><strong>Economy Class Price per Seat:</strong> $<%= flight.getEconomyPrice() %></p>
     </div>
 
-    <form action="/booking" method="post" class="fare-form" onsubmit="return validateSeats()">
-        <input type="hidden" name="flightId" value="<%= flight.getFlightId() %>">
-        <input type="hidden" name="flightNo" value="<%= flight.getFlightNo() %>">
-        <input type="hidden" name="airlineName" value="<%= flight.getAirlineName() %>">
-        <input type="hidden" name="flightModel" value="<%= flight.getFlightModel() %>">
-        <input type="hidden" name="fromLocation" value="<%= flight.getFromLocation() %>">
-        <input type="hidden" name="toLocation" value="<%= flight.getToLocation() %>">
-        <input type="hidden" name="departureDatetime" value="<%= flight.getDepartureDateTime() %>">
-        <input type="hidden" name="arrivalDatetime" value="<%= flight.getArrivalDateTime() %>">
-        <input type="hidden" name="economyPrice" value="<%= flight.getEconomyPrice() %>"> <!-- Ensure this line is present -->
-        <input type="hidden" name="businessPrice" value="<%= flight.getBusinessPrice() %>"> <!-- Also ensure this -->
+	<form action="/booking" method="post" class="fare-form" onsubmit="return validateSeats()">
+	    <input type="hidden" name="flightId" value="<%= flight.getFlightId() %>">
+	    <input type="hidden" name="flightNo" value="<%= flight.getFlightNo() %>">
+	    <input type="hidden" name="airlineName" value="<%= flight.getAirlineName() %>">
+	    <input type="hidden" name="flightModel" value="<%= flight.getFlightModel() %>">
+	    <input type="hidden" name="fromLocation" value="<%= flight.getFromLocation() %>">
+	    <input type="hidden" name="toLocation" value="<%= flight.getToLocation() %>">
+	    <input type="hidden" name="departureDatetime" value="<%= flight.getDepartureDateTime() %>">
+	    <input type="hidden" name="arrivalDatetime" value="<%= flight.getArrivalDateTime() %>">
+	    <input type="hidden" name="economyPrice" value="<%= flight.getEconomyPrice() %>">
+	    <input type="hidden" name="businessPrice" value="<%= flight.getBusinessPrice() %>">
 
-        <label for="businessSeats">Enter Number of Business Seats:</label>
-        <input type="number" id="businessSeats" name="businessSeats" min="0" oninput="calculateFare(); validateSeats()" required>
+	    <label for="businessSeats">Enter Number of Business Seats:</label>
+	    <input type="number" id="businessSeats" name="businessSeats" min="0" oninput="calculateFare(); validateSeats()" required>
 
-        <label for="businessClassPrice">Business Class Price:</label>
-        <input type="text" id="businessClassPrice" name="businessClassPrice" readonly>
+	    <label for="businessClassPrice">Business Class Price:</label>
+	    <input type="text" id="businessClassPrice" name="businessClassPrice" readonly>
 
-        <label for="economySeats">Enter Number of Economy Seats:</label>
-        <input type="number" id="economySeats" name="economySeats" min="0" oninput="calculateFare(); validateSeats()" required>
+	    <label for="economySeats">Enter Number of Economy Seats:</label>
+	    <input type="number" id="economySeats" name="economySeats" min="0" oninput="calculateFare(); validateSeats()" required>
 
-        <label for="economyClassPrice">Economy Class Price:</label>
-        <input type="text" id="economyClassPrice" name="economyClassPrice" readonly>
+	    <label for="economyClassPrice">Economy Class Price:</label>
+	    <input type="text" id="economyClassPrice" name="economyClassPrice" readonly>
 
-        <label for="totalFare">Total Fare:</label>
-        <input type="text" id="totalFare" name="totalFare" readonly>
+	    <label for="totalFare">Total Fare:</label>
+	    <input type="text" id="totalFare" name="totalFare" readonly>
 
-        <!-- Hidden fields to store calculated prices -->
-        <input type="hidden" id="totalBusinessPrice" name="totalBusinessPrice">
-        <input type="hidden" id="totalEconomyPrice" name="totalEconomyPrice">
+	    <!-- Hidden fields to store calculated prices -->
+	    <input type="hidden" id="totalBusinessPrice" name="totalBusinessPrice">
+	    <input type="hidden" id="totalEconomyPrice" name="totalEconomyPrice">
 
-        <button type="submit" class="btn btn-primary">Proceed to Payment</button>
-    </form>
+	    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+	</form>
+
 
     <script>
         // Call validateSeats on page load to disable fields if needed

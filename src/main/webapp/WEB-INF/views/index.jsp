@@ -86,12 +86,8 @@
 	                  </div>
 	      <%
 	              }
-	          } else {
-	      %>
-	              <p>No flights available for the selected criteria.</p>
-	      <%
 	          }
-	      %>
+	     %>
             </div>
 </div>
 

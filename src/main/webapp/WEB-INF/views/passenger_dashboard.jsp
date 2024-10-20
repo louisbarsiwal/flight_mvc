@@ -42,8 +42,8 @@
     <form action="/flight/searchFlights" method= "GET" onsubmit="searchFlights(event)">
 		<select id="source" name="source" required>
 		    <option value="" disabled selected>Source</option>
-		    <option value="DEL">New Delhi</option>
-		    <option value="BOM">Mumbai</option>
+			<option value="DEL">New Delhi</option>
+      <option value="BOM">Mumbai</option>
 			<option value="MAA">Chennai</option>
 			<option value="HYD">Hyderabad</option>
 			<option value="BLR">Bangalore</option>
@@ -52,8 +52,8 @@
 
 		<select id="destination" name="destination" required>
 		    <option value="" disabled selected>Destination</option>
-		    <option value="DEL">New Delhi</option>
-		    <option value="BOM">Mumbai</option>
+			<option value="DEL">New Delhi</option>
+      <option value="BOM">Mumbai</option>
 			<option value="MAA">Chennai</option>
 			<option value="HYD">Hyderabad</option>
 			<option value="BLR">Bangalore</option>

@@ -1,6 +1,8 @@
 package flightmanagement.app.entities;
 
 
+import java.io.InputStream;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class PassengerRegistration 
@@ -20,6 +22,7 @@ public class PassengerRegistration
 	private MultipartFile profileImage;
 	private String confirmPassword;
 	
+
 	
 	public String getConfirmPassword() {
 		return confirmPassword;
