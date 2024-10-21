@@ -242,8 +242,9 @@ public class UserController {
 	    
 		try {
 			
-			businessOwnerRegistration = businessOwnerDaoImpl.modifyUser(updatedBo); 
 			businessOwnerRegistration.setImage(businessOwnerRegistration.getProfileImage().getInputStream());
+			businessOwnerRegistration = businessOwnerDaoImpl.modifyUser(updatedBo); 
+			
 			
 			attributes.addFlashAttribute("message", "Profile updated successfully");
 		} catch(EmptyResultDataAccessException e) {

@@ -31,6 +31,8 @@
             </span>
         </div><br/>
 		<p><a href="/user/openBoForgotPasswordPage">forgot password ?</a></p>
+		
+		 
         <button type="submit">Login</button><br/>
         
     </form>

@@ -32,7 +32,7 @@
         <table>
 			
 			<tr>
-				<center><p><img src="data:image/jpg;base64,<%= ViewImage.displayImage(businessOwnerRegistration.getImage()) %>" width="100" height="150"></p><center>
+				<center><p><img src="data:image/jpg;base64,<%= ViewImage.displayImage(businessOwnerRegistration.getImage()) %>" width="100" height="150"/></p><center>
 			</tr>
 			
 			<tr>
