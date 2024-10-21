@@ -29,7 +29,7 @@
                     <option value="" disabled selected>Source</option>
                     <option value="DEL">New Delhi</option>
                     <option value="BOM">Mumbai</option>
-                    <option value="KOAA">Chennai</option>
+                    <option value="MAA">Chennai</option>
                     <option value="HYD">Hyderabad</option>
                     <option value="BLR">Bangalore</option>
                 </select>
@@ -38,7 +38,7 @@
                     <option value="" disabled selected>Destination</option>
                     <option value="DEL">New Delhi</option>
                     <option value="BOM">Mumbai</option>
-                    <option value="KOAA">Chennai</option>
+                    <option value="MAA">Chennai</option>
                     <option value="HYD">Hyderabad</option>
                     <option value="BLR">Bangalore</option>
                 </select>

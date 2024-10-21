@@ -76,7 +76,7 @@
 			        <select id="from" name="fromLocation"> <!-- Changed here -->
 			            <option value="DEL">New Delhi</option>
 						<option value="BOM">Mumbai</option>
-						<option value="KOAA">Chennai</option>
+						<option value="MAA">Chennai</option>
 						<option value="HYD">Hyderabad</option>
 						<option value="BLR">Bangalore</option>
 			        </select>
@@ -90,7 +90,7 @@
 			        <select id="to" name="toLocation"> <!-- Changed here -->
 						<option value="DEL">New Delhi</option>
 						<option value="BOM">Mumbai</option>
-						<option value="KOAA">Chennai</option>
+						<option value="MAA">Chennai</option>
 						<option value="HYD">Hyderabad</option>
 						<option value="BLR">Bangalore</option>
 			        </select>

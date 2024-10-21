@@ -72,7 +72,6 @@ CREATE TABLE `flight_database`.`admin_passenger` (
   `username` VARCHAR(10) NOT NULL,
   `password_salt` VARCHAR(45) NULL,
   `password_hash` VARCHAR(64) NULL,
-  `profile_image` LONGBLOB NOT NULL,
   PRIMARY KEY (`passenger_Id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
   UNIQUE INDEX `mobile_no_UNIQUE` (`mobile_no` ASC) VISIBLE,

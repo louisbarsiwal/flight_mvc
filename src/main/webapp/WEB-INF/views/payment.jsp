@@ -47,7 +47,7 @@
                 </div>
                 <div id="cardDetails" class="hidden">
                     <label for="cardNumber">Card Number:</label>
-                    <input type="text" name="cardNumber" id="cardNumber" placeholder="0000-0000-0000-0000" oninput="formatCardNumber(this)" maxlength="19" pattern="^(\d{4}-){3}\d{4}$" required>
+                    <input type="text" name="cardNumber" id="cardNumber" placeholder="xxxx-xxxx-xxxx-xxxx" oninput="formatCardNumber(this)" maxlength="19" pattern="^(\d{4}-){3}\d{4}$" required>
                     <label for="expiryDate">Expiry Date (MM/YY):</label>
                     <input type="text" name="expiryDate" placeholder="MM/YY" maxlength="5" pattern="^(0[1-9]|1[0-2])\/\d{2}$" oninput="formatExpiryDate(this)" required>
                     <label for="cvv">CVV:</label>
@@ -126,6 +126,13 @@
 		function formatCardNumber(input) {
 		    // Remove any non-digit characters
 		    let value = input.value.replace(/\D/g, '');
+
+		    // Check if the card number is all zeros
+		    if (value.length === 16 && value === '0000000000000000') {
+		        alert('Card number cannot be zero.');
+		        input.value = ''; // Clear the input
+		        return;
+		    }
 		    
 		    // Split the value into groups of 4
 		    let formattedValue = '';
@@ -139,7 +146,7 @@
 		    // Set the formatted value back to the input
 		    input.value = formattedValue;
 		}
-		
+
 
 		function formatExpiryDate(input) {
 		    // Remove any non-digit characters

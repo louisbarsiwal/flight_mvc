@@ -58,13 +58,13 @@
 
             <div class="form-group">
                 <label for="from">From</label>
-                <select id="from" name="fromLocation">
-                    <option value="NYC" <%= "NYC".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>New York City</option>
-                    <option value="LAX" <%= "LAX".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Los Angeles</option>
-                    <option value="CHI" <%= "CHI".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Chicago</option>
-                    <option value="ATL" <%= "ATL".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Atlanta</option>
-                    <option value="LHR" <%= "LHR".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>London</option>
-                </select>
+				<select id="from" name="fromLocation">
+				    <option value="DEL" <%= "DEL".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>New Delhi</option>
+				    <option value="BOM" <%= "BOM".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Mumbai</option>
+				    <option value="MAA" <%= "MAA".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Chennai</option>
+				    <option value="HYD" <%= "HYD".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Hyderabad</option>
+				    <option value="BLR" <%= "BLR".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Bangalore</option>
+				</select>
             </div>
 
             <div class="form-group">
@@ -74,13 +74,13 @@
 
             <div class="form-group">
                 <label for="to">To</label>
-                <select id="to" name="toLocation">
-                    <option value="NYC" <%= "NYC".equals(addedFlight.getToLocation()) ? "selected" : "" %>>New York City</option>
-                    <option value="LAX" <%= "LAX".equals(addedFlight.getToLocation()) ? "selected" : "" %>>Los Angeles</option>
-                    <option value="CHI" <%= "CHI".equals(addedFlight.getToLocation()) ? "selected" : "" %>>Chicago</option>
-                    <option value="ATL" <%= "ATL".equals(addedFlight.getToLocation()) ? "selected" : "" %>>Atlanta</option>
-                    <option value="LHR" <%= "LHR".equals(addedFlight.getToLocation()) ? "selected" : "" %>>London</option>
-                </select>
+				<select id="to" name="toLocation">
+				    <option value="DEL" <%= "DEL".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>New Delhi</option>
+				    <option value="BOM" <%= "BOM".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Mumbai</option>
+				    <option value="MAA" <%= "MAA".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Chennai</option>
+				    <option value="HYD" <%= "HYD".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Hyderabad</option>
+				    <option value="BLR" <%= "BLR".equals(addedFlight.getFromLocation()) ? "selected" : "" %>>Bangalore</option>
+				</select>
             </div>
 
             <div class="form-group">
