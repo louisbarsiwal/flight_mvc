@@ -24,10 +24,16 @@
 	   			document.getElementById('departure').setAttribute('min', minDate);
 	   		}
 
-	   		function updateArrivalDate() {
-	   			const departureDate = document.getElementById('departure').value;
-	   			document.getElementById('arrival').setAttribute('min', departureDate);
-	   		}
+			function updateArrivalDate() {
+			    const departureDate = document.getElementById('departure').value;
+			    if (departureDate) {
+			        document.getElementById('arrival').setAttribute('min', departureDate);
+			    } else {
+			        // Reset the arrival min if departure is not set
+			        document.getElementById('arrival').removeAttribute('min');
+			    }
+			}
+
 
 			function calculateBusinessSeats() {
 			    const totalSeats = parseInt(document.getElementById('totalSeats').value) || 0;

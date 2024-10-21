@@ -16,11 +16,41 @@
 	
 	<script>
 		window.onload = function() {
-	    const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
-	    if (message) {
-			alert(message);
-			   }
-		 };
+							const message = "<%= request.getAttribute("message") != null ? request.getAttribute("message") : "" %>";
+							if (message) {
+								alert(message);
+							}
+							setMinDepartureDate();
+						};
+			   function setMinDepartureDate() {
+			   			const now = new Date();
+			   			const minDate = now.toISOString().slice(0, 16); // Get the current date and time in local format
+			   			document.getElementById('departure').setAttribute('min', minDate);
+			   		}
+
+					function updateArrivalDate() {
+					    const departureDate = document.getElementById('departure').value;
+					    if (departureDate) {
+					        document.getElementById('arrival').setAttribute('min', departureDate);
+					    } else {
+					        // Reset the arrival min if departure is not set
+					        document.getElementById('arrival').removeAttribute('min');
+					    }
+					}
+
+
+					function calculateBusinessSeats() {
+					    const totalSeats = parseInt(document.getElementById('totalSeats').value) || 0;
+					    const economySeats = parseInt(document.getElementById('economySeats').value) || 0;
+					    
+					    const businessSeats = totalSeats - economySeats;
+					    document.getElementById('businessSeats').value = businessSeats >= 0 ? businessSeats : 0; // Ensure it doesn't go negative
+
+					    // Check if the sum of economy and business seats equals total seats
+					    if (economySeats + businessSeats !== totalSeats) {
+					        alert("Error: The sum of Economy and Business seats must equal Total Seats.");
+					    }
+					}
 	</script>
 	
 </head>
@@ -69,7 +99,7 @@
 
             <div class="form-group">
                 <label for="departure">Departure (Date & Time)</label>
-                <input type="datetime-local" id="departure" name="departureDateTime" value="<%= addedFlight.getDepartureDateTime().toString().substring(0, 16)%>">
+                <input type="datetime-local" id="departure" name="departureDateTime" onchange="updateArrivalDate()" value="<%= addedFlight.getDepartureDateTime().toString().substring(0, 16)%>">
             </div>
 
             <div class="form-group">
@@ -90,12 +120,12 @@
 
             <div class="form-group">
                 <label for="totalSeats">Total Seats Available</label>
-                <input type="number" id="totalSeats" name="totalSeats" value="<%=addedFlight.getTotalSeats() %>">
+                <input type="number" id="totalSeats" name="totalSeats" value="<%=addedFlight.getTotalSeats() %>" oninput="calculateBusinessSeats()">
             </div>
 
             <div class="form-group">
                 <label for="economySeats">Seats in Economy Class</label>
-                <input type="number" id="economySeats" name="economySeats" value="<%= addedFlight.getEconomySeats() %>">
+                <input type="number" id="economySeats" name="economySeats" value="<%= addedFlight.getEconomySeats() %>" oninput="calculateBusinessSeats()">
             </div>
 
             <div class="form-group">
